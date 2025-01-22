@@ -1,0 +1,169 @@
+/* UTILS AND RESET*/
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+img {
+  width: 100%;
+}
+main {
+  min-height: 100vh;
+}
+:root {
+  --bg-color: #707070;
+  --primary-color: #8a4040;
+  --secondary-color: #0b0b0bf7;
+  --footer-height: 100px;
+}
+.page-title {
+  margin: 30px 0px;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.wrapper {
+  min-height: 100vh;
+}
+body {
+  background-color: #4290b4;
+  background-image: url("img/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.navbar {
+  background-color: white;
+}
+.right {
+  text-align: end;
+}
+.logout {
+  text-align: end;
+}
+.container-white {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 30px 0px;
+}
+/*home PAGE*/
+.container-img {
+  position: relative;
+  min-height: 100vh;
+}
+.img-homepage {
+  filter: blur(3px);
+  object-fit: contain;
+  overflow: hidden;
+}
+.homepage {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+}
+.container-data {
+  background-color: rgba(255, 255, 255, 0.925);
+  border-radius: 10px;
+
+  margin: 10px auto;
+  width: 600px;
+  padding: 30px;
+}
+h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #ed7f3e;
+  margin-right: 30px;
+}
+.homepage-title {
+  font-size: 5rem;
+  font-weight: 600;
+  color: #ed7f3e;
+
+  text-align: center;
+}
+.homepage-subtitle {
+  font-size: 2rem;
+  font-weight: 600;
+
+  text-align: center;
+}
+.link-to-login {
+  color: black;
+  text-decoration: underline;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.login-container {
+  width: 300px;
+  text-align: center;
+  margin: 30px auto;
+}
+.input-login-container {
+  border: 2px solid #ed7f3e;
+  padding: 30px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.login-btn {
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  background-color: #ed7f3e;
+  border-radius: 25px;
+  color: black;
+}
+.login-btn:hover {
+  background-color: #da6019;
+}
+
+/*VOYAGE LIST*/
+.table-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.table-container {
+  border-radius: 10px;
+  border: 1px solid rgb(255, 187, 0);
+  padding: 10px;
+}
+.badge-status {
+  background-color: rgb(79, 155, 79);
+}
+/*form viaggi*/
+.form-container {
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 187, 0);
+  border-radius: 10px;
+}
+.form-label {
+  font-weight: bold;
+  color: black;
+  font-size: 1.2rem;
+}
+.footer {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  height: 100px;
+}
+
+.footer > .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-footer > div {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.footer-right-nav li {
+  display: inline-block;
+  font-size: 1.3rem;
+  margin-left: 10px;
+}
