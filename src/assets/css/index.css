@@ -1,13 +1,65 @@
-/* UTILS AND RESET*/
+:root {
+  --body-bg-color: #f3f3f3;
+  --primary-color: #1c2e4a;
+  --primary-color-hover: #3a5e97;
+  --secondary-color: #657f8e;
+}
+
+/* # reset*/
 * {
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
 }
+
 a {
   text-decoration: none;
   cursor: pointer;
 }
+
 img {
   width: 100%;
+}
+
+body {
+  background-color: rgb(150, 150, 150);
+}
+
+/* # utilities */
+
+.transparent-bg {
+  background-color: transparent;
+}
+
+.alt-bg {
+  background-color: var(--secondary-color);
+}
+
+.custom-bg {
+  background-color: var(--primary-color);
+}
+
+.btn-custom {
+  background-color: var(--primary-color);
+  color: #f8f9fa;
+}
+
+.btn-custom:hover {
+  background-color: var(--primary-color-hover);
+  color: #f8f9fa;
+}
+
+#navbar-logo {
+  height: 70px;
+  width: 70px;
+}
+
+.footer-quote {
+  font-style: italic;
+  font-size: 15px;
+}
+
+.copyright {
+  font-size: 10px;
+  font-style: italic;
 }
