@@ -1,18 +1,20 @@
+import { NavLink } from "react-router-dom";
+
 export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg transparent-bg">
       <div className="container-fluid">
-        <a className="navbar-brand me-0 pe-0" href="/">
+        <NavLink className="navbar-brand me-0 pe-0" to="/">
           <img
             src="logo-placeholder-image.png"
             alt="Logo"
             id="navbar-logo"
             className="d-inline-block"
           />
-        </a>
-        <a href="/">
+        </NavLink>
+        <NavLink to="/">
           <h1 className="text-light fw-bold fs-2 me-3">BDoctors</h1>
-        </a>
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
@@ -27,12 +29,12 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarScroll">
           <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
             <li className="nav-item">
-              <a className="nav-link text-light" href="#">
+              <NavLink className="nav-link text-light" to="#">
                 Chi siamo
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item dropdown">
-              <a
+              <NavLink
                 className="nav-link dropdown-toggle text-light"
                 href="#"
                 role="button"
@@ -40,42 +42,42 @@ export default function Navbar() {
                 aria-expanded="false"
               >
                 Specializzazioni
-              </a>
+              </NavLink>
               <ul className="dropdown-menu alt-bg opacity-75">
                 <li>
-                  <a className="dropdown-item text-light" href="#">
+                  <NavLink className="dropdown-item text-light" to="#">
                     Medicina di base
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a className="dropdown-item text-light" href="#">
+                  <NavLink className="dropdown-item text-light" to="#">
                     Cardiologia
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a className="dropdown-item text-light" href="#">
+                  <NavLink className="dropdown-item text-light" to="#">
                     Geriatria
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a className="dropdown-item text-light" href="#">
+                  <NavLink className="dropdown-item text-light" to="#">
                     Psichiatria
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
+                  <NavLink
                     className="dropdown-item text-light border-top border-secondary"
-                    href="#"
+                    to="#"
                   >
                     Vedi tutte
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </li>
           </ul>
-          <a href="/registration" className="btn btn-custom fw-semibold">
+          <NavLink to="/registration" className="btn btn-custom fw-semibold">
             Registrati
-          </a>
+          </NavLink>
         </div>
       </div>
     </nav>

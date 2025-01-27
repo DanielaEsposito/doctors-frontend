@@ -63,3 +63,12 @@ body {
   font-size: 10px;
   font-style: italic;
 }
+
+textarea.form-control {
+  height: 38px;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: transparent;
+}

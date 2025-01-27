@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import NotFound from "./pages/NotFound";
 import DoctorShowPage from "./pages/DoctorShowPage";
+import RegistrationPage from "./pages/RegistrationPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/about" Component={AboutPage} />
             <Route path="*" Component={NotFound} />
             <Route path=":id" element={<DoctorShowPage />} />
+            <Route path="/registration" Component={RegistrationPage} />
           </Route>
         </Routes>
       </BrowserRouter>
