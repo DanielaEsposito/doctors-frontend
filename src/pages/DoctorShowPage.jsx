@@ -33,9 +33,21 @@ export default function MovieShowPage() {
         <h1>{doctor.doctor.address}</h1>
         <h1>{doctor.doctor.description}</h1>
 
+        {/* calcola media recensioni */}
+
         <div className="mt-5">
           <ReviewsForm updateReviews={updateReviews} doctorId={doctorId} />
+          <h3>Media recensioni</h3>
+          <h1>
+            {reviews.length > 0
+              ? (
+                  reviews.reduce((acc, review) => acc + review.rating, 0) /
+                  reviews.length
+                ).toFixed(1) + "⭐"
+              : "Nessuna recensione"}
+          </h1>
           <h2>Recensioni</h2>
+
           <div className="row">
             {reviews.map((review) => (
               <div className="col-md-4 mb-4" key={review.id}>
