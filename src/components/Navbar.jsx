@@ -2,7 +2,7 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg transparent-bg">
       <div className="container-fluid">
-        <a className="navbar-brand me-0 pe-0" href="#">
+        <a className="navbar-brand me-0 pe-0" href="/">
           <img
             src="logo-placeholder-image.png"
             alt="Logo"
@@ -10,7 +10,7 @@ export default function Navbar() {
             className="d-inline-block"
           />
         </a>
-        <a href="#">
+        <a href="/">
           <h1 className="text-light fw-bold fs-2 me-3">BDoctors</h1>
         </a>
         <button
