@@ -6,6 +6,7 @@ import DefaultLayout from "./layouts/defaultLayout";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import NotFound from "./pages/NotFound";
+import DoctorShowPage from "./pages/DoctorShowPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route index Component={HomePage} />
             <Route path="/about" Component={AboutPage} />
             <Route path="*" Component={NotFound} />
+            <Route path=":id" element={<DoctorShowPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
