@@ -22,23 +22,45 @@ export default function DoctorShowPage() {
   }, []);
   return (
     <>
-      <div className="container py-4">
-        {/* stampa nome dottore */}
-        <h1>{doctor.doctor.name}</h1>
-        <h1>{doctor.doctor.surname}</h1>
-        <h1>{doctor.doctor.email}</h1>
-        <h1>{doctor.doctor.city}</h1>
-        <h1>{doctor.doctor.province}</h1>
-        <h1>{doctor.doctor.phone_number}</h1>
-        <h1>{doctor.doctor.address}</h1>
-        <h1>{doctor.doctor.description}</h1>
+      <div className="container py-5">
+        <div className="mb-4 text-center">
+          <h1 className="display-4 text-primary">
+            {doctor.doctor.name} {doctor.doctor.surname}
+          </h1>
+          <p className="text-secondary">{doctor.doctor.description}</p>
+        </div>
 
-        {/* calcola media recensioni */}
+        <div className="row justify-content-center mb-5">
+          <div className="col-md-6">
+            <ul className="list-group">
+              <li className="list-group-item">
+                <strong>Email:</strong> {doctor.doctor.email}
+              </li>
+              <li className="list-group-item">
+                <strong>Città:</strong> {doctor.doctor.city}
+              </li>
+              <li className="list-group-item">
+                <strong>Provincia:</strong> {doctor.doctor.province}
+              </li>
+              <li className="list-group-item">
+                <strong>Telefono:</strong> {doctor.doctor.phone_number}
+              </li>
+              <li className="list-group-item">
+                <strong>Indirizzo:</strong> {doctor.doctor.address}
+              </li>
+            </ul>
+          </div>
+        </div>
 
-        <div className="mt-5">
+        <h3 className="text-primary text-center">Aggiungi una recensione</h3>
+
+        <div className="mb-5">
           <ReviewsForm updateReviews={updateReviews} doctorId={doctorId} />
-          <h3>Media recensioni</h3>
-          <h1>
+        </div>
+
+        <div className="text-center mb-4">
+          <h3 className="text-primary">Media Recensioni</h3>
+          <h1 className="text-warning">
             {reviews.length > 0
               ? (
                   reviews.reduce((acc, review) => acc + review.rating, 0) /
@@ -46,29 +68,32 @@ export default function DoctorShowPage() {
                 ).toFixed(1) + "⭐"
               : "Nessuna recensione"}
           </h1>
-          <h2>Recensioni</h2>
+        </div>
 
-          <div className="row">
-            {reviews.map((review) => (
-              <div className="col-md-4 mb-4" key={review.id}>
-                <div className="card">
-                  <div className="card-body">
-                    <h5 className="card-title">Voto: {review.rating} ⭐</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">
-                      Recensito da: {review.username}
-                    </h6>
-                    <p className="card-text">"{review.review_text}"</p>
-                  </div>
-                  <div className="card-footer">
-                    <p className="text-muted">
-                      Recensito il:{" "}
-                      {new Date(review.created_at).toLocaleDateString()}
-                    </p>
-                  </div>
+        <h2 className="text-primary text-center mb-4">Recensioni</h2>
+        <div className="row">
+          {reviews.map((review) => (
+            <div className="col-md-4 mb-4" key={review.id}>
+              <div className="card border-0 shadow h-100">
+                <div className="card-body">
+                  <h5 className="card-title">
+                    <span className="text-warning">Voto:</span> {review.rating}{" "}
+                    ⭐
+                  </h5>
+                  <h6 className="card-subtitle mb-2 text-muted">
+                    Recensito da: {review.username}
+                  </h6>
+                  <p className="card-text">"{review.review_text}"</p>
+                </div>
+                <div className="card-footer bg-light">
+                  <small className="text-muted">
+                    Recensito il:{" "}
+                    {new Date(review.created_at).toLocaleDateString()}
+                  </small>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </>

@@ -1,3 +1,7 @@
 export default function RegistrationPage() {
-  return;
+  return (
+    <>
+      <h1>Registrazione</h1>
+    </>
+  );
 }
