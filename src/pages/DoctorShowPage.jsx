@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReviewsForm from "../../reviews/ReviewsForm.jsx";
 
-export default function MovieShowPage() {
+export default function DoctorShowPage() {
   const { id: doctorId } = useParams();
   const [doctor, setDoctor] = useState({ doctor: {} });
   const [reviews, setReviews] = useState([]);
