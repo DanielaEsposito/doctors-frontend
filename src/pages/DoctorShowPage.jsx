@@ -27,6 +27,7 @@ export default function DoctorShowPage() {
           <h1 className="display-4 text-primary">
             {doctor.doctor.name} {doctor.doctor.surname}
           </h1>
+          <img src={`${doctor.doctor.image}`} />
           <p className="text-secondary">{doctor.doctor.description}</p>
         </div>
 
