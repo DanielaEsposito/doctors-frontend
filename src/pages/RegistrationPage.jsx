@@ -4,7 +4,7 @@ const RegistrationForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
-    specialty: "",
+    specialty_id: "",
     address: "",
     email: "",
     phone_number: "",
@@ -27,6 +27,7 @@ const RegistrationForm = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
     setFormData({
       ...formData,
       [name]: value,
@@ -35,7 +36,8 @@ const RegistrationForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
+
+    console.log("Dati inviati al backend:", formData);
 
     fetch("http://localhost:3000/", {
       method: "POST",
@@ -45,18 +47,20 @@ const RegistrationForm = () => {
       body: JSON.stringify(formData),
     })
       .then((response) => {
+        console.log("HTTP Status Code:", response.status);
         if (!response.ok) {
-          throw new Error("Errore nella registrazione del medico");
+          throw new Error(`Errore HTTP: ${response.status}`);
         }
         return response.json();
       })
       .then((data) => {
-        console.log("Medico registrato con successo:", data);
+        console.log("Risposta del backend:", data);
         alert("Registrazione completata con successo!");
+
         setFormData({
           name: "",
           surname: "",
-          specialty: "",
+          specialty_id: "",
           address: "",
           email: "",
           phone_number: "",
@@ -65,8 +69,9 @@ const RegistrationForm = () => {
       })
       .catch((error) => {
         console.error("Errore durante la registrazione:", error);
-
-        alert("Si è verificato un errore. Riprova più tardi.");
+        alert(
+          "Si è verificato un errore durante la registrazione. Riprova più tardi."
+        );
       });
   };
 
@@ -125,20 +130,20 @@ const RegistrationForm = () => {
 
           {/* Specializzazione */}
           <div className="col-12 col-md-6 mb-3">
-            <label htmlFor="specialty" className="form-label">
+            <label htmlFor="specialty_id" className="form-label">
               Specializzazione
             </label>
             <select
               className="form-control"
-              id="specialty"
-              name="specialty"
-              value={formData.specialty}
+              id="specialty_id"
+              name="specialty_id"
+              value={formData.specialty_id}
               onChange={handleChange}
               required
             >
               <option value="">Seleziona una specializzazione</option>
               {specialties.map((specialty) => (
-                <option key={specialty.id} value={specialty.name}>
+                <option key={specialty.id} value={specialty.id}>
                   {specialty.name}
                 </option>
               ))}
