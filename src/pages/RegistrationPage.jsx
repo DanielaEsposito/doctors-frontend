@@ -61,7 +61,7 @@ const RegistrationForm = () => {
           email: "",
           phone_number: "",
           description: "",
-        }); // Resetta il form
+        });
       })
       .catch((error) => {
         console.error("Errore durante la registrazione:", error);
