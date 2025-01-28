@@ -67,7 +67,7 @@ export default function Navbar() {
                 <li>
                   <NavLink
                     className="dropdown-item text-light border-top border-secondary"
-                    to="#"
+                    to="/id/search"
                   >
                     Vedi tutte
                   </NavLink>

@@ -8,6 +8,7 @@ import AboutPage from "./pages/AboutPage";
 import NotFound from "./pages/NotFound";
 import DoctorShowPage from "./pages/DoctorShowPage";
 import RegistrationPage from "./pages/RegistrationPage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="*" Component={NotFound} />
             <Route path=":id" element={<DoctorShowPage />} />
             <Route path="/registration" Component={RegistrationPage} />
+            <Route path=":id/search" Component={SearchPage} />
           </Route>
         </Routes>
       </BrowserRouter>

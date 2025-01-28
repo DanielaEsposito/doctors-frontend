@@ -24,6 +24,9 @@ img {
 body {
   background-color: rgb(150, 150, 150);
 }
+main {
+  min-height: 100vh;
+}
 
 /* # utilities */
 
