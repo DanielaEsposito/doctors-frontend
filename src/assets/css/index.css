@@ -15,6 +15,11 @@
 a {
   text-decoration: none;
   cursor: pointer;
+  color: inherit;
+}
+
+a:visited {
+  color: inherit;
 }
 
 img {
@@ -142,6 +147,8 @@ textarea.form-control {
   height: 170px;
   border-radius: 50%;
   overflow: hidden;
+  object-fit: cover;
+  border: 1px solid var(--primary-color);
 }
 
 .cta-img {

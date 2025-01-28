@@ -1,6 +1,48 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function HomePage() {
+  // # fetch feature doctors
+  const [featuredDoctors, setFeaturedDoctors] = useState([]);
+
+  useEffect(() => {
+    const url = `http://localhost:3000/`;
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setFeaturedDoctors(data.resultsDoctor.slice(0, 5));
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log(featuredDoctors);
+  }, [featuredDoctors]);
+
+  // # fetch specialties
+
+  const [specialties, setSpecialties] = useState([]);
+
+  useEffect(() => {
+    const url = "http://localhost:3000/specialties";
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setSpecialties(data.results);
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log(specialties);
+  }, [specialties]);
+
+  // ! TO DO: match lista spec e id spec
+
+  // # fetch  featured reviews
+  // ! TO DO: fetch reviews
+  // const [featuredReviews, setFeaturedReviews] = useState([]);
+
   return (
     <div className="wrapper">
       {/* hero section */}
@@ -56,25 +98,36 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
       {/* featured doctors section */}
       <section>
         <div className="container">
           <h3 className="text-center fw-semibold">I nostri medici</h3>
           <div className="row row-cols-5">
-            <div className="col d-flex align-items-center flex-column">
-              <img
-                src="https://picsum.photos/2500/3500"
-                alt=""
-                className="d-inline-block round-image-hp text-center"
-              />
-              <div>
-                <p className="text-center fs-5">Nome Cognome</p>
-                <p className="text-center">specializzazione</p>
-              </div>
-            </div>
+            {featuredDoctors.map((doctor) => (
+              <Link to={`${doctor.id}`}>
+                <div
+                  key={doctor.id}
+                  className="col d-flex align-items-center flex-column"
+                >
+                  <img
+                    src={doctor.image}
+                    alt="doctor"
+                    className="d-inline-block round-image-hp text-center"
+                  />
+                  <div>
+                    <p className="text-center fs-5">
+                      {doctor.name} {doctor.surname}
+                    </p>
+                    <p className="text-center">{doctor.specialty_id}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
+
       {/* reviews section */}
       <section>
         <div className="container mt-5">
@@ -130,6 +183,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
       {/* call to action section */}
       <section>
         <div className="container mt-5 mb-4">
