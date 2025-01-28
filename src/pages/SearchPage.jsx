@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 export default function SearchPage() {
   const [specialties, setSpecialties] = useState([]);
   const [doctor, setDoctors] = useState([]);
@@ -55,6 +56,9 @@ export default function SearchPage() {
                       {doctor.name} {doctor.surname}
                     </h5>
                     <h5>{doctor.city}</h5>
+                    <Link to={`/${doctor.id}`} className="tags">
+                      Show detail
+                    </Link>
                   </div>
                 </div>
               </div>
