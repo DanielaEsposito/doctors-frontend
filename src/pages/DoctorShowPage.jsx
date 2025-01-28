@@ -12,7 +12,7 @@ export default function DoctorShowPage() {
   };
 
   useEffect(() => {
-    const url = import.meta.env.VITE_BACKEND_URL + "/" + doctorId;
+    const url = `http://localhost:3000/${doctorId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
