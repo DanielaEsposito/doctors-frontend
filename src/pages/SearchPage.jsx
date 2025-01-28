@@ -21,15 +21,20 @@ export default function SearchPage() {
     <div className="wrapper">
       <section id="specialties-tags">
         <div className="container">
+          <h2 className="mb-3">Specialties</h2>
+          <h4 className="mb-5">
+            Choose the specialization you are interested in and browse through
+            the various doctors.
+          </h4>
           <div className="tags-container d-flex g-3">
             {specialties.map((specialty) => (
-              <button
+              <span
                 key={specialty.id}
-                className="badge bg-body-secondary m-3"
+                className="tags"
                 onClick={() => showDoctors(specialty.id)}
               >
                 {specialty.specialty_name}
-              </button>
+              </span>
             ))}
           </div>
         </div>
@@ -38,10 +43,10 @@ export default function SearchPage() {
         <div className="container">
           <div className="row row-cols-3 g-3">
             {doctor.map((doctor) => (
-              <div key={doctor.id} className="col">
+              <div key={doctor.id} className="col  doctors-row">
                 <div className="card">
                   <img
-                    src={doctor.image}
+                    src={`http://localhost:3000/img/${doctor.image}`}
                     className="card-img-top"
                     alt={`nome del dottor ${doctor.name}`}
                   />
