@@ -15,7 +15,7 @@ const RegistrationForm = () => {
     { id: 1, name: "Anestesiologia" },
     { id: 2, name: "Cardiologia" },
     { id: 3, name: "Dermatologia" },
-    { id: 4, name: "Psischiatria" },
+    { id: 4, name: "Psichiatria" },
     { id: 5, name: "Endocrinologia" },
     { id: 6, name: "Medico di Famiglia" },
     { id: 7, name: "Gastroenterologia" },
@@ -35,7 +35,39 @@ const RegistrationForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Form Submitted:", formData);
+    console.log(formData);
+
+    fetch("http://localhost:3000/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Errore nella registrazione del medico");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Medico registrato con successo:", data);
+        alert("Registrazione completata con successo!");
+        setFormData({
+          name: "",
+          surname: "",
+          specialty: "",
+          address: "",
+          email: "",
+          phone_number: "",
+          description: "",
+        }); // Resetta il form
+      })
+      .catch((error) => {
+        console.error("Errore durante la registrazione:", error);
+
+        alert("Si è verificato un errore. Riprova più tardi.");
+      });
   };
 
   return (
@@ -106,7 +138,7 @@ const RegistrationForm = () => {
             >
               <option value="">Seleziona una specializzazione</option>
               {specialties.map((specialty) => (
-                <option key={specialty.id} value={specialty.id}>
+                <option key={specialty.id} value={specialty.name}>
                   {specialty.name}
                 </option>
               ))}
