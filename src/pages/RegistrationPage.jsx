@@ -1,10 +1,8 @@
-<<<<<<< HEAD
 export default function RegistrationPage() {
   return (
     <>
       <h1>Registrazione</h1>
     </>
-=======
 import React, { useState } from "react";
 
 const RegistrationForm = () => {
@@ -210,6 +208,5 @@ const RegistrationForm = () => {
         </button>
       </form>
     </div>
->>>>>>> c387dead4a414eb7d27f4387e0f946863b9df8cf
   );
 }
