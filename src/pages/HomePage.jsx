@@ -76,13 +76,88 @@ export default function HomePage() {
       {/* reviews section */}
       <section>
         <div className="container mt-5">
-          <h3 className="text-center fw-semibold">Cosa dicono altri utenti</h3>
-          <div></div>
+          <h3 className="text-center fw-semibold text-light">
+            Cosa dicono altri utenti
+          </h3>
+          <div className="row">
+            {/* single card col */}
+            <div className="col-4">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title">Username</h5>
+                  <h6 className="card-subtitle mb-2 text-body-secondary">
+                    medico per cui e' la recensione
+                  </h6>
+                  <p className="card-text">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </p>
+                </div>
+              </div>
+            </div>
+            {/* single card col */}
+            <div className="col-4">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title">Username</h5>
+                  <h6 className="card-subtitle mb-2 text-body-secondary">
+                    medico per cui e' la recensione
+                  </h6>
+                  <p className="card-text">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </p>
+                </div>
+              </div>
+            </div>
+            {/* single card col */}
+            <div className="col-4">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title">Username</h5>
+                  <h6 className="card-subtitle mb-2 text-body-secondary">
+                    medico per cui e' la recensione
+                  </h6>
+                  <p className="card-text">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       {/* call to action section */}
       <section>
-        <div className="container mt-5 mb-4"></div>
+        <div className="container mt-5 mb-4">
+          <div className="row justify-content-center">
+            <div className="col-4">
+              <h3 className="text-center fw-semibold mt-3">
+                Lavori nel campo della medicina?
+              </h3>
+              <p className="text-center mt-5">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi
+                placeat sed aperiam rerum soluta porro, ipsum dolores delectus
+                consectetur commodi atque eum impedit eos facilis natus
+                voluptate ad expedita deserunt! Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Id, vel nesciunt! Adipisci
+                nesciunt at necessitatibus ratione commodi a veniam minima iste
+                enim. Necessitatibus aliquid veniam obcaecati rerum minima
+                sapiente at?
+              </p>
+            </div>
+            <div className="col-5 d-flex flex-column align-items-center">
+              <img src="/hero-img.png" alt="" className="cta-img img-fluid" />
+              <Link
+                to="/registration"
+                className="btn btn-custom fw-semibold mt-3"
+              >
+                Registrati ora
+              </Link>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );

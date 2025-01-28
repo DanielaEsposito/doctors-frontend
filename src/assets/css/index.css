@@ -80,3 +80,7 @@ textarea.form-control {
 
   overflow: hidden;
 }
+
+.cta-img {
+  width: 400px;
+}
