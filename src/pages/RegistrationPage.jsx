@@ -1,8 +1,3 @@
-export default function RegistrationPage() {
-  return (
-    <>
-      <h1>Registrazione</h1>
-    </>
 import React, { useState } from "react";
 
 const RegistrationForm = () => {
@@ -209,4 +204,6 @@ const RegistrationForm = () => {
       </form>
     </div>
   );
-}
+};
+
+export default RegistrationForm;
