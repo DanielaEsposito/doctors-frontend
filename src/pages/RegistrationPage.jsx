@@ -44,7 +44,10 @@ const RegistrationForm = () => {
       <div className="row">
         {/* Colonna di sinistra */}
         <div className="col-12 col-lg-6">
-          <form onSubmit={handleSubmit}>
+          <form
+            onSubmit={handleSubmit}
+            className="bg-light p-4 rounded shadow-lg"
+          >
             <div className="row mb-3">
               {/* Nome */}
               <div className="col-12 col-md-6 mb-3">
@@ -53,7 +56,7 @@ const RegistrationForm = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control rounded-pill"
                   id="name"
                   name="name"
                   value={formData.name}
@@ -69,7 +72,7 @@ const RegistrationForm = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control rounded-pill"
                   id="surname"
                   name="surname"
                   value={formData.surname}
@@ -84,7 +87,7 @@ const RegistrationForm = () => {
                   Descrizione
                 </label>
                 <textarea
-                  className="form-control"
+                  className="form-control rounded-3"
                   id="description"
                   name="description"
                   value={formData.description}
@@ -100,7 +103,7 @@ const RegistrationForm = () => {
                   Specializzazione
                 </label>
                 <select
-                  className="form-control"
+                  className="form-control rounded-pill"
                   id="specialty"
                   name="specialty"
                   value={formData.specialty}
@@ -123,7 +126,7 @@ const RegistrationForm = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control rounded-pill"
                   id="address"
                   name="address"
                   value={formData.address}
@@ -139,7 +142,7 @@ const RegistrationForm = () => {
                 </label>
                 <input
                   type="email"
-                  className="form-control"
+                  className="form-control rounded-pill"
                   id="email"
                   name="email"
                   value={formData.email}
@@ -155,7 +158,7 @@ const RegistrationForm = () => {
                 </label>
                 <input
                   type="tel"
-                  className="form-control"
+                  className="form-control rounded-pill"
                   id="phone_number"
                   name="phone_number"
                   value={formData.phone_number}
@@ -169,7 +172,7 @@ const RegistrationForm = () => {
             <div className="text-center">
               <button
                 type="submit"
-                className="btn btn-custom fw-semibold d-inline-block mb-2 px-3"
+                className="btn btn-custom fw-semibold d-inline-block mb-2 px-4 py-2 rounded-pill transition-all hover-shadow"
               >
                 REGISTRATI
               </button>
