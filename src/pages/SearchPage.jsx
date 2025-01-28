@@ -46,7 +46,7 @@ export default function SearchPage() {
               <div key={doctor.id} className="col  doctors-row">
                 <div className="card">
                   <img
-                    src={`http://localhost:3000/img/${doctor.image}`}
+                    src={doctor.image}
                     className="card-img-top"
                     alt={`nome del dottor ${doctor.name}`}
                   />

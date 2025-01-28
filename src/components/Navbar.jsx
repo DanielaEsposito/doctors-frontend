@@ -45,7 +45,7 @@ export default function Navbar() {
               </NavLink>
               <ul className="dropdown-menu alt-bg opacity-75">
                 <li>
-                  <NavLink className="dropdown-item text-light" to="#">
+                  <NavLink className="dropdown-item text-light" to="/search">
                     Medicina di base
                   </NavLink>
                 </li>
@@ -67,7 +67,7 @@ export default function Navbar() {
                 <li>
                   <NavLink
                     className="dropdown-item text-light border-top border-secondary"
-                    to="/id/search"
+                    to="/search"
                   >
                     Vedi tutte
                   </NavLink>
