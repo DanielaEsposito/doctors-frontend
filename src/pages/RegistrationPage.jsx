@@ -169,7 +169,7 @@ const RegistrationForm = () => {
             <div className="text-center">
               <button
                 type="submit"
-                className="btn btn-custom fw-semibold d-inline-block mb-3 px-3"
+                className="btn btn-custom fw-semibold d-inline-block mb-2 px-3"
               >
                 REGISTRATI
               </button>
