@@ -140,17 +140,10 @@ const RegistrationForm = () => {
                   Specializzazione
                 </label>
                 <select
-<<<<<<< HEAD
-                  className="form-control"
-                  id="specialty_id"
-                  name="specialty_id"
-                  value={formData.specialty_id}
-=======
                   className="form-control rounded-pill"
                   id="specialty"
                   name="specialty"
                   value={formData.specialty}
->>>>>>> registration-page
                   onChange={handleChange}
                   required
                 >
