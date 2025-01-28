@@ -71,9 +71,9 @@ export default function DoctorShowPage() {
         </div>
 
         <h2 className="text-primary text-center mb-4">Recensioni</h2>
-        <div className="row">
+        <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3">
           {reviews.map((review) => (
-            <div className="col-md-4 mb-4" key={review.id}>
+            <div className="mb-4" key={review.id}>
               <div className="card border-0 shadow h-100">
                 <div className="card-body">
                   <h5 className="card-title">

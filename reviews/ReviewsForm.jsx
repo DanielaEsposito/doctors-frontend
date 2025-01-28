@@ -70,7 +70,7 @@ export default function ReviewsForm({ doctorId, updateReviews }) {
 
   return (
     <form
-      className="row g-3 align-items-end mb-3"
+      className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-4 g-3 align-items-end mb-3"
       onSubmit={handleReviewSubmit}
     >
       <div className="col-3">
