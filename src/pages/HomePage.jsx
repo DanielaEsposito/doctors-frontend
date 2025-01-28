@@ -16,8 +16,10 @@ export default function HomePage() {
           <div className="row">
             {/* select specialties */}
             <div className="col-4">
-              <select class="form-select" aria-label="specialies select">
-                <option selected>Specializzazione</option>
+              <select className="form-select" aria-label="specialies select">
+                <option defaultValue={""}>
+                  Seleziona una specializzazione
+                </option>
                 <option value="cardiology">Cardiologia</option>
                 <option value="dermatology">Dermatologia</option>
                 <option value="psychiatry">Psichiatria</option>
@@ -32,7 +34,7 @@ export default function HomePage() {
               </select>
             </div>
             {/* select province */}
-            <div className="col-4">
+            {/* <div className="col-4">
               <select class="form-select" aria-label="specialies select">
                 <option selected>Provincia</option>
                 <option value="cardiology">Cardiologia</option>
@@ -47,7 +49,7 @@ export default function HomePage() {
                 <option value="pulmonology">Pneumologia</option>
                 <option value="anesthesiology">Anestesiologia</option>
               </select>
-            </div>
+            </div> */}
             <div className="col-1">
               <button className="btn btn-custom fw-semibold">cerca</button>
             </div>
