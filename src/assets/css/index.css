@@ -24,6 +24,9 @@ img {
 body {
   background-color: rgb(150, 150, 150);
 }
+main {
+  min-height: 100vh;
+}
 
 /* # utilities */
 
@@ -71,4 +74,58 @@ textarea.form-control {
 .dropdown-item.active,
 .dropdown-item:active {
   background-color: transparent;
+}
+
+/*SEARCH PAGE*/
+#specialties-tags,
+.specialties-doctors {
+  margin: 30px 0px;
+  padding: 20px 0px;
+}
+
+.tags-container {
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  animation: slide-in 1.5s ease-out forwards;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.doctors-row {
+  position: relative;
+  animation: slide-in-right 0.8s ease-out forwards;
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.tags {
+  display: inline-block;
+  background-color: var(--primary-color);
+  border-radius: 7px;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+}
+.tags:hover {
+  background-color: var(--primary-color-hover);
+  color: #f8f9fa;
 }
