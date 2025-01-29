@@ -27,8 +27,10 @@ export default function DoctorShowPage() {
           <h1 className="display-4 text-primary">
             {doctor.doctor.name} {doctor.doctor.surname}
           </h1>
-          <img src={`${doctor.doctor.image}`} />
-          <p className="text-secondary">{doctor.doctor.description}</p>
+          <div className="d-flex justify-content-center mb-4 align-items-center">
+            <img src={`${doctor.doctor.image}`} className="doctor-show-img" />
+            <p className="text-secondary">{doctor.doctor.description}</p>
+          </div>
         </div>
 
         <div className="row justify-content-center mb-5">
