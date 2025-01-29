@@ -48,12 +48,13 @@ export default function HomePage() {
   // # fetch search doctors
 
   const [selectedProvince, setSelectedProvince] = useState("");
-
+  const [isProvinceSelected, setIsProvinceSelected] = useState(false);
   const [selectedDoctors, setSelectedDoctors] = useState([]);
 
   const selectDoctors = (provinceId) => {
     if (!selectedProvince) return;
 
+    setIsProvinceSelected(true);
     fetch(`http://localhost:3000/${provinceId}/provinces`)
       .then((res) => res.json())
       .then((data) => setSelectedDoctors(data.doctors));
@@ -82,7 +83,10 @@ export default function HomePage() {
               <select
                 className="form-select"
                 aria-label="specialies select"
-                onChange={(e) => setSelectedProvince(e.target.value)}
+                onChange={(e) => {
+                  setSelectedProvince(e.target.value);
+                  setIsProvinceSelected(true);
+                }}
               >
                 <option defaultValue={""}>Seleziona una provincia</option>
                 {provinces.map((province) => (
@@ -112,9 +116,7 @@ export default function HomePage() {
 
       {/* search section */}
 
-      {selectedDoctors.length === 0 ? (
-        ""
-      ) : (
+      {isProvinceSelected && (
         <section>
           <div className="container pt-5">
             <h3 className="text-custom-dark fw-semibold text-center">
