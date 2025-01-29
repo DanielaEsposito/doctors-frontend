@@ -25,7 +25,7 @@ export default function SearchPage() {
         <div className="container text-custom-dark">
           <h1 className="mb-3 text-center  fw-bold">Specializzazioni</h1>
           <h5 className="mb-5 text-center">
-            Seleziona la specializzazione che desideri esplorare
+            Scegli una specializzazione e scopri i nostri specialisti
           </h5>
           <div className="tags-container d-flex g-3">
             {specialties.map((specialty) => (

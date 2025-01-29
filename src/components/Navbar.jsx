@@ -9,7 +9,7 @@ export default function Navbar() {
             src="logo.svg"
             alt="Logo"
             id="navbar-logo"
-            className="d-inline-block me-2"
+            className="d-inline-block me-3"
           />
         </NavLink>
         <NavLink to="/">

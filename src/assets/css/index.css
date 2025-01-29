@@ -1,6 +1,7 @@
 :root {
   --body-bg-color: #eeeeee;
   --primary-color: #1c2e4a;
+  --primary-color-muted: #515b6b;
   --primary-color-hover: #3a5e97;
   --secondary-color: #657f8e;
   --background-hero-height: 550px;
@@ -103,6 +104,10 @@ textarea.form-control {
 .text-custom-small {
   font-style: italic;
   font-size: 0.8rem;
+}
+
+.text-custom-muted {
+  color: var(--primary-color-muted);
 }
 
 /* # DEFAULT LAYOUT*/

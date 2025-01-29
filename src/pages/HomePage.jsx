@@ -235,7 +235,7 @@ export default function HomePage() {
       <section id="reviews-section">
         <div className="container mt-5 pb-5 pt-5">
           <h3 className="text-center fw-semibold text-custom-light">
-            Cosa dicono altri utenti
+            Le esperienze di chi si è affidato a noi
           </h3>
           <div className="row row-cols-sm-1 row-cols-md-3 row-cols-lg-3 g-3 mt-5">
             {reviews.map((review) => (

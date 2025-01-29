@@ -40,7 +40,7 @@ export default function DoctorShowPage() {
                   </h1>
                 </div>
                 <div className="d-flex flex-column">
-                  <p className="card-text text-secondary ms-3">
+                  <p className="card-text text-custom-muted ms-3">
                     {doctor.doctor.description}
                   </p>
                   <ul className="list-group list-group-flush">
@@ -95,16 +95,17 @@ export default function DoctorShowPage() {
               <div className="card border-0 shadow h-100">
                 <div className="card-body">
                   <h5 className="card-title">
-                    <span className="text-warning">Voto:</span> {review.rating}{" "}
-                    <i class="fa-solid fa-star"></i>
+                    <span className="text-custom-dark">Voto:</span>{" "}
+                    {review.rating}{" "}
+                    <i class="fa-solid fa-star text-warning"></i>
                   </h5>
-                  <h6 className="card-subtitle mb-2 text-muted">
+                  <h6 className="card-subtitle mb-2 text-custom-muted">
                     Recensito da: {review.username}
                   </h6>
                   <p className="card-text">"{review.review_text}"</p>
                 </div>
                 <div className="card-footer bg-light">
-                  <small className="text-muted">
+                  <small className="text-custom-muted">
                     Recensito il:{" "}
                     {new Date(review.created_at).toLocaleDateString()}
                   </small>
