@@ -142,8 +142,8 @@ const RegistrationForm = () => {
                 <select
                   className="form-control rounded-pill"
                   id="specialty"
-                  name="specialty"
-                  value={formData.specialty}
+                  name="specialty_id"
+                  value={formData.specialty_id}
                   onChange={handleChange}
                   required
                 >
