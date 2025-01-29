@@ -70,10 +70,10 @@ export default function ReviewsForm({ doctorId, updateReviews }) {
 
   return (
     <form
-      className="row g-3 align-items-end flex-nowrap mb-3"
+      className="row g-3 align-items-end mb-3"
       onSubmit={handleReviewSubmit}
     >
-      <div className="col-md-3">
+      <div className="col-12 col-md-6 col-lg-3">
         <label htmlFor="username" className="form-label">
           Nome
         </label>
@@ -88,7 +88,7 @@ export default function ReviewsForm({ doctorId, updateReviews }) {
         />
       </div>
 
-      <div className="col-md-3">
+      <div className="col-12 col-md-6 col-lg-3">
         <label htmlFor="email" className="form-label">
           Email
         </label>
@@ -103,7 +103,7 @@ export default function ReviewsForm({ doctorId, updateReviews }) {
         />
       </div>
 
-      <div className="col-md-2">
+      <div className="col-12 col-md-5 col-lg-2">
         <label htmlFor="rating" className="form-label">
           Voto (1-5)
         </label>
@@ -120,7 +120,7 @@ export default function ReviewsForm({ doctorId, updateReviews }) {
         />
       </div>
 
-      <div className="col-md-3">
+      <div className="col-12 col-md-5 col-lg-3">
         <label htmlFor="text" className="form-label">
           Testo
         </label>
@@ -134,7 +134,7 @@ export default function ReviewsForm({ doctorId, updateReviews }) {
         ></textarea>
       </div>
 
-      <div className="col-md-1 d-flex align-items-end">
+      <div className="col-12 col-md-2 col-lg-1 d-flex align-items-end justify-content-center">
         <button className="btn btn-primary w-100" type="submit">
           Invia
         </button>

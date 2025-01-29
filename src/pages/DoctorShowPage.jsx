@@ -67,7 +67,7 @@ export default function DoctorShowPage() {
         </div>
         <h3 className="text-primary text-center">Aggiungi una recensione</h3>
 
-        <div className="mb-5">
+        <div className="mb-3">
           <ReviewsForm updateReviews={updateReviews} doctorId={doctorId} />
         </div>
 

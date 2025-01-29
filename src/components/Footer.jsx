@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="footer custom-bg pt-4">
       <div className="text-light pb-4">
         <div>
-          <div className="row">
+          <div className="row g-0">
             <div className="d-flex">
               <div className="col-3">
                 <div className="text-center">
@@ -16,8 +16,8 @@ export default function Footer() {
                 </div>
               </div>
               <div className="col-9">
-                <ul className="d-flex justify-content-end align-items-center h-100">
-                  <li className="d-inline-block me-5">Chi siamo</li>
+                <ul className="ms-5 d-flex justify-content-end align-items-center h-100">
+                  <li className="d-inline-block mx-5">Chi siamo</li>
                   <li className="d-inline-block me-5">F.A.Q.</li>
                   <li className="d-inline-block me-5">
                     Condizioni di servizio
