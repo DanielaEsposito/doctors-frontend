@@ -16,11 +16,13 @@ export default function Footer() {
                 </div>
               </div>
               <div className="col-9">
-                <ul class="ms-5 d-flex justify-content-end align-items-center h-100">
-                  <li class="d-inline-block me-4 ms-5">Chi siamo</li>
-                  <li class="d-inline-block me-4">F.A.Q.</li>
-                  <li class="d-inline-block me-4">Condizioni di servizio</li>
-                  <li class="d-inline-block me-4">Informativa Privacy</li>
+                <ul className="ms-5 d-flex justify-content-end align-items-center h-100">
+                  <li className="d-inline-block me-4 ms-5">Chi siamo</li>
+                  <li className="d-inline-block me-4">F.A.Q.</li>
+                  <li className="d-inline-block me-4">
+                    Condizioni di servizio
+                  </li>
+                  <li className="d-inline-block me-4">Informativa Privacy</li>
                 </ul>
               </div>
             </div>
