@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg transparent-bg">
+    <nav className="navbar navbar-expand-lg transparent-bg position-relative z-1">
       <div className="container-fluid">
         <NavLink className="navbar-brand me-0 pe-0" to="/">
           <img

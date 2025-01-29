@@ -3,6 +3,7 @@
   --primary-color: #1c2e4a;
   --primary-color-hover: #3a5e97;
   --secondary-color: #657f8e;
+  --background-hero-height: 550px;
 }
 
 /* # reset*/
@@ -153,15 +154,28 @@ textarea.form-control {
 }
 
 /* # homepage */
-
-#hero-section {
+.background-hero {
   background-image: url("hero-bg.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: var(--background-hero-height);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+}
+#hero-section {
   padding-top: 100px;
   padding-bottom: 100px;
+  position: relative;
+  z-index: 1;
 }
 
 #reviews-section {
   background-image: url("reviews-bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .round-image-hp {

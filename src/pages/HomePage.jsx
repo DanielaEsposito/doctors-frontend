@@ -12,8 +12,9 @@ export default function HomePage() {
   useEffect(() => {
     fetch("http://localhost:3000/reviews")
       .then((res) => res.json())
-      .then((data) => setReviews(data.results));
+      .then((data) => setReviews(data.results.slice(0, 3)));
   }, []);
+  console.log(reviews + "recensioni");
 
   // # fetch feature doctors
   const [featuredDoctors, setFeaturedDoctors] = useState([]);
@@ -37,6 +38,7 @@ export default function HomePage() {
   return (
     <div className="wrapper">
       {/* hero section */}
+      <div className="background-hero"></div>
       <section id="hero-section">
         <div className="container pb-5 pt-5">
           <div className="text-light">
@@ -53,30 +55,14 @@ export default function HomePage() {
                 <option defaultValue={""}>
                   Seleziona una specializzazione
                 </option>
-                {specialties.slice(0, 3).map((specialty) => (
+                {specialties.map((specialty) => (
                   <option key={specialty.id} value={specialty.specialty_name}>
                     {specialty.specialty_name}
                   </option>
                 ))}
               </select>
             </div>
-            {/* select province */}
-            {/* <div className="col-4">
-              <select class="form-select" aria-label="specialies select">
-                <option selected>Provincia</option>
-                <option value="cardiology">Cardiologia</option>
-                <option value="dermatology">Dermatologia</option>
-                <option value="psychiatry">Psichiatria</option>
-                <option value="endocrinology">Endocrinologia</option>
-                <option value="family-medicine">Medicina di base</option>
-                <option value="gastroenterology">Gastroenterologia</option>
-                <option value="geriatrics">Geriatria</option>
-                <option value="hematology">Ematologia</option>
-                <option value="infectious Disease">Malattie infettive</option>
-                <option value="pulmonology">Pneumologia</option>
-                <option value="anesthesiology">Anestesiologia</option>
-              </select>
-            </div> */}
+
             <div className="col-1">
               <button className="btn btn-custom fw-semibold">cerca</button>
             </div>
@@ -124,9 +110,9 @@ export default function HomePage() {
               <div key={review.id} className="col-4">
                 <div className="card">
                   <div className="card-body">
-                    <h5 className="card-title">Username</h5>
-                    <h6 className="card-subtitle mb-2 text-body-secondary">
-                      {review.doctor_id}
+                    <h5 className="card-title">{review.username}</h5>
+                    <h6 className="card-subtitle mb-2 text-body-secondary my-2">
+                      Dott. M.Donati
                     </h6>
                     <p className="card-text">{review.review_text}</p>
                   </div>
