@@ -179,7 +179,7 @@ textarea.form-control {
 /* # homepage */
 
 .background-hero {
-  background-image: url("hero-bg.webp");
+  background-image: url("hero-bg-2.png");
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -198,7 +198,7 @@ textarea.form-control {
 }
 
 #reviews-section {
-  background-image: url("reviews-bg.jpeg");
+  background-image: url("review-bg-2.png");
   background-repeat: no-repeat;
   background-size: cover;
 }

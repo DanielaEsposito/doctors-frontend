@@ -73,9 +73,9 @@ export default function ReviewsForm({ doctorId, updateReviews }) {
       className="row g-3 align-items-end mb-3"
       onSubmit={handleReviewSubmit}
     >
-      <div className="col-12 col-md-6 col-lg-3">
+      <div className="col-12 col-md-6 col-lg-4 fw-semibold">
         <label htmlFor="username" className="form-label">
-          Nome
+          Username
         </label>
         <input
           type="text"
@@ -88,7 +88,7 @@ export default function ReviewsForm({ doctorId, updateReviews }) {
         />
       </div>
 
-      <div className="col-12 col-md-6 col-lg-3">
+      <div className="col-12 col-md-6 col-lg-4 fw-semibold">
         <label htmlFor="email" className="form-label">
           Email
         </label>
@@ -103,7 +103,7 @@ export default function ReviewsForm({ doctorId, updateReviews }) {
         />
       </div>
 
-      <div className="col-12 col-md-5 col-lg-2">
+      <div className="col-12 col-md-5 col-lg-4 fw-semibold d-flex flex-column justify-content-start">
         <label htmlFor="rating" className="form-label">
           Voto (1-5)
         </label>
@@ -120,22 +120,25 @@ export default function ReviewsForm({ doctorId, updateReviews }) {
         />
       </div>
 
-      <div className="col-12 col-md-5 col-lg-3">
+      <div className="col-12 col-md-5 col-lg-6 fw-semibold">
         <label htmlFor="text" className="form-label">
-          Testo
+          Vuoi aggiungere qualcosa?
         </label>
         <textarea
-          className="form-control"
+          className="form-control h-100"
           id="text"
           name="text"
           value={reviewForm.text}
           required
           onChange={handleFormChange}
+          placeholder="La tua opinione e' importante"
+          rows="5"
         ></textarea>
       </div>
+      <div className="col-lg-6"></div>
 
       <div className="col-12 col-md-2 col-lg-1 d-flex align-items-end justify-content-center">
-        <button className="btn btn-primary w-100" type="submit">
+        <button className="btn btn-custom w-100" type="submit">
           Invia
         </button>
       </div>

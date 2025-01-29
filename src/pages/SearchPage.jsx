@@ -47,7 +47,7 @@ export default function SearchPage() {
               Scopri di più sui nostri dottori
             </h4>
           )}
-          <div className="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 g-2  ">
+          <div className="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 g-2 justify-content-center ">
             {doctor.map((doctor) => (
               <div
                 key={doctor.id}

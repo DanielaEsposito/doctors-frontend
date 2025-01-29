@@ -35,12 +35,12 @@ export default function DoctorShowPage() {
             <div className="col-md-8">
               <div className="card-body">
                 <div className="d-flex flex-column align-items-start">
-                  <h1 className="display-4 text-primary mb-3">
+                  <h1 className="display-5 text-custom-dark fw-semibold mb-3 ms-3">
                     {doctor.doctor.name} {doctor.doctor.surname}
                   </h1>
                 </div>
                 <div className="d-flex flex-column">
-                  <p className="card-text text-secondary">
+                  <p className="card-text text-secondary ms-3">
                     {doctor.doctor.description}
                   </p>
                   <ul className="list-group list-group-flush">
@@ -65,25 +65,30 @@ export default function DoctorShowPage() {
             </div>
           </div>
         </div>
-        <h3 className="text-primary text-center">Aggiungi una recensione</h3>
+        <h3 className="text-custom-dark text-center fw-semibold pb-3">
+          Aggiungi una recensione
+        </h3>
 
         <div className="mb-3">
           <ReviewsForm updateReviews={updateReviews} doctorId={doctorId} />
         </div>
 
-        <div className="text-center mb-4">
-          <h3 className="text-primary">Media Recensioni</h3>
-          <h1 className="text-warning">
+        <div className="text-center mb-4 pt-2">
+          <h3 className="text-custom-dark fw-semibold">Media Recensioni</h3>
+          <h1 className="text-warning pt-2">
             {reviews.length > 0
               ? (
                   reviews.reduce((acc, review) => acc + review.rating, 0) /
                   reviews.length
-                ).toFixed(1) + "⭐"
+                ).toFixed(1)
               : "Nessuna recensione"}
+            <i class="fa-solid fa-star"></i>
           </h1>
         </div>
 
-        <h2 className="text-primary text-center mb-4">Recensioni</h2>
+        <h2 className="text-custom-dark text-center mb-4 fw-semibold">
+          Recensioni
+        </h2>
         <div className="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3">
           {reviews.map((review) => (
             <div className="mb-4" key={review.id}>
@@ -91,7 +96,7 @@ export default function DoctorShowPage() {
                 <div className="card-body">
                   <h5 className="card-title">
                     <span className="text-warning">Voto:</span> {review.rating}{" "}
-                    ⭐
+                    <i class="fa-solid fa-star"></i>
                   </h5>
                   <h6 className="card-subtitle mb-2 text-muted">
                     Recensito da: {review.username}
