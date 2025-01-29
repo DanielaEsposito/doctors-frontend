@@ -134,6 +134,13 @@ textarea.form-control {
   background-color: var(--primary-color-hover);
   color: #f8f9fa;
 }
+.card-sd {
+  width: 300px;
+}
+.card-img-top {
+  height: 300px;
+  object-fit: cover;
+}
 
 /* # homepage */
 
