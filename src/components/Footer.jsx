@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="footer custom-bg pt-4">
       <div className="text-light pb-4">
         <div>
-          <div className="row">
+          <div className="row g-0">
             <div className="d-flex">
               <div className="col-3">
                 <div className="text-center">

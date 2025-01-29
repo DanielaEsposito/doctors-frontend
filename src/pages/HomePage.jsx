@@ -74,13 +74,10 @@ export default function HomePage() {
       <section id="featured-section">
         <div className="container pt-5">
           <h3 className="text-center fw-semibold">I nostri medici</h3>
-          <div className="row row-cols-5">
+          <div className="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-xs-1 g-3 mt-5">
             {featuredDoctors.map((doctor) => (
-              <Link to={`${doctor.id}`}>
-                <div
-                  key={doctor.id}
-                  className="col d-flex align-items-center flex-column"
-                >
+              <Link to={`${doctor.id}`} key={doctor.id}>
+                <div className="col d-flex align-items-center flex-column">
                   <img
                     src={doctor.image}
                     alt="doctor"
@@ -105,10 +102,10 @@ export default function HomePage() {
           <h3 className="text-center fw-semibold text-light">
             Cosa dicono altri utenti
           </h3>
-          <div className="row">
+          <div className="row row-cols-sm-1 row-cols-md-3 row-cols-lg-3 g-3 mt-5">
             {reviews.map((review) => (
               <div key={review.id} className="col-4">
-                <div className="card">
+                <div className="card h-100">
                   <div className="card-body">
                     <h5 className="card-title">{review.username}</h5>
                     <h6 className="card-subtitle mb-2 text-body-secondary">
@@ -147,7 +144,7 @@ export default function HomePage() {
               <img src="/hero-img.png" alt="" className="cta-img img-fluid" />
               <Link
                 to="/registration"
-                className="btn btn-custom fw-semibold mt-3"
+                className="btn btn-custom fw-semibold mt-3 text-light"
               >
                 Registrati ora
               </Link>
