@@ -40,7 +40,7 @@ export default function HomePage() {
       {/* hero section */}
       <div className="background-hero"></div>
       <section id="hero-section">
-        <div className="container pb-5 pt-5">
+        <div className="container pb-5 pt-5 text-custom-light">
           <div className="text-light">
             <h1 className="fw-bold">BDoctors</h1>
             <h2 className="fs-4 fw-semibold">
@@ -72,7 +72,7 @@ export default function HomePage() {
 
       {/* featured doctors section */}
       <section id="featured-section">
-        <div className="container pt-5">
+        <div className="container pt-5 text-custom-dark">
           <h3 className="text-center fw-semibold">I nostri medici</h3>
           <div className="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-xs-1 g-3 mt-5">
             {featuredDoctors.map((doctor) => (
@@ -99,13 +99,13 @@ export default function HomePage() {
       {/* reviews section */}
       <section id="reviews-section">
         <div className="container mt-5 pb-5 pt-5">
-          <h3 className="text-center fw-semibold text-light">
+          <h3 className="text-center fw-semibold text-custom-light">
             Cosa dicono altri utenti
           </h3>
           <div className="row row-cols-sm-1 row-cols-md-3 row-cols-lg-3 g-3 mt-5">
             {reviews.map((review) => (
               <div key={review.id} className="col-4">
-                <div className="card h-100">
+                <div className="card h-100 text-custom-dark bg-custom-light">
                   <div className="card-body">
                     <h5 className="card-title">{review.username}</h5>
                     <h6 className="card-subtitle mb-2 text-body-secondary">
@@ -126,10 +126,10 @@ export default function HomePage() {
         <div className="container mt-5 mb-4">
           <div className="row justify-content-center">
             <div className="col-4">
-              <h3 className="text-center fw-semibold mt-3">
+              <h3 className="text-center fw-semibold mt-3 text-custom-dark">
                 Lavori nel campo della medicina?
               </h3>
-              <p className="text-center mt-5">
+              <p className="text-center mt-5 text-custom-dark">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi
                 placeat sed aperiam rerum soluta porro, ipsum dolores delectus
                 consectetur commodi atque eum impedit eos facilis natus

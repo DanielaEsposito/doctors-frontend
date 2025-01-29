@@ -1,5 +1,5 @@
 :root {
-  --body-bg-color: #f3f3f3;
+  --body-bg-color: #eeeeee;
   --primary-color: #1c2e4a;
   --primary-color-hover: #3a5e97;
   --secondary-color: #657f8e;
@@ -28,8 +28,9 @@ img {
 }
 
 body {
-  background-color: rgb(150, 150, 150);
+  background-color: #eeeeee;
 }
+
 main {
   min-height: 100vh;
 }
@@ -87,12 +88,24 @@ textarea.form-control {
   background-color: transparent;
 }
 
-/*DEFAULT LAYOUT*/
+.text-custom-dark {
+  color: var(--primary-color);
+}
+
+.text-custom-light {
+  color: var(--body-bg-color);
+}
+
+.bg-custom-light {
+  background-color: var(--body-bg-color);
+}
+
+/* # DEFAULT LAYOUT*/
 .bg-header-dl {
   background-color: var(--secondary-color);
 }
 
-/*SEARCH PAGE*/
+/* # SEARCH PAGE*/
 #specialties-tags,
 .specialties-doctors {
   margin: 30px 0px;
@@ -123,11 +136,11 @@ textarea.form-control {
 
 @keyframes slide-in-right {
   from {
-    transform: translateY(100%);
+    transform: translateX(100%);
     opacity: 0;
   }
   to {
-    transform: translateY(0);
+    transform: translateX(0);
     opacity: 1;
   }
 }
@@ -191,7 +204,7 @@ textarea.form-control {
   width: 400px;
 }
 
-/* doctor-show-page */
+/* # doctor-show-page */
 
 .doctor-show-img {
   width: 500px;
