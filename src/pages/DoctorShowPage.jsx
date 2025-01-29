@@ -28,7 +28,7 @@ export default function DoctorShowPage() {
             <div className="col-md-4">
               <img
                 src={doctor.doctor.image}
-                className="img-fluid rounded-start doctor-img"
+                className="img-fluid rounded-start doctor-show-img w-100"
                 alt="Doctor"
               />
             </div>

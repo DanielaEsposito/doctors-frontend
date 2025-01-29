@@ -131,7 +131,7 @@ export default function AboutPage() {
         </div>
 
         <div className="row pt-5">
-          <div className="col-5 ms-3">
+          <div className="col-lg-4 col-sm-12 ms-3 text-center pb-3">
             <h3 className="text-custom-dark fw-semibold pb-3 pt-5">
               Contattaci
             </h3>
@@ -144,7 +144,7 @@ export default function AboutPage() {
               </ul>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-lg-5 col-sm-12">
             <img src="hero-img.png" alt="" />
           </div>
         </div>

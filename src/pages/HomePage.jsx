@@ -79,7 +79,7 @@ export default function HomePage() {
           {/* select container */}
           <div className="row">
             {/* select specialties */}
-            <div className="col-4">
+            <div className="col-lg-4 col-sm-12">
               <select
                 className="form-select"
                 aria-label="specialies select"
@@ -115,7 +115,6 @@ export default function HomePage() {
       </section>
 
       {/* search section */}
-
       {isProvinceSelected && (
         <section>
           <div className="container pt-5">
@@ -163,46 +162,6 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* <section>
-        <div className="container pt-5">
-          <h3 className="text-custom-dark fw-semibold text-center">
-            Medici di {selectedProvince}
-          </h3>
-          <div
-            className="row justify-content-center row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-xs-1 g-3 mt-5"
-            id="homepage-collapse"
-          >
-            {selectedDoctors.length === 0 ? (
-              <p className="text-custom-small text-center">
-                Non ci sono medici per la provincia selezionata.
-              </p>
-            ) : (
-              selectedDoctors.map((doctor) => (
-                <Link to={`${doctor.id}`} key={doctor.id}>
-                  <div className="col d-flex align-items-center flex-column text-custom-dark">
-                    <img
-                      src={doctor.image}
-                      alt="doctor"
-                      className="d-inline-block round-image-hp text-center"
-                    />
-                    <div className="pt-3">
-                      <ul>
-                        <li className="text-center fw-semibold fs-5">
-                          {doctor.name} {doctor.surname}
-                        </li>
-                        <li className="text-center text-custom-small">
-                          {doctor.specialty_name}
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </Link>
-              ))
-            )}
-          </div>
-        </div>
-      </section> */}
-
       {/* featured doctors section */}
       <section id="featured-section">
         <div className="container pt-5 text-custom-dark">
@@ -239,13 +198,13 @@ export default function HomePage() {
           <h3 className="text-center fw-semibold text-custom-light">
             Le esperienze di chi si è affidato a noi
           </h3>
-          <div className="row row-cols-sm-1 row-cols-md-3 row-cols-lg-3 g-3 mt-5">
+          <div className="row g-3 mt-5">
             {reviews.map((review) => (
-              <div key={review.id} className="col-4">
+              <div key={review.id} className="col-lg-4 col-md-12 col-sm-12">
                 <div className="card h-100 text-custom-dark bg-custom-light">
                   <div className="card-body">
                     <h5 className="card-title">{review.username}</h5>
-                    <h6 className="card-subtitle mb-2 text-body-secondary">
+                    <h6 className="card-subtitle mb-2 text-custom-muted">
                       Dott. M. Donati
                     </h6>
                     <p className="card-text">{review.review_text}</p>
@@ -262,22 +221,22 @@ export default function HomePage() {
       <section id="cta-section">
         <div className="container mt-5 mb-4">
           <div className="row justify-content-center">
-            <div className="col-4">
+            <div className="col-lg-4">
               <h3 className="text-center fw-semibold mt-3 text-custom-dark">
                 Lavori nel campo della medicina?
               </h3>
               <p className="text-center mt-5 text-custom-dark">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                placeat sed aperiam rerum soluta porro, ipsum dolores delectus
-                consectetur commodi atque eum impedit eos facilis natus
-                voluptate ad expedita deserunt! Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Id, vel nesciunt! Adipisci
-                nesciunt at necessitatibus ratione commodi a veniam minima iste
-                enim. Necessitatibus aliquid veniam obcaecati rerum minima
-                sapiente at?
+                Unisciti alla nostra piattaforma e connettiti con pazienti che
+                cercano professionisti come te! Registrandoti, avrai accesso a
+                strumenti avanzati per gestire il tuo profilo, ricevere
+                recensioni e ampliare la tua visibilità. Offriamo un ambiente
+                sicuro e affidabile per crescere professionalmente e aiutare chi
+                ha bisogno delle tue competenze. Non perdere l'opportunità di
+                far parte di una comunità dedicata alla salute e al benessere.
+                Iscriviti ora e inizia a fare la differenza!
               </p>
             </div>
-            <div className="col-5 d-flex flex-column align-items-center">
+            <div className="col-lg-5 d-flex flex-column align-items-center">
               <img src="/hero-img.png" alt="" className="cta-img img-fluid" />
               <Link
                 to="/registration"

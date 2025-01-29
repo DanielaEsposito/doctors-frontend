@@ -103,7 +103,7 @@ export default function ReviewsForm({ doctorId, updateReviews }) {
         />
       </div>
 
-      <div className="col-12 col-md-5 col-lg-4 fw-semibold d-flex flex-column justify-content-start">
+      <div className="col-12 col-md-6 col-lg-4 fw-semibold d-flex flex-column justify-content-start">
         <label htmlFor="rating" className="form-label">
           Voto (1-5)
         </label>
@@ -120,7 +120,7 @@ export default function ReviewsForm({ doctorId, updateReviews }) {
         />
       </div>
 
-      <div className="col-12 col-md-5 col-lg-6 fw-semibold">
+      <div className="col-12 col-md-6 col-lg-6 fw-semibold">
         <label htmlFor="text" className="form-label">
           Vuoi aggiungere qualcosa?
         </label>
@@ -137,8 +137,8 @@ export default function ReviewsForm({ doctorId, updateReviews }) {
       </div>
       <div className="col-lg-6"></div>
 
-      <div className="col-12 col-md-2 col-lg-1 d-flex align-items-end justify-content-center">
-        <button className="btn btn-custom w-100" type="submit">
+      <div className="col-12 col-md-12 col-lg-1 d-flex align-items-end justify-content-center">
+        <button className="btn btn-custom" type="submit">
           Invia
         </button>
       </div>
