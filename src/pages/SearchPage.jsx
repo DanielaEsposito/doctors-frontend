@@ -16,6 +16,7 @@ export default function SearchPage() {
       .then((res) => res.json())
       .then((data) => setDoctors(data.specialty));
   };
+
   console.log(doctor);
 
   return (

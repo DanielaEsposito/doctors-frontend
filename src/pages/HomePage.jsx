@@ -4,17 +4,29 @@ import { useState, useEffect } from "react";
 export default function HomePage() {
   const [specialties, setSpecialties] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [provinces, setProvinces] = useState([]);
+
+  // # fetch provinces
+  useEffect(() => {
+    fetch("http://localhost:3000/provinces")
+      .then((res) => res.json())
+      .then((data) => setProvinces(data.results));
+  }, []);
+
+  // # fetch specialties
   useEffect(() => {
     fetch("http://localhost:3000/specialties")
       .then((res) => res.json())
       .then((data) => setSpecialties(data.results));
   }, []);
+
+  // # fetch reviews
   useEffect(() => {
     fetch("http://localhost:3000/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data.results.slice(0, 3)));
   }, []);
-  console.log(reviews + "recensioni");
+  // console.log(reviews + "recensioni");
 
   // # fetch feature doctors
   const [featuredDoctors, setFeaturedDoctors] = useState([]);
@@ -29,11 +41,27 @@ export default function HomePage() {
       });
   }, []);
 
-  useEffect(() => {
-    console.log(featuredDoctors);
-  }, [featuredDoctors]);
+  // useEffect(() => {
+  //   console.log(featuredDoctors);
+  // }, [featuredDoctors]);
 
-  // # fetch specialties
+  // # fetch search doctors
+
+  const [selectedProvince, setSelectedProvince] = useState("");
+
+  const [selectedDoctors, setSelectedDoctors] = useState([]);
+
+  const selectDoctors = (provinceId) => {
+    if (!selectedProvince) return;
+
+    fetch(`http://localhost:3000/${provinceId}/provinces`)
+      .then((res) => res.json())
+      .then((data) => setSelectedDoctors(data.doctors));
+  };
+
+  // useEffect(() => {
+  //   console.log(selectedDoctors);
+  // }, [selectedDoctors]);
 
   return (
     <div className="wrapper">
@@ -51,21 +79,74 @@ export default function HomePage() {
           <div className="row">
             {/* select specialties */}
             <div className="col-4">
-              <select className="form-select" aria-label="specialies select">
-                <option defaultValue={""}>
-                  Seleziona una specializzazione
-                </option>
-                {specialties.map((specialty) => (
-                  <option key={specialty.id} value={specialty.specialty_name}>
-                    {specialty.specialty_name}
+              <select
+                className="form-select"
+                aria-label="specialies select"
+                onChange={(e) => setSelectedProvince(e.target.value)}
+              >
+                <option defaultValue={""}>Seleziona una provincia</option>
+                {provinces.map((province) => (
+                  <option
+                    key={province.id}
+                    value={province.province_name}
+                    onClick={() => selectDoctors(province.id)}
+                  >
+                    {province.province_name}
                   </option>
                 ))}
               </select>
             </div>
 
-            <div className="col-1">
-              <button className="btn btn-custom fw-semibold">cerca</button>
-            </div>
+            {/* <div className="col-1">
+              <button
+                className="btn btn-custom fw-semibold"
+                data-bs-toggle="collapse"
+                href="#homepage-collapse"
+              >
+                Cerca
+              </button>
+            </div> */}
+          </div>
+        </div>
+      </section>
+
+      {/* search section */}
+      <section>
+        <div className="container pt-5">
+          <h3 className="text-custom-dark fw-semibold text-center">
+            Medici di {selectedProvince}
+          </h3>
+          <div
+            className="row justify-content-center row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-xs-1 g-3 mt-5"
+            id="homepage-collapse"
+          >
+            {selectedDoctors.length === 0 ? (
+              <p className="text-custom-small text-center">
+                Non ci sono medici per la provincia selezionata.
+              </p>
+            ) : (
+              selectedDoctors.map((doctor) => (
+                <Link to={`${doctor.id}`} key={doctor.id}>
+                  <div className="col d-flex align-items-center flex-column text-custom-dark">
+                    <img
+                      src={doctor.image}
+                      alt="doctor"
+                      className="d-inline-block round-image-hp text-center"
+                    />
+                    <div className="pt-3">
+                      <ul>
+                        <li className="text-center fw-semibold fs-5">
+                          {doctor.name} {doctor.surname}
+                        </li>
+                        <li className="text-center text-custom-small">
+                          {doctor.specialty_name}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </Link>
+              ))
+            )}
           </div>
         </div>
       </section>
