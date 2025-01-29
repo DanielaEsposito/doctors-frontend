@@ -5,9 +5,9 @@ const RegistrationForm = () => {
     name: "",
     surname: "",
     specialty_id: "",
-    address: "",
     email: "",
     phone_number: "",
+    address: "",
     description: "",
     city: "",
     province: "",
@@ -63,10 +63,12 @@ const RegistrationForm = () => {
           name: "",
           surname: "",
           specialty_id: "",
-          address: "",
           email: "",
           phone_number: "",
+          address: "",
           description: "",
+          city: "",
+          province: "",
         });
       })
       .catch((error) => {
