@@ -83,11 +83,15 @@ export default function HomePage() {
                     alt="doctor"
                     className="d-inline-block round-image-hp text-center"
                   />
-                  <div>
-                    <p className="text-center fs-5">
-                      {doctor.name} {doctor.surname}
-                    </p>
-                    <p className="text-center">{doctor.specialty_name}</p>
+                  <div className="pt-3">
+                    <ul>
+                      <li className="text-center fw-semibold fs-5">
+                        {doctor.name} {doctor.surname}
+                      </li>
+                      <li className="text-center text-custom-small">
+                        {doctor.specialty_name}
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </Link>
