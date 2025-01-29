@@ -39,7 +39,10 @@ export default function Navbar() {
               </NavLink>
             </li>
           </ul>
-          <NavLink to="/registration" className="btn btn-custom fw-semibold">
+          <NavLink
+            to="/registration"
+            className="btn btn-custom fw-semibold text-light"
+          >
             Registrati
           </NavLink>
         </div>

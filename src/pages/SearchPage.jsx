@@ -64,7 +64,7 @@ export default function SearchPage() {
                       {doctor.name} {doctor.surname}
                     </h4>
                     <h5>{doctor.city}</h5>
-                    <Link to={`/${doctor.id}`} className="tags ms-0">
+                    <Link to={`/${doctor.id}`} className="tags ms-0 text-light">
                       Show detail
                     </Link>
                   </div>
