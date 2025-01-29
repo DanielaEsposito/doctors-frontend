@@ -33,46 +33,10 @@ export default function Navbar() {
                 Chi siamo
               </NavLink>
             </li>
-            <li className="nav-item dropdown">
-              <NavLink
-                className="nav-link dropdown-toggle text-light"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
+            <li className="nav-item">
+              <NavLink className="nav-link text-light" to="/search">
                 Specializzazioni
               </NavLink>
-              <ul className="dropdown-menu alt-bg opacity-75">
-                <li>
-                  <NavLink className="dropdown-item text-light" to="/search">
-                    Medicina di base
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink className="dropdown-item text-light" to="#">
-                    Cardiologia
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink className="dropdown-item text-light" to="#">
-                    Geriatria
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink className="dropdown-item text-light" to="#">
-                    Psichiatria
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className="dropdown-item text-light border-top border-secondary"
-                    to="/search"
-                  >
-                    Vedi tutte
-                  </NavLink>
-                </li>
-              </ul>
             </li>
           </ul>
           <NavLink to="/registration" className="btn btn-custom fw-semibold">

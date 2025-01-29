@@ -2,10 +2,16 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 export default function HomePage() {
   const [specialties, setSpecialties] = useState([]);
+  const [reviews, setReviews] = useState([]);
   useEffect(() => {
     fetch("http://localhost:3000/specialties")
       .then((res) => res.json())
       .then((data) => setSpecialties(data.results));
+  }, []);
+  useEffect(() => {
+    fetch("http://localhost:3000/reviews")
+      .then((res) => res.json())
+      .then((data) => setReviews(data.results));
   }, []);
   return (
     <div className="wrapper">
@@ -26,7 +32,7 @@ export default function HomePage() {
                 <option defaultValue={""}>
                   Seleziona una specializzazione
                 </option>
-                {specialties.map((specialty) => (
+                {specialties.slice(0, 3).map((specialty) => (
                   <option key={specialty.id} value={specialty.specialty_name}>
                     {specialty.specialty_name}
                   </option>
@@ -82,51 +88,20 @@ export default function HomePage() {
             Cosa dicono altri utenti
           </h3>
           <div className="row">
-            {/* single card col */}
-            <div className="col-4">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">Username</h5>
-                  <h6 className="card-subtitle mb-2 text-body-secondary">
-                    medico per cui e' la recensione
-                  </h6>
-                  <p className="card-text">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </p>
+            {reviews.map((review) => (
+              <div key={review.id} className="col-4">
+                <div className="card">
+                  <div className="card-body">
+                    <h5 className="card-title">Username</h5>
+                    <h6 className="card-subtitle mb-2 text-body-secondary">
+                      {review.doctor_id}
+                    </h6>
+                    <p className="card-text">{review.review_text}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
             {/* single card col */}
-            <div className="col-4">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">Username</h5>
-                  <h6 className="card-subtitle mb-2 text-body-secondary">
-                    medico per cui e' la recensione
-                  </h6>
-                  <p className="card-text">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/* single card col */}
-            <div className="col-4">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">Username</h5>
-                  <h6 className="card-subtitle mb-2 text-body-secondary">
-                    medico per cui e' la recensione
-                  </h6>
-                  <p className="card-text">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
