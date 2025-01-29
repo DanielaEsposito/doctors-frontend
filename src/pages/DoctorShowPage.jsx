@@ -24,11 +24,28 @@ export default function DoctorShowPage() {
     <>
       <div className="container py-5">
         <div className="mb-4 text-center">
-          <h1 className="display-4 text-primary">
+          <h1 className="display-4 text-primary mb-3">
             {doctor.doctor.name} {doctor.doctor.surname}
           </h1>
-          <img src={`${doctor.doctor.image}`} />
-          <p className="text-secondary">{doctor.doctor.description}</p>
+        </div>
+
+        <div className="card doctor-card mb-5 shadow-lg border-0">
+          <div className="row g-0 align-items-center">
+            <div className="col-md-4">
+              <img
+                src={doctor.doctor.image}
+                className="img-fluid rounded-start doctor-img"
+                alt="Doctor"
+              />
+            </div>
+            <div className="col-md-8">
+              <div className="card-body">
+                <p className="card-text text-secondary">
+                  {doctor.doctor.description}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="row justify-content-center mb-5">
