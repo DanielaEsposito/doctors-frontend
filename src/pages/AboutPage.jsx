@@ -8,6 +8,7 @@ export default function AboutPage() {
           <div className="col-md-4">
             <div className="card shadow border-0 h-100">
               <div className="card-body text-center">
+                <i className="fas fa-medkit fa-3x text-primary mb-3"></i>
                 <h2 className="card-title text-primary">Il nostro impegno</h2>
                 <p className="card-text">
                   Offriamo assistenza medica con passione e competenza,
@@ -21,6 +22,7 @@ export default function AboutPage() {
           <div className="col-md-4">
             <div className="card shadow border-0 h-100">
               <div className="card-body text-center">
+                <i className="fas fa-heart fa-3x text-primary mb-3"></i>
                 <h2 className="card-title text-primary">Perché sceglierci?</h2>
                 <p className="card-text">
                   Medici qualificati, tecnologie all’avanguardia e un approccio
@@ -33,6 +35,7 @@ export default function AboutPage() {
           <div className="col-md-4">
             <div className="card shadow border-0 h-100">
               <div className="card-body text-center">
+                <i className="fas fa-stethoscope fa-3x text-primary mb-3"></i>
                 <h2 className="card-title text-primary">La nostra missione</h2>
                 <p className="card-text">
                   Mettiamo la salute al primo posto, offrendo diagnosi accurate
@@ -42,6 +45,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+
         <div className="container mt-5">
           <h2 className="text-center text-primary mb-4">Il nostro team</h2>
           <div className="row g-4">
