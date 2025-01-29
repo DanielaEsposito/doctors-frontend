@@ -23,12 +23,6 @@ export default function DoctorShowPage() {
   return (
     <>
       <div className="container py-5">
-        <div className="mb-5 text-center">
-          <h1 className="display-4 text-primary mb-3">
-            {doctor.doctor.name} {doctor.doctor.surname}
-          </h1>
-        </div>
-
         <div className="card doctor-card mb-5 shadow-lg border-0">
           <div className="row g-0 align-items-center">
             <div className="col-md-4">
@@ -40,27 +34,33 @@ export default function DoctorShowPage() {
             </div>
             <div className="col-md-8">
               <div className="card-body">
-                <h5 className="card-title">{doctor.doctor.name}</h5>
-                <p className="card-text text-secondary">
-                  {doctor.doctor.description}
-                </p>
-                <ul className="list-group list-group-flush">
-                  <li className="list-group-item">
-                    <strong>Email:</strong> {doctor.doctor.email}
-                  </li>
-                  <li className="list-group-item">
-                    <strong>Città:</strong> {doctor.doctor.city}
-                  </li>
-                  <li className="list-group-item">
-                    <strong>Provincia:</strong> {doctor.doctor.province}
-                  </li>
-                  <li className="list-group-item">
-                    <strong>Telefono:</strong> {doctor.doctor.phone_number}
-                  </li>
-                  <li className="list-group-item">
-                    <strong>Indirizzo:</strong> {doctor.doctor.address}
-                  </li>
-                </ul>
+                <div className="d-flex flex-column align-items-start">
+                  <h1 className="display-4 text-primary mb-3">
+                    {doctor.doctor.name} {doctor.doctor.surname}
+                  </h1>
+                </div>
+                <div className="d-flex flex-column">
+                  <p className="card-text text-secondary">
+                    {doctor.doctor.description}
+                  </p>
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">
+                      <strong>Email:</strong> {doctor.doctor.email}
+                    </li>
+                    <li className="list-group-item">
+                      <strong>Città:</strong> {doctor.doctor.city}
+                    </li>
+                    <li className="list-group-item">
+                      <strong>Provincia:</strong> {doctor.doctor.province}
+                    </li>
+                    <li className="list-group-item">
+                      <strong>Telefono:</strong> {doctor.doctor.phone_number}
+                    </li>
+                    <li className="list-group-item">
+                      <strong>Indirizzo:</strong> {doctor.doctor.address}
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
