@@ -29,7 +29,7 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarScroll">
           <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
             <li className="nav-item">
-              <NavLink className="nav-link text-light" to="#">
+              <NavLink className="nav-link text-light" to="about">
                 Chi siamo
               </NavLink>
             </li>
