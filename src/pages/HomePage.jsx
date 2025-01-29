@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
-
+import { useState, useEffect } from "react";
 export default function HomePage() {
+  const [specialties, setSpecialties] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3000/specialties")
+      .then((res) => res.json())
+      .then((data) => setSpecialties(data.results));
+  }, []);
   return (
     <div className="wrapper">
       {/* hero section */}
@@ -20,17 +26,11 @@ export default function HomePage() {
                 <option defaultValue={""}>
                   Seleziona una specializzazione
                 </option>
-                <option value="cardiology">Cardiologia</option>
-                <option value="dermatology">Dermatologia</option>
-                <option value="psychiatry">Psichiatria</option>
-                <option value="endocrinology">Endocrinologia</option>
-                <option value="family-medicine">Medicina di base</option>
-                <option value="gastroenterology">Gastroenterologia</option>
-                <option value="geriatrics">Geriatria</option>
-                <option value="hematology">Ematologia</option>
-                <option value="infectious Disease">Malattie infettive</option>
-                <option value="pulmonology">Pneumologia</option>
-                <option value="anesthesiology">Anestesiologia</option>
+                {specialties.map((specialty) => (
+                  <option key={specialty.id} value={specialty.specialty_name}>
+                    {specialty.specialty_name}
+                  </option>
+                ))}
               </select>
             </div>
             {/* select province */}

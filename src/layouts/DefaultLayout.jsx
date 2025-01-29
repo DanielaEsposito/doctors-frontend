@@ -7,7 +7,9 @@ export default function DefaultLayout() {
   return (
     <div className="d-flex flex-column min-vh-100">
       {" "}
-      <Header />
+      <div className="bg-header-dl">
+        <Header />
+      </div>
       <main className="flex-grow-1">
         {" "}
         <Outlet />
