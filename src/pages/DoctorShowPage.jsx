@@ -51,7 +51,7 @@ export default function DoctorShowPage() {
                       <strong>Città:</strong> {doctor.doctor.city}
                     </li>
                     <li className="list-group-item">
-                      <strong>Provincia:</strong> {doctor.doctor.province}
+                      <strong>Provincia:</strong> {doctor.doctor.province_name}
                     </li>
                     <li className="list-group-item">
                       <strong>Telefono:</strong> {doctor.doctor.phone_number}
