@@ -111,8 +111,8 @@ export default function HomePage() {
                 <div className="card">
                   <div className="card-body">
                     <h5 className="card-title">{review.username}</h5>
-                    <h6 className="card-subtitle mb-2 text-body-secondary my-2">
-                      Dott. M.Donati
+                    <h6 className="card-subtitle mb-2 text-body-secondary">
+                      Dott. M. Donati
                     </h6>
                     <p className="card-text">{review.review_text}</p>
                   </div>

@@ -10,7 +10,7 @@ export default function SearchPage() {
       .then((data) => setSpecialties(data.results));
   }, []);
   console.log(specialties);
-  let subtitle = "d-flex";
+
   const showDoctors = (specialtyId) => {
     fetch(`http://localhost:3000/${specialtyId}/specialties`)
       .then((res) => res.json())
