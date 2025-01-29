@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+
 export default function HomePage() {
   const [specialties, setSpecialties] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -13,11 +14,47 @@ export default function HomePage() {
       .then((res) => res.json())
       .then((data) => setReviews(data.results));
   }, []);
+
+  // # fetch feature doctors
+  const [featuredDoctors, setFeaturedDoctors] = useState([]);
+
+  useEffect(() => {
+    const url = `http://localhost:3000/`;
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setFeaturedDoctors(data.resultsDoctor.slice(0, 5));
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log(featuredDoctors);
+  }, [featuredDoctors]);
+
+  // # fetch specialties
+
+  const [specialties, setSpecialties] = useState([]);
+
+  useEffect(() => {
+    const url = "http://localhost:3000/specialties";
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setSpecialties(data.results);
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log(specialties);
+  }, [specialties]);
+
   return (
     <div className="wrapper">
       {/* hero section */}
-      <section className="pb-5">
-        <div className="container">
+      <section id="hero-section">
+        <div className="container pb-5 pt-5">
           <div className="text-light">
             <h1 className="fw-bold">BDoctors</h1>
             <h2 className="fs-4 fw-semibold">
@@ -62,28 +99,39 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
       {/* featured doctors section */}
-      <section>
-        <div className="container">
+      <section id="featured-section">
+        <div className="container pt-5">
           <h3 className="text-center fw-semibold">I nostri medici</h3>
           <div className="row row-cols-5">
-            <div className="col d-flex align-items-center flex-column">
-              <img
-                src="https://picsum.photos/2500/3500"
-                alt=""
-                className="d-inline-block round-image-hp text-center"
-              />
-              <div>
-                <p className="text-center fs-5">Nome Cognome</p>
-                <p className="text-center">specializzazione</p>
-              </div>
-            </div>
+            {featuredDoctors.map((doctor) => (
+              <Link to={`${doctor.id}`}>
+                <div
+                  key={doctor.id}
+                  className="col d-flex align-items-center flex-column"
+                >
+                  <img
+                    src={doctor.image}
+                    alt="doctor"
+                    className="d-inline-block round-image-hp text-center"
+                  />
+                  <div>
+                    <p className="text-center fs-5">
+                      {doctor.name} {doctor.surname}
+                    </p>
+                    <p className="text-center">{doctor.specialty_id}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
+
       {/* reviews section */}
-      <section>
-        <div className="container mt-5">
+      <section id="reviews-section">
+        <div className="container mt-5 pb-5 pt-5">
           <h3 className="text-center fw-semibold text-light">
             Cosa dicono altri utenti
           </h3>
@@ -105,8 +153,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
       {/* call to action section */}
-      <section>
+      <section id="cta-section">
         <div className="container mt-5 mb-4">
           <div className="row justify-content-center">
             <div className="col-4">
