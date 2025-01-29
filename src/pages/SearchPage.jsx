@@ -21,12 +21,11 @@ export default function SearchPage() {
   return (
     <div className="wrapper">
       <section id="specialties-tags">
-        <div className="container">
-          <h2 className="mb-3 fw-semibold">Specialties</h2>
-          <h4 className="mb-5">
-            Choose the specialization you are interested in and browse through
-            the various doctors.
-          </h4>
+        <div className="container text-custom-dark">
+          <h1 className="mb-3 text-center  fw-bold">Specializzazioni</h1>
+          <h5 className="mb-5 text-center">
+            Seleziona la specializzazione che desideri esplorare
+          </h5>
           <div className="tags-container d-flex g-3">
             {specialties.map((specialty) => (
               <span
@@ -43,9 +42,9 @@ export default function SearchPage() {
       <section id="specialties-doctor">
         <div className="container">
           {doctor.length === 0 && (
-            <h2 className="text-center my-5 fw-semibold">
-              Learn more about our doctors
-            </h2>
+            <h4 className="text-center my-5 fw-semibold text-custom-dark">
+              Scopri di più sui nostri dottori
+            </h4>
           )}
           <div className="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 g-2  ">
             {doctor.map((doctor) => (
@@ -63,9 +62,12 @@ export default function SearchPage() {
                     <h4 className="card-text">
                       {doctor.name} {doctor.surname}
                     </h4>
-                    <h5>{doctor.city}</h5>
-                    <Link to={`/${doctor.id}`} className="tags ms-0 text-light">
-                      Show detail
+                    <p>{doctor.city}</p>
+                    <Link
+                      to={`/${doctor.id}`}
+                      className="tags ms-0 text-custom-light text-light fw-semibold"
+                    >
+                      Dettagli
                     </Link>
                   </div>
                 </div>

@@ -80,8 +80,8 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center mb-5">REGISTRAZIONE MEDICO</h1>
+    <div className="container mt-5 text-custom-dark">
+      <h1 className="text-center fw-bold mb-5">Unisciti al team</h1>
       <div className="row">
         {/* Colonna di sinistra */}
         <div className="col-12 col-lg-6">
@@ -245,7 +245,7 @@ const RegistrationForm = () => {
             <div className="text-center">
               <button
                 type="submit"
-                className="btn btn-custom fw-semibold d-inline-block mb-2 px-4 py-2 rounded-pill transition-all hover-shadow"
+                className="btn btn-custom fw-semibold d-inline-block mb-2 px-4 py-2 transition-all hover-shadow"
               >
                 REGISTRATI
               </button>

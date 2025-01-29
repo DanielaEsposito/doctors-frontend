@@ -171,6 +171,11 @@ textarea.form-control {
   object-fit: cover;
 }
 
+.btn.active {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
 /* # homepage */
 
 .background-hero {
