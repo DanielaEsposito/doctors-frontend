@@ -46,8 +46,8 @@ export default function HomePage() {
   return (
     <div className="wrapper">
       {/* hero section */}
-      <section className="pb-5">
-        <div className="container">
+      <section id="hero-section">
+        <div className="container pb-5 pt-5">
           <div className="text-light">
             <h1 className="fw-bold">BDoctors</h1>
             <h2 className="fs-4 fw-semibold">
@@ -100,8 +100,8 @@ export default function HomePage() {
       </section>
 
       {/* featured doctors section */}
-      <section>
-        <div className="container">
+      <section id="featured-section">
+        <div className="container pt-5">
           <h3 className="text-center fw-semibold">I nostri medici</h3>
           <div className="row row-cols-5">
             {featuredDoctors.map((doctor) => (
@@ -129,8 +129,8 @@ export default function HomePage() {
       </section>
 
       {/* reviews section */}
-      <section>
-        <div className="container mt-5">
+      <section id="reviews-section">
+        <div className="container mt-5 pb-5 pt-5">
           <h3 className="text-center fw-semibold text-light">
             Cosa dicono altri utenti
           </h3>
@@ -185,7 +185,7 @@ export default function HomePage() {
       </section>
 
       {/* call to action section */}
-      <section>
+      <section id="cta-section">
         <div className="container mt-5 mb-4">
           <div className="row justify-content-center">
             <div className="col-4">
