@@ -34,22 +34,6 @@ export default function HomePage() {
 
   // # fetch specialties
 
-  const [specialties, setSpecialties] = useState([]);
-
-  useEffect(() => {
-    const url = "http://localhost:3000/specialties";
-
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setSpecialties(data.results);
-      });
-  }, []);
-
-  useEffect(() => {
-    console.log(specialties);
-  }, [specialties]);
-
   return (
     <div className="wrapper">
       {/* hero section */}
