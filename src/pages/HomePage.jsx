@@ -90,7 +90,7 @@ export default function HomePage() {
                     <p className="text-center fs-5">
                       {doctor.name} {doctor.surname}
                     </p>
-                    <p className="text-center">{doctor.specialty_id}</p>
+                    <p className="text-center">{doctor.specialty_name}</p>
                   </div>
                 </div>
               </Link>
