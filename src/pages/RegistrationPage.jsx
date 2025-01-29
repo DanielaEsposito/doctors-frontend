@@ -176,38 +176,36 @@ const RegistrationForm = () => {
                 />
               </div>
 
-              <div className="row mb-3">
-                {/* Città */}
-                <div className="col-12 col-md-6 mb-3">
-                  <label htmlFor="city" className="form-label fw-bold">
-                    Città
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control rounded-pill"
-                    id="city"
-                    name="city"
-                    value={formData.city}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+              {/* Città */}
+              <div className="col-12 col-md-6 mb-3">
+                <label htmlFor="city" className="form-label fw-bold">
+                  Città
+                </label>
+                <input
+                  type="text"
+                  className="form-control rounded-pill"
+                  id="city"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-                {/* Provincia */}
-                <div className="col-12 col-md-6 mb-3">
-                  <label htmlFor="province" className="form-label fw-bold">
-                    Provincia
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control rounded-pill"
-                    id="province"
-                    name="province"
-                    value={formData.province}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+              {/* Provincia */}
+              <div className="col-12 col-md-6 mb-3">
+                <label htmlFor="province" className="form-label fw-bold">
+                  Provincia
+                </label>
+                <input
+                  type="text"
+                  className="form-control rounded-pill"
+                  id="province"
+                  name="province"
+                  value={formData.province}
+                  onChange={handleChange}
+                  required
+                />
               </div>
 
               {/* Email */}
