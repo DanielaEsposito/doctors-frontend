@@ -111,7 +111,57 @@ export default function HomePage() {
       </section>
 
       {/* search section */}
-      <section>
+
+      {selectedDoctors.length === 0 ? (
+        ""
+      ) : (
+        <section>
+          <div className="container pt-5">
+            <h3 className="text-custom-dark fw-semibold text-center">
+              Medici di {selectedProvince}
+            </h3>
+            <div
+              className="row justify-content-center row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-xs-1 g-3 mt-5"
+              id="homepage-collapse"
+            >
+              {selectedDoctors.length === 0 ? (
+                <p className="text-custom-small text-center">
+                  Non ci sono medici per la provincia selezionata.
+                </p>
+              ) : (
+                selectedDoctors.map((doctor) => (
+                  <Link to={`${doctor.id}`} key={doctor.id}>
+                    <div className="col d-flex align-items-center flex-column text-custom-dark">
+                      <img
+                        src={doctor.image}
+                        alt="doctor"
+                        className="d-inline-block round-image-hp text-center"
+                      />
+                      <div className="pt-3">
+                        <ul>
+                          <li className="text-center fw-semibold fs-5">
+                            {doctor.name} {doctor.surname}
+                          </li>
+                          <li className="text-center text-custom-small">
+                            {doctor.specialty_name}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </Link>
+                ))
+              )}
+            </div>
+          </div>
+          <div className="text-center pt-3">
+            <Link to="/search">
+              <button className="btn btn-custom fw-semibold">Vedi tutti</button>
+            </Link>
+          </div>
+        </section>
+      )}
+
+      {/* <section>
         <div className="container pt-5">
           <h3 className="text-custom-dark fw-semibold text-center">
             Medici di {selectedProvince}
@@ -149,7 +199,7 @@ export default function HomePage() {
             )}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* featured doctors section */}
       <section id="featured-section">
