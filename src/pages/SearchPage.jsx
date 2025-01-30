@@ -50,28 +50,41 @@ export default function SearchPage() {
   }, [id]);
 
   // Gestisce il submit del form
+  // Gestisce il submit del form
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if ((selectedSpecialty || id) && selectedProvince) {
-      fetch(
-        `http://localhost:3000/specialties/${
+
+    // Se è selezionata una specializzazione o id è presente
+    if (selectedSpecialty || id) {
+      let url;
+      if (selectedProvince) {
+        // Se è selezionata anche una provincia, cerca i medici per specializzazione e provincia
+        url = `http://localhost:3000/specialties/${
           selectedSpecialty ? selectedSpecialty : id
-        }/provinces/${selectedProvince}`
-      )
+        }/provinces/${selectedProvince}`;
+      } else {
+        // Se non è selezionata una provincia, cerca i medici solo per specializzazione
+        url = `http://localhost:3000/specialties/${
+          selectedSpecialty ? selectedSpecialty : id
+        }`;
+      }
+
+      // Effettua la fetch
+      fetch(url)
         .then((res) => res.json())
         .then((data) => {
           if (data.status === "ok" && data.doctors && data.doctors.length > 0) {
-            setDoctors(data.doctors);
+            setDoctors(data.doctors); // Salva i medici nello stato
           } else {
-            setDoctors([]);
+            setDoctors([]); // Se non ci sono medici, imposta l'array vuoto
           }
         })
         .catch((error) => {
           console.error("Error fetching doctors:", error);
-          setDoctors([]);
+          setDoctors([]); // Imposta l'array vuoto in caso di errore
         });
 
-      setFormSubmitted(true);
+      setFormSubmitted(true); // Indica che la ricerca è stata effettuata
     }
   };
 
