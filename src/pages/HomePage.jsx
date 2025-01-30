@@ -149,7 +149,9 @@ export default function HomePage() {
       {/* featured doctors section */}
       <section id="featured-section">
         <div className="container pt-5 text-custom-dark">
-          <h3 className="text-center fw-semibold">I nostri medici</h3>
+          <h3 className="text-center fw-semibold">
+            I nostri migliori specialisti
+          </h3>
           <div className="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-xs-1 g-3 mt-5">
             {featuredDoctors.map((doctor) => (
               <Link to={`/${doctor.id}`} key={doctor.id}>
