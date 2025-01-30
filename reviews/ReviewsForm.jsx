@@ -120,7 +120,7 @@ export default function ReviewsForm({ doctorId, updateReviews }) {
         />
       </div>
 
-      <div className="col-12 col-md-6 col-lg-6 fw-semibold">
+      <div className="col-12 fw-semibold">
         <label htmlFor="text" className="form-label">
           Vuoi aggiungere qualcosa?
         </label>
