@@ -26,43 +26,42 @@ export default function HomePage() {
       .then((res) => res.json())
       .then((data) => setReviews(data.results.slice(0, 3)));
   }, []);
-  // console.log(reviews + "recensioni");
 
-  // # fetch feature doctors
+  // # fetch featured doctors
   const [featuredDoctors, setFeaturedDoctors] = useState([]);
-
   useEffect(() => {
-    const url = `http://localhost:3000/`;
-
-    fetch(url)
+    fetch("http://localhost:3000/")
       .then((res) => res.json())
       .then((data) => {
         setFeaturedDoctors(data.resultsDoctor.slice(0, 5));
       });
   }, []);
 
-  // useEffect(() => {
-  //   console.log(featuredDoctors);
-  // }, [featuredDoctors]);
-
   // # fetch search doctors
-
   const [selectedProvince, setSelectedProvince] = useState("");
+  const [provinceName, setProvinceName] = useState("");
   const [isProvinceSelected, setIsProvinceSelected] = useState(false);
   const [selectedDoctors, setSelectedDoctors] = useState([]);
 
   const selectDoctors = (provinceId) => {
-    if (!selectedProvince) return;
+    if (!provinceId) return;
+
+    console.log("ID provincia selezionata:", provinceId);
 
     setIsProvinceSelected(true);
+
+    const selectedProvince = provinces.find(
+      (province) => province.id.toString() === provinceId.toString()
+    );
+
+    console.log("Provincia trovata:", selectedProvince);
+
+    setProvinceName(selectedProvince ? selectedProvince.province_name : "");
+
     fetch(`http://localhost:3000/${provinceId}/provinces`)
       .then((res) => res.json())
       .then((data) => setSelectedDoctors(data.doctors));
   };
-
-  // useEffect(() => {
-  //   console.log(selectedDoctors);
-  // }, [selectedDoctors]);
 
   return (
     <div className="wrapper">
@@ -84,32 +83,20 @@ export default function HomePage() {
                 className="form-select"
                 aria-label="specialies select"
                 onChange={(e) => {
-                  setSelectedProvince(e.target.value);
+                  const provinceId = e.target.value;
+                  setSelectedProvince(provinceId);
                   setIsProvinceSelected(true);
+                  selectDoctors(provinceId);
                 }}
               >
                 <option defaultValue={""}>Seleziona una provincia</option>
                 {provinces.map((province) => (
-                  <option
-                    key={province.id}
-                    value={province.province_name}
-                    onClick={() => selectDoctors(province.id)}
-                  >
+                  <option key={province.id} value={province.id}>
                     {province.province_name}
                   </option>
                 ))}
               </select>
             </div>
-
-            {/* <div className="col-1">
-              <button
-                className="btn btn-custom fw-semibold"
-                data-bs-toggle="collapse"
-                href="#homepage-collapse"
-              >
-                Cerca
-              </button>
-            </div> */}
           </div>
         </div>
       </section>
@@ -119,19 +106,16 @@ export default function HomePage() {
         <section>
           <div className="container pt-5">
             <h3 className="text-custom-dark fw-semibold text-center">
-              Medici di {selectedProvince}
+              Medici di {provinceName}
             </h3>
-            <div
-              className="row justify-content-center row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-xs-1 g-3 mt-5"
-              id="homepage-collapse"
-            >
+            <div className="row justify-content-center row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-xs-1 g-3 mt-5">
               {selectedDoctors.length === 0 ? (
                 <p className="text-custom-small text-center">
                   Non ci sono medici per la provincia selezionata.
                 </p>
               ) : (
                 selectedDoctors.map((doctor) => (
-                  <Link to={`${doctor.id}`} key={doctor.id}>
+                  <Link to={`/${doctor.id}`} key={doctor.id}>
                     <div className="col d-flex align-items-center flex-column text-custom-dark">
                       <img
                         src={doctor.image}
@@ -168,7 +152,7 @@ export default function HomePage() {
           <h3 className="text-center fw-semibold">I nostri medici</h3>
           <div className="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-xs-1 g-3 mt-5">
             {featuredDoctors.map((doctor) => (
-              <Link to={`${doctor.id}`} key={doctor.id}>
+              <Link to={`/${doctor.id}`} key={doctor.id}>
                 <div className="col d-flex align-items-center flex-column">
                   <img
                     src={doctor.image}
@@ -212,7 +196,6 @@ export default function HomePage() {
                 </div>
               </div>
             ))}
-            {/* single card col */}
           </div>
         </div>
       </section>
