@@ -1,27 +1,43 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function SearchPage() {
-  const [specialties, setSpecialties] = useState([]);
+  // const [specialties, setSpecialties] = useState([]);
   const [doctor, setDoctors] = useState([]);
+  const { specialtyId } = useParams();
+
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/specialties")
+  //     .then((res) => res.json())
+  //     .then((data) => setSpecialties(data.results));
+  // }, []);
+
+  // console.log(specialties);
+
+  // const showDoctors = (specialtyId) => {
+  //   fetch(`http://localhost:3000/${specialtyId}/specialties`)
+  //     .then((res) => res.json())
+  //     .then((data) => setDoctors(data.specialty));
+  // };
+
   useEffect(() => {
-    fetch("http://localhost:3000/specialties")
-      .then((res) => res.json())
-      .then((data) => setSpecialties(data.results));
-  }, []);
-  console.log(specialties);
+    if (specialtyId) {
+      fetch(`http://localhost:3000/${specialtyId}/specialties`)
+        .then((res) => res.json())
+        .then((data) => {
+          setDoctors(data.specialty);
+          console.log("data" + data);
+        });
+    }
+  }, [specialtyId]);
 
-  const showDoctors = (specialtyId) => {
-    fetch(`http://localhost:3000/${specialtyId}/specialties`)
-      .then((res) => res.json())
-      .then((data) => setDoctors(data.specialty));
-  };
+  console.log("specialtyId" + specialtyId);
 
-  console.log(doctor);
+  console.log("doctor" + doctor);
 
   return (
     <div className="wrapper">
-      <section id="specialties-tags">
+      {/* <section id="specialties-tags">
         <div className="container text-custom-dark">
           <h1 className="mb-3 text-center  fw-bold">Specializzazioni</h1>
           <h5 className="mb-5 text-center">
@@ -39,7 +55,7 @@ export default function SearchPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
       <section id="specialties-doctor">
         <div className="container">
           {doctor.length === 0 && (

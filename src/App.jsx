@@ -24,7 +24,7 @@ function App() {
             <Route path="*" Component={NotFound} />
             <Route path=":id" element={<DoctorShowPage />} />
             <Route path="/registration" Component={RegistrationPage} />
-            <Route path="/search" Component={SearchPage} />
+            <Route path="/search/:id" Component={SearchPage} />
           </Route>
         </Routes>
       </BrowserRouter>
