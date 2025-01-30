@@ -226,3 +226,14 @@ textarea.form-control {
 .doctor-show-img {
   width: 500px;
 }
+
+/* about page */
+
+.round-image-hp-about {
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+  border: 2px solid rgb(150, 150, 150);
+}

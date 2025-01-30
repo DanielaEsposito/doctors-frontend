@@ -79,7 +79,7 @@ export default function AboutPage() {
               <div className="card h-100 p-2 border-0 shadow text-center">
                 <img
                   src="https://placehold.co/100x100"
-                  className="card-img-top rounded-circle mx-auto mt-3 pedro"
+                  className="card-img-top round-image-hp-about mx-auto mt-3 pedro"
                   alt="Dottore 1"
                 />
                 <div className="card-body my-2">
