@@ -82,7 +82,7 @@ export default function DoctorShowPage() {
                   reviews.length
                 ).toFixed(1)
               : "Nessuna recensione"}
-            <i class="fa-solid fa-star"></i>
+            <i className="fa-solid fa-star"></i>
           </h1>
         </div>
 
@@ -97,7 +97,7 @@ export default function DoctorShowPage() {
                   <h5 className="card-title">
                     <span className="text-custom-dark">Voto:</span>{" "}
                     {review.rating}{" "}
-                    <i class="fa-solid fa-star text-warning"></i>
+                    <i className="fa-solid fa-star text-warning"></i>
                   </h5>
                   <h6 className="card-subtitle mb-2 text-custom-muted">
                     Recensito da: {review.username}
