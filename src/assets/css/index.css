@@ -226,18 +226,3 @@ textarea.form-control {
 .doctor-show-img {
   width: 500px;
 }
-@keyframes pedro-rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.pedro {
-  display: block;
-  margin: 0 auto;
-  animation: pedro-rotate 2s linear infinite;
-  transform-origin: center;
-}

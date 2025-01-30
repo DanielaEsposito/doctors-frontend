@@ -92,7 +92,7 @@ export default function AboutPage() {
               <div className="card h-100 p-2 border-0 shadow text-center">
                 <img
                   src="https://placehold.co/100x100"
-                  className="card-img-top rounded-circle mx-auto mt-3"
+                  className="card-img-top img-fluid round-image-hp-about mx-auto mt-3"
                   alt="Dottoressa 2"
                 />
                 <div className="card-body my-2">
@@ -105,7 +105,7 @@ export default function AboutPage() {
               <div className="card h-100 p-2 border-0 shadow text-center">
                 <img
                   src="https://placehold.co/100x100"
-                  className="card-img-top rounded-circle mx-auto mt-3"
+                  className="card-img-top img-fluid round-image-hp-about mx-auto mt-3"
                   alt="Dottore 3"
                 />
                 <div className="card-body my-2">
@@ -118,7 +118,7 @@ export default function AboutPage() {
               <div className="card h-100 border-0 p-2 shadow text-center">
                 <img
                   src="https://placehold.co/100x100"
-                  className="card-img-top rounded-circle mx-auto mt-3"
+                  className="card-img-top img-fluid round-image-hp-about mx-auto mt-3"
                   alt="Dottore 4"
                 />
                 <div className="card-body my-2">
