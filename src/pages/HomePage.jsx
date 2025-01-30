@@ -1,10 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export default function HomePage() {
   const [specialties, setSpecialties] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [provinces, setProvinces] = useState([]);
+  const navigate = useNavigate();
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    const specialtyId = e.target.specialty.value;
+
+    if (specialtyId) {
+      navigate(`/search/${specialtyId}`);
+    }
+  };
 
   // # fetch provinces
   useEffect(() => {
@@ -46,15 +57,11 @@ export default function HomePage() {
   const selectDoctors = (provinceId) => {
     if (!provinceId) return;
 
-    console.log("ID provincia selezionata:", provinceId);
-
     setIsProvinceSelected(true);
 
     const selectedProvince = provinces.find(
       (province) => province.id.toString() === provinceId.toString()
     );
-
-    console.log("Provincia trovata:", selectedProvince);
 
     setProvinceName(selectedProvince ? selectedProvince.province_name : "");
 
@@ -79,72 +86,33 @@ export default function HomePage() {
           <div className="row">
             {/* select specialties */}
             <div className="col-lg-4 col-sm-12">
-              <select
-                className="form-select"
-                aria-label="specialies select"
-                onChange={(e) => {
-                  const provinceId = e.target.value;
-                  setSelectedProvince(provinceId);
-                  setIsProvinceSelected(true);
-                  selectDoctors(provinceId);
-                }}
-              >
-                <option defaultValue={""}>Seleziona una provincia</option>
-                {provinces.map((province) => (
-                  <option key={province.id} value={province.id}>
-                    {province.province_name}
+              <form onSubmit={handleFormSubmit}>
+                <select
+                  className="form-select"
+                  name="specialty"
+                  aria-label="specialties select"
+                  onChange={(e) => {
+                    const provinceId = e.target.value;
+                    setSelectedProvince(provinceId);
+                    setIsProvinceSelected(true);
+                    selectDoctors(provinceId);
+                  }}
+                >
+                  <option defaultValue={""}>
+                    Seleziona una specializzazione
                   </option>
-                ))}
-              </select>
+                  {specialties.map((specialty) => (
+                    <option key={specialty.id} value={specialty.id}>
+                      {specialty.specialty_name}
+                    </option>
+                  ))}
+                </select>
+                <button className="btn btn-custom mt-2">Cerca</button>
+              </form>
             </div>
           </div>
         </div>
       </section>
-
-      {/* search section */}
-      {isProvinceSelected && (
-        <section>
-          <div className="container pt-5">
-            <h3 className="text-custom-dark fw-semibold text-center">
-              Medici di {provinceName}
-            </h3>
-            <div className="row justify-content-center row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-xs-1 g-3 mt-5">
-              {selectedDoctors.length === 0 ? (
-                <p className="text-custom-small text-center">
-                  Non ci sono medici per la provincia selezionata.
-                </p>
-              ) : (
-                selectedDoctors.map((doctor) => (
-                  <Link to={`/${doctor.id}`} key={doctor.id}>
-                    <div className="col d-flex align-items-center flex-column text-custom-dark">
-                      <img
-                        src={doctor.image}
-                        alt="doctor"
-                        className="d-inline-block round-image-hp text-center"
-                      />
-                      <div className="pt-3">
-                        <ul>
-                          <li className="text-center fw-semibold fs-5">
-                            {doctor.name} {doctor.surname}
-                          </li>
-                          <li className="text-center text-custom-small">
-                            {doctor.specialty_name}
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </Link>
-                ))
-              )}
-            </div>
-          </div>
-          <div className="text-center pt-3">
-            <Link to="/search">
-              <button className="btn btn-custom fw-semibold">Vedi tutti</button>
-            </Link>
-          </div>
-        </section>
-      )}
 
       {/* featured doctors section */}
       <section id="featured-section">
