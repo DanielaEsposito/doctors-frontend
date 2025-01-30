@@ -52,9 +52,11 @@ export default function SearchPage() {
   // Gestisce il submit del form
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (selectedSpecialty && selectedProvince) {
+    if ((selectedSpecialty || id) && selectedProvince) {
       fetch(
-        `http://localhost:3000/specialties/${selectedSpecialty}/provinces/${selectedProvince}`
+        `http://localhost:3000/specialties/${
+          selectedSpecialty ? selectedSpecialty : id
+        }/provinces/${selectedProvince}`
       )
         .then((res) => res.json())
         .then((data) => {
