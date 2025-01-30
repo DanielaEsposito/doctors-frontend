@@ -87,7 +87,7 @@ export default function DoctorShowPage() {
                   </div>
                 </div>
 
-                <div className="col-12 col-md-4 d-flex align-items-start">
+                <div className="col-12 col-md-4 d-flex align-items-end">
                   <img
                     src="/dottore.png"
                     alt="Dottore"

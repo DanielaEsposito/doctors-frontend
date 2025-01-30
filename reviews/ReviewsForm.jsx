@@ -131,7 +131,7 @@ export default function ReviewsForm({ doctorId, updateReviews }) {
           value={reviewForm.text}
           required
           onChange={handleFormChange}
-          placeholder="La tua opinione e' importante"
+          placeholder="La tua opinione e' importante (Min 10 caratteri)"
           rows="5"
         ></textarea>
       </div>
