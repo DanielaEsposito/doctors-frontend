@@ -137,7 +137,7 @@ export default function ReviewsForm({ doctorId, updateReviews }) {
       </div>
       <div className="col-lg-6"></div>
 
-      <div className="col-12 col-md-12 col-lg-1 d-flex align-items-end justify-content-center">
+      <div className="col-12 d-flex justify-content-center">
         <button className="btn btn-custom" type="submit">
           Invia
         </button>
