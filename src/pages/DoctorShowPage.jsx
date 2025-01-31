@@ -118,7 +118,7 @@ export default function DoctorShowPage() {
                         ).toFixed(1)
                       : "Nessuna recensione"}
                   </h1>
-                  <i className="fa-solid fa-star ms-2"></i>
+                  <i className="fa-solid fa-star ms-2 "></i>
                 </span>
               </div>
 

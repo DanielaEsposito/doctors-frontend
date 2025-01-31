@@ -178,8 +178,15 @@ export default function SearchPage() {
                         {doctor.name} {doctor.surname}
                       </h4>
                       <p>{doctor.city}</p>
-                      <p>{doctor.reviewCount}</p>
-                      <p>{doctor.averageRating}</p>
+                      <span className="fw-semibold">
+                        Numero di recensioni ricevute:
+                      </span>
+                      <span> {doctor.reviewCount}</span>
+                      <p className="fw-semibold">Media recensioni :</p>
+                      <p>
+                        <i className="fa-solid fa-star ms-2 text-warning"></i>
+                        {doctor.averageRating}{" "}
+                      </p>
                       <Link
                         to={`/${doctor.id}`}
                         className="tags ms-0 text-custom-light text-light fw-semibold"
