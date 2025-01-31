@@ -55,14 +55,19 @@ export default function SearchPage() {
     e.preventDefault();
 
     // Se è selezionata una specializzazione o id è presente
-    if (selectedSpecialty || id) {
+    if (selectedSpecialty || id || selectedProvince) {
       let url;
-      if (selectedProvince) {
+      if (selectedSpecialty && selectedProvince) {
         // Se è selezionata anche una provincia, cerca i medici per specializzazione e provincia
         url = `http://localhost:3000/specialties/${
           selectedSpecialty ? selectedSpecialty : id
         }/provinces/${selectedProvince}`;
-      } else {
+      } else if (selectedProvince) {
+        url = `http://localhost:3000/specialties/provinces/${selectedProvince}`;
+      }
+
+      //se è selezionata una provincia ma non una specializzazione
+      else {
         // Se non è selezionata una provincia, cerca i medici solo per specializzazione
         url = `http://localhost:3000/specialties/${
           selectedSpecialty ? selectedSpecialty : id
@@ -173,6 +178,8 @@ export default function SearchPage() {
                         {doctor.name} {doctor.surname}
                       </h4>
                       <p>{doctor.city}</p>
+                      <p>{doctor.reviewCount}</p>
+                      <p>{doctor.averageRating}</p>
                       <Link
                         to={`/${doctor.id}`}
                         className="tags ms-0 text-custom-light text-light fw-semibold"
