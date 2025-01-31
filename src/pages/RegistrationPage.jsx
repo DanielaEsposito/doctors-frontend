@@ -160,7 +160,7 @@ const RegistrationForm = () => {
                   Specializzazione
                 </label>
                 <select
-                  className="form-control rounded-pill"
+                  className="form-select rounded-pill"
                   id="specialty"
                   name="specialty_id"
                   value={formData.specialty_id}
