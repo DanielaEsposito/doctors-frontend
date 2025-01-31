@@ -103,7 +103,7 @@ const RegistrationForm = () => {
         <div className="col-12 col-lg-6">
           <form
             onSubmit={handleSubmit}
-            className="bg-light p-4 rounded shadow-lg"
+            className="bg-light p-4 rounded shadow-lg mb-3"
           >
             <div className="row mb-3">
               {/* Nome */}
