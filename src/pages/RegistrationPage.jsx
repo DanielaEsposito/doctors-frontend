@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const RegistrationForm = () => {
+  const [provinces, setProvinces] = useState([]);
+
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
@@ -10,9 +12,8 @@ const RegistrationForm = () => {
     address: "",
     description: "",
     city: "",
-    province: "",
+    province_id: "",
   });
-
   const specialties = [
     { id: 1, name: "Anestesiologia" },
     { id: 2, name: "Cardiologia" },
@@ -26,6 +27,12 @@ const RegistrationForm = () => {
     { id: 10, name: "Malattie Infettive" },
     { id: 11, name: "Polmonologia" },
   ];
+
+  useEffect(() => {
+    fetch("http://localhost:3000/provinces")
+      .then((res) => res.json())
+      .then((data) => setProvinces(data.results));
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -68,7 +75,7 @@ const RegistrationForm = () => {
           address: "",
           description: "",
           city: "",
-          province: "",
+          province_id: "",
         });
       })
       .catch((error) => {
@@ -77,6 +84,15 @@ const RegistrationForm = () => {
           "Si è verificato un errore durante la registrazione. Riprova più tardi."
         );
       });
+  };
+
+  const handleProvinceChange = (e) => {
+    const selectedValue = e.target.value;
+
+    setFormData({
+      ...formData,
+      province_id: selectedValue,
+    });
   };
 
   return (
@@ -194,18 +210,23 @@ const RegistrationForm = () => {
 
               {/* Provincia */}
               <div className="col-12 col-md-6 mb-3">
-                <label htmlFor="province" className="form-label fw-bold">
+                <label htmlFor="province_id" className="form-label fw-bold">
                   Provincia
                 </label>
-                <input
-                  type="text"
-                  className="form-control rounded-pill"
-                  id="province"
-                  name="province"
-                  value={formData.province}
-                  onChange={handleChange}
+                <select
+                  className="form-select rounded-pill mb-3"
+                  name="province_id"
+                  value={formData.province_id}
+                  onChange={handleProvinceChange}
                   required
-                />
+                >
+                  <option value="">Seleziona una provincia</option>
+                  {provinces.map((province) => (
+                    <option key={province.id} value={province.id}>
+                      {province.province_name}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               {/* Email */}
