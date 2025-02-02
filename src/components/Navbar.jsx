@@ -6,7 +6,7 @@ export default function Navbar() {
       <div className="container-fluid">
         <NavLink className="navbar-brand me-0 pe-0" to="/">
           <img
-            src="logo.svg"
+            src="/logo.svg"
             alt="Logo"
             id="navbar-logo"
             className="d-inline-block me-3"

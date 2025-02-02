@@ -178,8 +178,13 @@ export default function SearchPage() {
                         {doctor.name} {doctor.surname}
                       </h4>
                       <p>{doctor.city}</p>
-                      <p>{doctor.reviewCount}</p>
-                      <p>{doctor.averageRating}</p>
+                      <p>
+                        {doctor.reviewCount > 0
+                          ? `${parseFloat(doctor.averageRating).toFixed(
+                              1
+                            )} ⭐ (${doctor.reviewCount})`
+                          : "Nessuna recensione disponibile"}
+                      </p>
                       <Link
                         to={`/${doctor.id}`}
                         className="tags ms-0 text-custom-light text-light fw-semibold"
