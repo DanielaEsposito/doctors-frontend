@@ -52,7 +52,7 @@ export default function SearchPage() {
       .then((data) => {
         console.log("fetched doctors: " + data.resultsDoctor);
         setDoctors(data.resultsDoctor);
-        // console.log(data);
+        console.log(data);
       });
   };
 
@@ -142,7 +142,7 @@ export default function SearchPage() {
               e provincia.
             </p>
           ) : (
-            <div className="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3 justify-content-center ">
+            <div className="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3 justify-content-center pb-5">
               {doctors.map((doctor) => (
                 <div
                   key={doctor.id}
@@ -160,11 +160,15 @@ export default function SearchPage() {
                       </h5>
                       <p className="mb-1">{doctor.city}</p>
                       <p className="text-muted small">
-                        {doctor.reviewCount > 0
-                          ? `${parseFloat(doctor.averageRating).toFixed(
-                              1
-                            )} ⭐ (${doctor.reviewCount} recensioni)`
-                          : "Nessuna recensione disponibile"}
+                        {doctor.review_count !== 0 ? (
+                          <>
+                            {doctor.average_rating}{" "}
+                            <i className="fa-solid fa-star text-warning"></i> (
+                            {doctor.review_count} recensioni)
+                          </>
+                        ) : (
+                          "Nessuna recensione disponibile"
+                        )}
                       </p>
                       <Link
                         to={`/${doctor.id}`}
