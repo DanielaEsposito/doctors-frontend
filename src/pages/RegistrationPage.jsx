@@ -83,71 +83,68 @@ const RegistrationForm = () => {
     if (!formData.specialty_id) {
       newErrors.specialty_id = "La specializzazione è obbligatoria.";
     }
+    //check if email already exists
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const checkEmailExists = (email, callback) => {
-    fetch(`http://localhost:3000/check-email?email=${email}`)
-      .then((response) => response.json())
-      .then((data) => {
-        callback(data.exists);
-      });
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // Validazione del form
     if (!validateForm()) {
       return;
     }
 
-    checkEmailExists(formData.email, (exists) => {
-      if (exists) {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          email: "Email già esistente nel sistema.",
-        }));
-        return;
-      }
-
-      fetch("http://localhost:3000/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-        .then((response) => {
-          console.log("HTTP Status Code:", response.status);
-          if (!response.ok) {
-            throw new Error(`Errore HTTP: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log("Risposta del backend:", data);
-          alert("Registrazione completata con successo!");
-
-          setFormData({
-            name: "",
-            surname: "",
-            specialty_id: "",
-            email: "",
-            phone_number: "",
-            address: "",
-            description: "",
-            city: "",
-            province_id: "",
+    // Invia i dati al backend
+    fetch("http://localhost:3000/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((data) => {
+            throw new Error(data.message || "Errore durante la registrazione");
           });
-        })
-        .catch((error) => {
-          console.error("Errore durante la registrazione:", error);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Risposta del backend:", data);
+        alert("Registrazione completata con successo!");
+
+        // Resetta il form
+        setFormData({
+          name: "",
+          surname: "",
+          specialty_id: "",
+          email: "",
+          phone_number: "",
+          address: "",
+          description: "",
+          city: "",
+          province_id: "",
+        });
+      })
+      .catch((error) => {
+        console.error("Errore durante la registrazione:", error);
+
+        // Mostra l'errore all'utente
+        if (error.message === "L'email è già presente nel sistema") {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            email: error.message,
+          }));
+        } else {
           alert(
             "Si è verificato un errore durante la registrazione. Riprova più tardi."
           );
-        });
-    });
+        }
+      });
   };
 
   const handleProvinceChange = (e) => {
