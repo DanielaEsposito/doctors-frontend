@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import DoctorShowPage from "./pages/DoctorShowPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import SearchPage from "./pages/SearchPage";
+import FaqPage from "./pages/FaqPage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/registration" Component={RegistrationPage} />
             <Route path="/search/" Component={SearchPage} />
             <Route path="/search/:id" Component={SearchPage} />
+            <Route path="/faq" Component={FaqPage} />
           </Route>
         </Routes>
       </BrowserRouter>

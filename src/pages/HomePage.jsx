@@ -9,37 +9,30 @@ export default function HomePage() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
     let specialtyId = e.target.specialty.value;
-    console.log(specialtyId);
-
     if (specialtyId) {
       navigate(`/search/${specialtyId}`);
     }
   };
 
-  // # fetch provinces
   useEffect(() => {
     fetch("http://localhost:3000/provinces")
       .then((res) => res.json())
       .then((data) => setProvinces(data.results));
   }, []);
 
-  // # fetch specialties
   useEffect(() => {
     fetch("http://localhost:3000/specialties")
       .then((res) => res.json())
       .then((data) => setSpecialties(data.results));
   }, []);
 
-  // # fetch reviews
   useEffect(() => {
     fetch("http://localhost:3000/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data.results.slice(0, 3)));
   }, []);
 
-  // # fetch featured doctors
   const [featuredDoctors, setFeaturedDoctors] = useState([]);
   useEffect(() => {
     fetch("http://localhost:3000/")
@@ -49,7 +42,6 @@ export default function HomePage() {
       });
   }, []);
 
-  // # fetch search doctors
   const [selectedProvince, setSelectedProvince] = useState("");
   const [provinceName, setProvinceName] = useState("");
   const [isProvinceSelected, setIsProvinceSelected] = useState(false);
@@ -57,13 +49,10 @@ export default function HomePage() {
 
   const selectDoctors = (provinceId) => {
     if (!provinceId) return;
-
     setIsProvinceSelected(true);
-
     const selectedProvince = provinces.find(
       (province) => province.id.toString() === provinceId.toString()
     );
-
     setProvinceName(selectedProvince ? selectedProvince.province_name : "");
 
     fetch(`http://localhost:3000/${provinceId}/provinces`)
@@ -73,7 +62,6 @@ export default function HomePage() {
 
   return (
     <div className="wrapper">
-      {/* hero section */}
       <div className="background-hero"></div>
       <section id="hero-section">
         <div className="container pb-5 pt-5 text-custom-light">
@@ -83,15 +71,14 @@ export default function HomePage() {
               Dalla ricerca alla cura: il dottore giusto ti aspetta
             </h2>
           </div>
-          {/* select container */}
           <div className="row">
-            {/* select specialties */}
             <div className="col-lg-4 col-sm-12">
               <form onSubmit={handleFormSubmit}>
                 <select
                   className="form-select"
                   name="specialty"
                   aria-label="specialties select"
+                  required
                   onChange={(e) => {
                     const provinceId = e.target.value;
                     setSelectedProvince(provinceId);
@@ -99,9 +86,7 @@ export default function HomePage() {
                     selectDoctors(provinceId);
                   }}
                 >
-                  <option defaultValue={""}>
-                    Seleziona una specializzazione
-                  </option>
+                  <option value="">Seleziona una specializzazione</option>
                   {specialties.map((specialty) => (
                     <option key={specialty.id} value={specialty.id}>
                       {specialty.specialty_name}
@@ -115,7 +100,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* featured doctors section */}
       <section id="featured-section">
         <div className="container pt-5 text-custom-dark">
           <h3 className="text-center fw-semibold">
@@ -147,7 +131,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* reviews section */}
       <section id="reviews-section">
         <div className="container mt-5 pb-5 pt-5">
           <h3 className="text-center fw-semibold text-custom-light">
@@ -171,7 +154,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* call to action section */}
       <section id="cta-section">
         <div className="container mt-5 mb-4">
           <div className="row justify-content-center">

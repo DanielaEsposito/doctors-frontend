@@ -18,7 +18,9 @@ export default function Footer() {
               <div className="col-9">
                 <ul className="ms-5 d-flex justify-content-end align-items-center h-100">
                   <li className="d-inline-block me-4 ms-5">Chi siamo</li>
-                  <li className="d-inline-block me-4">F.A.Q.</li>
+                  <Link to="/faq" className="d-inline-block me-4">
+                    F.A.Q.
+                  </Link>
                   <li className="d-inline-block me-4">
                     Condizioni di servizio
                   </li>
