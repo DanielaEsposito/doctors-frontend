@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const RegistrationForm = () => {
   const [provinces, setProvinces] = useState([]);
+  const [errors, setErrors] = useState({});
 
   const [formData, setFormData] = useState({
     name: "",
@@ -43,47 +44,110 @@ const RegistrationForm = () => {
     });
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\+?[0-9]*$/;
+
+    if (!formData.name || formData.name.length < 3) {
+      newErrors.name = "Il nome deve essere di almeno 3 lettere.";
+    }
+    if (!formData.surname || formData.surname.length < 3) {
+      newErrors.surname = "Il cognome deve essere di almeno 3 lettere.";
+    }
+    if (!formData.email || !emailRegex.test(formData.email)) {
+      newErrors.email = "Email non valida.";
+    }
+    if (!formData.phone_number || !phoneRegex.test(formData.phone_number)) {
+      newErrors.phone_number = "Numero di telefono non valido.";
+    }
+    if (
+      formData.phone_number &&
+      formData.phone_number.includes("+") &&
+      formData.phone_number.indexOf("+") !== 0
+    ) {
+      newErrors.phone_number = "Il simbolo '+' deve essere all'inizio.";
+    }
+    if (!formData.address || formData.address.length < 5) {
+      newErrors.address = "L'indirizzo deve essere di almeno 5 lettere.";
+    }
+    if (!formData.description) {
+      newErrors.description = "La descrizione è obbligatoria.";
+    }
+    if (!formData.city) {
+      newErrors.city = "La città è obbligatoria.";
+    }
+    if (!formData.province_id) {
+      newErrors.province_id = "La provincia è obbligatoria.";
+    }
+    if (!formData.specialty_id) {
+      newErrors.specialty_id = "La specializzazione è obbligatoria.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const checkEmailExists = (email, callback) => {
+    fetch(`http://localhost:3000/check-email?email=${email}`)
+      .then((response) => response.json())
+      .then((data) => {
+        callback(data.exists);
+      });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!validateForm()) {
+      return;
+    }
 
-    console.log("Dati inviati al backend:", formData);
+    checkEmailExists(formData.email, (exists) => {
+      if (exists) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          email: "Email già esistente nel sistema.",
+        }));
+        return;
+      }
 
-    fetch("http://localhost:3000/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => {
-        console.log("HTTP Status Code:", response.status);
-        if (!response.ok) {
-          throw new Error(`Errore HTTP: ${response.status}`);
-        }
-        return response.json();
+      fetch("http://localhost:3000/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       })
-      .then((data) => {
-        console.log("Risposta del backend:", data);
-        alert("Registrazione completata con successo!");
+        .then((response) => {
+          console.log("HTTP Status Code:", response.status);
+          if (!response.ok) {
+            throw new Error(`Errore HTTP: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("Risposta del backend:", data);
+          alert("Registrazione completata con successo!");
 
-        setFormData({
-          name: "",
-          surname: "",
-          specialty_id: "",
-          email: "",
-          phone_number: "",
-          address: "",
-          description: "",
-          city: "",
-          province_id: "",
+          setFormData({
+            name: "",
+            surname: "",
+            specialty_id: "",
+            email: "",
+            phone_number: "",
+            address: "",
+            description: "",
+            city: "",
+            province_id: "",
+          });
+        })
+        .catch((error) => {
+          console.error("Errore durante la registrazione:", error);
+          alert(
+            "Si è verificato un errore durante la registrazione. Riprova più tardi."
+          );
         });
-      })
-      .catch((error) => {
-        console.error("Errore durante la registrazione:", error);
-        alert(
-          "Si è verificato un errore durante la registrazione. Riprova più tardi."
-        );
-      });
+    });
   };
 
   const handleProvinceChange = (e) => {
@@ -118,8 +182,10 @@ const RegistrationForm = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  required
                 />
+                {errors.name && (
+                  <div className="text-danger">{errors.name}</div>
+                )}
               </div>
 
               {/* Cognome */}
@@ -134,8 +200,10 @@ const RegistrationForm = () => {
                   name="surname"
                   value={formData.surname}
                   onChange={handleChange}
-                  required
                 />
+                {errors.surname && (
+                  <div className="text-danger">{errors.surname}</div>
+                )}
               </div>
 
               {/* Descrizione */}
@@ -150,8 +218,10 @@ const RegistrationForm = () => {
                   value={formData.description}
                   onChange={handleChange}
                   rows="3"
-                  required
                 ></textarea>
+                {errors.description && (
+                  <div className="text-danger">{errors.description}</div>
+                )}
               </div>
 
               {/* Specializzazione */}
@@ -165,7 +235,6 @@ const RegistrationForm = () => {
                   name="specialty_id"
                   value={formData.specialty_id}
                   onChange={handleChange}
-                  required
                 >
                   <option value="">Seleziona una specializzazione</option>
                   {specialties.map((specialty) => (
@@ -174,6 +243,9 @@ const RegistrationForm = () => {
                     </option>
                   ))}
                 </select>
+                {errors.specialty_id && (
+                  <div className="text-danger">{errors.specialty_id}</div>
+                )}
               </div>
 
               {/* Indirizzo */}
@@ -188,8 +260,10 @@ const RegistrationForm = () => {
                   name="address"
                   value={formData.address}
                   onChange={handleChange}
-                  required
                 />
+                {errors.address && (
+                  <div className="text-danger">{errors.address}</div>
+                )}
               </div>
 
               {/* Città */}
@@ -204,8 +278,10 @@ const RegistrationForm = () => {
                   name="city"
                   value={formData.city}
                   onChange={handleChange}
-                  required
                 />
+                {errors.city && (
+                  <div className="text-danger">{errors.city}</div>
+                )}
               </div>
 
               {/* Provincia */}
@@ -218,7 +294,6 @@ const RegistrationForm = () => {
                   name="province_id"
                   value={formData.province_id}
                   onChange={handleProvinceChange}
-                  required
                 >
                   <option value="">Seleziona una provincia</option>
                   {provinces.map((province) => (
@@ -227,6 +302,9 @@ const RegistrationForm = () => {
                     </option>
                   ))}
                 </select>
+                {errors.province_id && (
+                  <div className="text-danger">{errors.province_id}</div>
+                )}
               </div>
 
               {/* Email */}
@@ -235,14 +313,16 @@ const RegistrationForm = () => {
                   Email
                 </label>
                 <input
-                  type="email"
+                  type="text"
                   className="form-control rounded-pill"
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
                 />
+                {errors.email && (
+                  <div className="text-danger">{errors.email}</div>
+                )}
               </div>
 
               {/* Numero di telefono */}
@@ -257,8 +337,10 @@ const RegistrationForm = () => {
                   name="phone_number"
                   value={formData.phone_number}
                   onChange={handleChange}
-                  required
                 />
+                {errors.phone_number && (
+                  <div className="text-danger">{errors.phone_number}</div>
+                )}
               </div>
             </div>
 

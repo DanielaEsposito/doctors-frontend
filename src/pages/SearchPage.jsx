@@ -178,14 +178,12 @@ export default function SearchPage() {
                         {doctor.name} {doctor.surname}
                       </h4>
                       <p>{doctor.city}</p>
-                      <span className="fw-semibold">
-                        Numero di recensioni ricevute:
-                      </span>
-                      <span> {doctor.reviewCount}</span>
-                      <p className="fw-semibold">Media recensioni :</p>
                       <p>
-                        <i className="fa-solid fa-star ms-2 text-warning"></i>
-                        {doctor.averageRating}{" "}
+                        {doctor.reviewCount > 0
+                          ? `${parseFloat(doctor.averageRating).toFixed(
+                              1
+                            )} ⭐ (${doctor.reviewCount})`
+                          : "Nessuna recensione disponibile"}
                       </p>
                       <Link
                         to={`/${doctor.id}`}
