@@ -27,11 +27,7 @@ export default function SearchPage() {
       fetch(`http://localhost:3000/${id}/specialties`)
         .then((res) => res.json())
         .then((data) => {
-          if (data.status === "ok" && data.specialty) {
-            setDoctors(data.specialty);
-          } else {
-            setDoctors([]);
-          }
+          setDoctors(data.status === "ok" ? data.specialty || [] : []);
         })
         .catch(() => setDoctors([]));
 
@@ -42,18 +38,14 @@ export default function SearchPage() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (selectedSpecialty || id || selectedProvince) {
-      let url;
-      if (selectedSpecialty && selectedProvince) {
-        url = `http://localhost:3000/specialties/${
-          selectedSpecialty ? selectedSpecialty : id
-        }/provinces/${selectedProvince}`;
-      } else if (selectedProvince) {
-        url = `http://localhost:3000/specialties/provinces/${selectedProvince}`;
-      } else {
-        url = `http://localhost:3000/specialties/${
-          selectedSpecialty ? selectedSpecialty : id
-        }`;
-      }
+      let url =
+        selectedSpecialty && selectedProvince
+          ? `http://localhost:3000/specialties/${
+              selectedSpecialty || id
+            }/provinces/${selectedProvince}`
+          : selectedProvince
+          ? `http://localhost:3000/specialties/provinces/${selectedProvince}`
+          : `http://localhost:3000/specialties/${selectedSpecialty || id}`;
 
       fetch(url)
         .then((res) => res.json())
@@ -74,10 +66,10 @@ export default function SearchPage() {
             Cerca i tuoi medici preferiti
           </h1>
           <div className="container-filters">
-            <form className="row mt-5" onSubmit={handleFormSubmit}>
-              <div className="col-6">
+            <form className="row mt-4 g-3" onSubmit={handleFormSubmit}>
+              <div className="col-md-6 col-12">
                 <select
-                  className="form-select mb-3"
+                  className="form-select"
                   value={selectedSpecialty || ""}
                   onChange={(e) => setSelectedSpecialty(e.target.value)}
                 >
@@ -89,9 +81,9 @@ export default function SearchPage() {
                   ))}
                 </select>
               </div>
-              <div className="col-6">
+              <div className="col-md-6 col-12">
                 <select
-                  className="form-select mb-3"
+                  className="form-select"
                   value={selectedProvince || ""}
                   onChange={(e) => setSelectedProvince(e.target.value)}
                 >
@@ -111,20 +103,20 @@ export default function SearchPage() {
         </div>
       </section>
 
-      <section id="specialties-doctor" className="mt-5">
+      <section id="specialties-doctor" className="mt-4">
         <div className="container">
-          <h4 className="text-center my-5 fw-semibold text-custom-dark">
+          <h4 className="text-center my-4 fw-semibold text-custom-dark">
             Scopri di più sui nostri dottori
           </h4>
 
           {formSubmitted && doctors.length === 0 ? (
             <p className="text-center">Nessun medico trovato.</p>
           ) : (
-            <div className="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 g-2 justify-content-center">
+            <div className="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3 justify-content-center">
               {doctors.map((doctor) => (
                 <div
                   key={doctor.id}
-                  className="col d-flex justify-content-center doctors-row mb-3"
+                  className="col d-flex justify-content-center"
                 >
                   <div className="card card-sd">
                     <img
@@ -132,21 +124,21 @@ export default function SearchPage() {
                       className="card-img-top"
                       alt={`Dott. ${doctor.name}`}
                     />
-                    <div className="card-body">
-                      <h4 className="card-text">
+                    <div className="card-body text-center">
+                      <h5 className="card-title">
                         {doctor.name} {doctor.surname}
-                      </h4>
-                      <p>{doctor.city}</p>
-                      <p>
+                      </h5>
+                      <p className="mb-1">{doctor.city}</p>
+                      <p className="text-muted small">
                         {doctor.reviewCount > 0
                           ? `${parseFloat(doctor.averageRating).toFixed(
                               1
-                            )} ⭐ (${doctor.reviewCount})`
+                            )} ⭐ (${doctor.reviewCount} recensioni)`
                           : "Nessuna recensione disponibile"}
                       </p>
                       <Link
                         to={`/${doctor.id}`}
-                        className="tags ms-0 text-custom-light text-light fw-semibold"
+                        className="btn btn-sm btn-outline-primary"
                       >
                         Dettagli
                       </Link>
