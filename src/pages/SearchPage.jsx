@@ -70,9 +70,9 @@ export default function SearchPage() {
     <div className="wrapper">
       <section id="filter">
         <div className="container py-5">
-          <h2 className="text-center text-custom-dark fw-bold mb-4">
+          <h1 className="text-center text-custom-dark fw-bold mb-4">
             Cerca i tuoi medici preferiti
-          </h2>
+          </h1>
           <div className="container-filters">
             <form className="row mt-5" onSubmit={handleFormSubmit}>
               <div className="col-6">
