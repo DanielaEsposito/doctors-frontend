@@ -2,7 +2,7 @@ export default function FaqPage() {
   return (
     <div className="container">
       <div className="faq-page">
-        <h1 className="text-center fw-bold mb-5">Frequently Asked Questions</h1>
+        <h1 className="text-center fw-bold mb-5">Domande Frequenti</h1>
         <div className="row">
           <div className="col-12 col-md-4">
             <div className="img-container m-3">
@@ -22,7 +22,7 @@ export default function FaqPage() {
                       aria-expanded="true"
                       aria-controls="collapseOne"
                     >
-                      How can I book an appointment?
+                      Come posso prenotare un appuntamento?
                     </button>
                   </h2>
                 </div>
@@ -32,9 +32,8 @@ export default function FaqPage() {
                   aria-labelledby="headingOne"
                 >
                   <div className="card-body">
-                    You can book an appointment by visiting our website and
-                    using the online booking system or by calling our office
-                    directly.
+                    Puoi prenotare un appuntamento visitando il nostro sito web
+                    e utilizzando il sistema di prenotazione online.
                   </div>
                 </div>
               </div>
@@ -49,7 +48,7 @@ export default function FaqPage() {
                       aria-expanded="false"
                       aria-controls="collapseTwo"
                     >
-                      What are your office hours?
+                      Quali sono i vostri orari di ufficio?
                     </button>
                   </h2>
                 </div>
@@ -59,8 +58,9 @@ export default function FaqPage() {
                   aria-labelledby="headingTwo"
                 >
                   <div className="card-body">
-                    Our office hours are Monday to Friday, 9 AM to 5 PM. We are
-                    closed on weekends and public holidays.
+                    I nostri orari d'ufficio sono dal lunedì al venerdì, dalle
+                    9:00 alle 17:00. Noi siamo chiuso nei fine settimana e nei
+                    giorni festivi.
                   </div>
                 </div>
               </div>
@@ -75,7 +75,8 @@ export default function FaqPage() {
                       aria-expanded="false"
                       aria-controls="collapseThree"
                     >
-                      Do you accept insurance?
+                      In caso di emergenze si può otterenere un appuntamento con
+                      poco preavviso?
                     </button>
                   </h2>
                 </div>
@@ -85,9 +86,10 @@ export default function FaqPage() {
                   aria-labelledby="headingThree"
                 >
                   <div className="card-body">
-                    Yes, we accept most major insurance plans. Please contact
-                    our office for more details about your specific insurance
-                    provider.
+                    In caso di emergenza, faremo del nostro meglio per offrirti
+                    un appuntamento il prima possibile. Ti consigliamo di
+                    contattare telefonicamente il tuo medico per discutere la
+                    tua situazione e trovare una soluzione rapida.
                   </div>
                 </div>
               </div>
@@ -102,7 +104,7 @@ export default function FaqPage() {
                       aria-expanded="false"
                       aria-controls="collapseFour"
                     >
-                      What should I bring to my first appointment?
+                      Cosa devo portare al mio primo appuntamento?
                     </button>
                   </h2>
                 </div>
@@ -112,8 +114,8 @@ export default function FaqPage() {
                   aria-labelledby="headingFour"
                 >
                   <div className="card-body">
-                    Please bring your insurance card, a valid ID, and any
-                    relevant medical records.
+                    Si prega di portare con sé la tessera sanitaria, un
+                    documento d'identità valido.
                   </div>
                 </div>
               </div>
@@ -128,7 +130,7 @@ export default function FaqPage() {
                       aria-expanded="false"
                       aria-controls="collapseFive"
                     >
-                      How can I get my test results?
+                      Come posso ottenere i risultati della mia visita?{" "}
                     </button>
                   </h2>
                 </div>
@@ -138,9 +140,9 @@ export default function FaqPage() {
                   aria-labelledby="headingFive"
                 >
                   <div className="card-body">
-                    Test results are typically available within a few days. You
-                    can access them through our patient portal or by contacting
-                    our office.
+                    I risultati dei test e delle visite sono generalmente
+                    disponibili entro pochi giorni.Il vostro medico si
+                    preoccuperà di mandarvi tramite e-mail tutto il materiale .
                   </div>
                 </div>
               </div>
