@@ -155,7 +155,7 @@ textarea.form-control {
   }
 }
 #featured-section {
-  height: 400px;
+  min-height: 400px;
 }
 .doctors-row-HOME {
   position: relative;
