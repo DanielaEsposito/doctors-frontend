@@ -1,6 +1,6 @@
 export default function FaqPage() {
   return (
-    <div className="container">
+    <div className="container py-5">
       <div className="faq-page">
         <h1 className="text-center fw-bold mb-5">Domande Frequenti</h1>
         <div className="row">

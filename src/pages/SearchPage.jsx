@@ -5,30 +5,23 @@ export default function SearchPage() {
   const [specialties, setSpecialties] = useState([]);
   const [provinces, setProvinces] = useState([]);
   const [doctors, setDoctors] = useState([]);
-
-  // Variabili di stato per i filtri che finiscono nell'url per il backend. sono i valori delle select
   const [selectedSpecialty, setSelectedSpecialty] = useState(null);
   const [selectedProvince, setSelectedProvince] = useState(null);
-
   const { id } = useParams();
-
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  // Carica le specializzazioni
   useEffect(() => {
     fetch("http://localhost:3000/specialties")
       .then((res) => res.json())
       .then((data) => setSpecialties(data.results));
   }, []);
 
-  // Carica le province
   useEffect(() => {
     fetch("http://localhost:3000/provinces")
       .then((res) => res.json())
       .then((data) => setProvinces(data.results));
   }, []);
 
-  // Effettua la fetch se arriva un `id` dalla home
   useEffect(() => {
     if (id) {
       fetch(`http://localhost:3000/${id}/specialties`)
@@ -40,82 +33,53 @@ export default function SearchPage() {
             setDoctors([]);
           }
         })
-        .catch((error) => {
-          console.error("Error fetching specialty:", error);
-          setDoctors([]);
-        });
+        .catch(() => setDoctors([]));
 
-      setFormSubmitted(true); // Indica che la ricerca è stata effettuata
+      setFormSubmitted(true);
     }
   }, [id]);
 
-  // Gestisce il submit del form
-  // Gestisce il submit del form
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
-    // Se è selezionata una specializzazione o id è presente
     if (selectedSpecialty || id || selectedProvince) {
       let url;
       if (selectedSpecialty && selectedProvince) {
-        // Se è selezionata anche una provincia, cerca i medici per specializzazione e provincia
         url = `http://localhost:3000/specialties/${
           selectedSpecialty ? selectedSpecialty : id
         }/provinces/${selectedProvince}`;
       } else if (selectedProvince) {
         url = `http://localhost:3000/specialties/provinces/${selectedProvince}`;
-      }
-
-      //se è selezionata una provincia ma non una specializzazione
-      else {
-        // Se non è selezionata una provincia, cerca i medici solo per specializzazione
+      } else {
         url = `http://localhost:3000/specialties/${
           selectedSpecialty ? selectedSpecialty : id
         }`;
       }
 
-      // Effettua la fetch
       fetch(url)
         .then((res) => res.json())
-        .then((data) => {
-          if (data.status === "ok" && data.doctors && data.doctors.length > 0) {
-            setDoctors(data.doctors); // Salva i medici nello stato
-          } else {
-            setDoctors([]); // Se non ci sono medici, imposta l'array vuoto
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching doctors:", error);
-          setDoctors([]); // Imposta l'array vuoto in caso di errore
-        });
+        .then((data) =>
+          setDoctors(data.status === "ok" ? data.doctors || [] : [])
+        )
+        .catch(() => setDoctors([]));
 
-      setFormSubmitted(true); // Indica che la ricerca è stata effettuata
+      setFormSubmitted(true);
     }
-  };
-
-  // Gestisce il cambio di specializzazione
-  const handleSpecialtyChange = (e) => {
-    setSelectedSpecialty(e.target.value);
-  };
-
-  // Gestisce il cambio di provincia
-  const handleProvinceChange = (e) => {
-    setSelectedProvince(e.target.value);
   };
 
   return (
     <div className="wrapper">
       <section id="filter">
-        <div className="container">
-          <h2 className="text-center mt-4">Titolo</h2>
+        <div className="container py-5">
+          <h2 className="text-center text-custom-dark fw-bold mb-4">
+            Cerca i tuoi medici preferiti
+          </h2>
           <div className="container-filters">
-            <form className="row  mt-5" onSubmit={handleFormSubmit}>
-              <div className="col-5">
-                {/* Select per la specializzazione */}
+            <form className="row mt-5" onSubmit={handleFormSubmit}>
+              <div className="col-6">
                 <select
                   className="form-select mb-3"
                   value={selectedSpecialty || ""}
-                  onChange={handleSpecialtyChange}
+                  onChange={(e) => setSelectedSpecialty(e.target.value)}
                 >
                   <option value="">Seleziona una specializzazione</option>
                   {specialties.map((specialty) => (
@@ -125,12 +89,11 @@ export default function SearchPage() {
                   ))}
                 </select>
               </div>
-              <div className="col-5">
-                {/* Select per la provincia */}
+              <div className="col-6">
                 <select
                   className="form-select mb-3"
                   value={selectedProvince || ""}
-                  onChange={handleProvinceChange}
+                  onChange={(e) => setSelectedProvince(e.target.value)}
                 >
                   <option value="">Seleziona una provincia</option>
                   {provinces.map((province) => (
@@ -140,26 +103,22 @@ export default function SearchPage() {
                   ))}
                 </select>
               </div>
-              <div className="col-2">
-                <button className="btn btn-custom ">Cerca</button>
+              <div className="col-12 d-flex justify-content-center">
+                <button className="btn btn-custom mt-2">Cerca</button>
               </div>
             </form>
           </div>
         </div>
       </section>
 
-      <section id="specialties-doctor mt-5">
+      <section id="specialties-doctor" className="mt-5">
         <div className="container">
           <h4 className="text-center my-5 fw-semibold text-custom-dark">
             Scopri di più sui nostri dottori
           </h4>
 
-          {/* Gestione caso in cui non ci sono medici */}
           {formSubmitted && doctors.length === 0 ? (
-            <p className="text-center">
-              Nessun medico trovato per questa combinazione di specializzazione
-              e provincia.
-            </p>
+            <p className="text-center">Nessun medico trovato.</p>
           ) : (
             <div className="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 g-2 justify-content-center">
               {doctors.map((doctor) => (
@@ -171,7 +130,7 @@ export default function SearchPage() {
                     <img
                       src={doctor.image}
                       className="card-img-top"
-                      alt={`nome del dottor ${doctor.name}`}
+                      alt={`Dott. ${doctor.name}`}
                     />
                     <div className="card-body">
                       <h4 className="card-text">

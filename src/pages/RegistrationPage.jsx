@@ -212,12 +212,12 @@ const RegistrationForm = () => {
                   Descrizione
                 </label>
                 <textarea
-                  className="form-control rounded-3"
+                  className="form-control rounded-4"
                   id="description"
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
-                  rows="3"
+                  rows="5"
                 ></textarea>
                 {errors.description && (
                   <div className="text-danger">{errors.description}</div>
