@@ -9,17 +9,18 @@ export default function SearchPage() {
   const [selectedProvince, setSelectedProvince] = useState(null);
   const { id } = useParams();
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:3000/specialties")
       .then((res) => res.json())
-      .then((data) => setSpecialties(data.results));
+      .then((data) => setSpecialties(data.results), setLoader(false));
   }, []);
 
   useEffect(() => {
     fetch("http://localhost:3000/provinces")
       .then((res) => res.json())
-      .then((data) => setProvinces(data.results));
+      .then((data) => setProvinces(data.results), setLoader(false));
   }, []);
 
   useEffect(() => {
@@ -31,7 +32,7 @@ export default function SearchPage() {
         })
         .catch(() => setDoctors([]));
 
-      setFormSubmitted(true);
+      setFormSubmitted(true), setLoader(false);
     }
   }, [id]);
 
@@ -60,96 +61,109 @@ export default function SearchPage() {
 
   return (
     <div className="wrapper">
-      <section id="filter">
-        <div className="container py-5">
-          <h1 className="text-center text-custom-dark fw-bold mb-4">
-            Cerca i tuoi medici preferiti
-          </h1>
-          <div className="container-filters">
-            <form className="row mt-4 g-3" onSubmit={handleFormSubmit}>
-              <div className="col-md-6 col-12">
-                <select
-                  className="form-select"
-                  value={selectedSpecialty || ""}
-                  onChange={(e) => setSelectedSpecialty(e.target.value)}
-                >
-                  <option value="">Seleziona una specializzazione</option>
-                  {specialties.map((specialty) => (
-                    <option key={specialty.id} value={specialty.id}>
-                      {specialty.specialty_name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="col-md-6 col-12">
-                <select
-                  className="form-select"
-                  value={selectedProvince || ""}
-                  onChange={(e) => setSelectedProvince(e.target.value)}
-                >
-                  <option value="">Seleziona una provincia</option>
-                  {provinces.map((province) => (
-                    <option key={province.id} value={province.id}>
-                      {province.province_name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="col-12 d-flex justify-content-center">
-                <button className="btn btn-custom mt-2">Cerca</button>
-              </div>
-            </form>
+      {loader ? (
+        <div className="loader">
+          <div className="container text-center">
+            <div className="spinner"></div>
+            <p>Caricamento in corso...</p>
           </div>
         </div>
-      </section>
-
-      <section id="specialties-doctor" className="mt-4">
-        <div className="container">
-          <h4 className="text-center my-4 fw-semibold text-custom-dark">
-            Scopri di più sui nostri dottori
-          </h4>
-
-          {formSubmitted && doctors.length === 0 ? (
-            <p className="text-center doctors-row">Nessun medico trovato.</p>
-          ) : (
-            <div className="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3 justify-content-center ">
-              {doctors.map((doctor) => (
-                <div
-                  key={doctor.id}
-                  className="col d-flex justify-content-center doctors-row"
-                >
-                  <div className="card card-sd">
-                    <img
-                      src={doctor.image}
-                      className="card-img-top"
-                      alt={`Dott. ${doctor.name}`}
-                    />
-                    <div className="card-body text-center">
-                      <h5 className="card-title">
-                        {doctor.name} {doctor.surname}
-                      </h5>
-                      <p className="mb-1">{doctor.city}</p>
-                      <p className="text-muted small">
-                        {doctor.reviewCount > 0
-                          ? `${parseFloat(doctor.averageRating).toFixed(
-                              1
-                            )} ⭐ (${doctor.reviewCount} recensioni)`
-                          : "Nessuna recensione disponibile"}
-                      </p>
-                      <Link
-                        to={`/${doctor.id}`}
-                        className="btn btn-sm btn-custom text-light "
-                      >
-                        Dettagli
-                      </Link>
-                    </div>
+      ) : (
+        <div className="wrapper">
+          <section id="filter">
+            <div className="container py-5">
+              <h1 className="text-center text-custom-dark fw-bold mb-4">
+                Cerca i tuoi medici preferiti
+              </h1>
+              <div className="container-filters">
+                <form className="row mt-4 g-3" onSubmit={handleFormSubmit}>
+                  <div className="col-md-6 col-12">
+                    <select
+                      className="form-select"
+                      value={selectedSpecialty || ""}
+                      onChange={(e) => setSelectedSpecialty(e.target.value)}
+                    >
+                      <option value="">Seleziona una specializzazione</option>
+                      {specialties.map((specialty) => (
+                        <option key={specialty.id} value={specialty.id}>
+                          {specialty.specialty_name}
+                        </option>
+                      ))}
+                    </select>
                   </div>
-                </div>
-              ))}
+                  <div className="col-md-6 col-12">
+                    <select
+                      className="form-select"
+                      value={selectedProvince || ""}
+                      onChange={(e) => setSelectedProvince(e.target.value)}
+                    >
+                      <option value="">Seleziona una provincia</option>
+                      {provinces.map((province) => (
+                        <option key={province.id} value={province.id}>
+                          {province.province_name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="col-12 d-flex justify-content-center">
+                    <button className="btn btn-custom mt-2">Cerca</button>
+                  </div>
+                </form>
+              </div>
             </div>
-          )}
+          </section>
+
+          <section id="specialties-doctor" className="mt-4">
+            <div className="container">
+              <h4 className="text-center my-4 fw-semibold text-custom-dark">
+                Scopri di più sui nostri dottori
+              </h4>
+
+              {formSubmitted && doctors.length === 0 ? (
+                <p className="text-center doctors-row">
+                  Nessun medico trovato.
+                </p>
+              ) : (
+                <div className="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3 justify-content-center ">
+                  {doctors.map((doctor) => (
+                    <div
+                      key={doctor.id}
+                      className="col d-flex justify-content-center doctors-row"
+                    >
+                      <div className="card card-sd">
+                        <img
+                          src={doctor.image}
+                          className="card-img-top"
+                          alt={`Dott. ${doctor.name}`}
+                        />
+                        <div className="card-body text-center">
+                          <h5 className="card-title">
+                            {doctor.name} {doctor.surname}
+                          </h5>
+                          <p className="mb-1">{doctor.city}</p>
+                          <p className="text-muted small">
+                            {doctor.reviewCount > 0
+                              ? `${parseFloat(doctor.averageRating).toFixed(
+                                  1
+                                )} ⭐ (${doctor.reviewCount} recensioni)`
+                              : "Nessuna recensione disponibile"}
+                          </p>
+                          <Link
+                            to={`/${doctor.id}`}
+                            className="btn btn-sm btn-custom text-light "
+                          >
+                            Dettagli
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
         </div>
-      </section>
+      )}
     </div>
   );
 }
