@@ -38,6 +38,11 @@ export default function Navbar() {
                 Specializzazioni
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link text-light" to="/faq">
+                F.A.Q.
+              </NavLink>
+            </li>
           </ul>
           <NavLink
             to="/registration"
