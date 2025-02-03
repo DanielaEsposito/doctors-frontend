@@ -4,42 +4,23 @@ import { useState, useEffect } from "react";
 export default function HomePage() {
   const [specialties, setSpecialties] = useState([]);
   const [reviews, setReviews] = useState([]);
-  const [provinces, setProvinces] = useState([]);
   const navigate = useNavigate();
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-
-    let specialtyId = e.target.specialty.value;
-    console.log(specialtyId);
-
-    if (specialtyId) {
-      navigate(`/search/${specialtyId}`);
-    }
-  };
-
-  // # fetch provinces
-  useEffect(() => {
-    fetch("http://localhost:3000/provinces")
-      .then((res) => res.json())
-      .then((data) => setProvinces(data.results));
-  }, []);
-
-  // # fetch specialties
+  // # fetch all specialties
   useEffect(() => {
     fetch("http://localhost:3000/specialties")
       .then((res) => res.json())
       .then((data) => setSpecialties(data.results));
   }, []);
 
-  // # fetch reviews
+  // # fetch first 3 reviews
   useEffect(() => {
     fetch("http://localhost:3000/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data.results.slice(0, 3)));
   }, []);
 
-  // # fetch featured doctors
+  // # fetch first 5 doctors
   const [featuredDoctors, setFeaturedDoctors] = useState([]);
   useEffect(() => {
     fetch("http://localhost:3000/")
@@ -49,27 +30,68 @@ export default function HomePage() {
       });
   }, []);
 
+  // ! here
   // # fetch search doctors
-  const [selectedProvince, setSelectedProvince] = useState("");
-  const [provinceName, setProvinceName] = useState("");
-  const [isProvinceSelected, setIsProvinceSelected] = useState(false);
+
+  const [selectedSpecialtyId, setSelectedSpecialtyId] = useState("");
+  const [isSpecialtySelected, setIsSpecialtySelected] = useState(false);
   const [selectedDoctors, setSelectedDoctors] = useState([]);
 
-  const selectDoctors = (provinceId) => {
-    if (!provinceId) return;
-
-    setIsProvinceSelected(true);
-
-    const selectedProvince = provinces.find(
-      (province) => province.id.toString() === provinceId.toString()
+  const handleSpecialtyChange = (e) => {
+    setSelectedSpecialtyId(e.target.value ? parseInt(e.target.value) : "");
+    console.log(
+      "handle specialty id: " + typeof selectedSpecialtyId + selectedSpecialtyId
     );
-
-    setProvinceName(selectedProvince ? selectedProvince.province_name : "");
-
-    fetch(`http://localhost:3000/${provinceId}/provinces`)
-      .then((res) => res.json())
-      .then((data) => setSelectedDoctors(data.doctors));
   };
+
+  // ! debug useEffect
+  useEffect(() => {
+    console.log(
+      "selected specialty id: " +
+        typeof selectedSpecialtyId +
+        " " +
+        selectedSpecialtyId
+    );
+  }, [selectedSpecialtyId]);
+
+  const selectDoctorsRedirect = (e, selectedSpecialtyId) => {
+    e.preventDefault();
+
+    navigate("/search", { state: { specialtyId: selectedSpecialtyId } });
+  };
+
+  // ! -------------------------------
+  // const [selectedProvince, setSelectedProvince] = useState("");
+  // const [provinceName, setProvinceName] = useState("");
+  // const [isProvinceSelected, setIsProvinceSelected] = useState(false);
+  // const [selectedDoctors, setSelectedDoctors] = useState([]);
+
+  // const selectDoctors = (provinceId) => {
+  //   if (!provinceId) return;
+
+  //   setIsProvinceSelected(true);
+
+  //   const selectedProvince = provinces.find(
+  //     (province) => province.id.toString() === provinceId.toString()
+  //   );
+
+  //   setProvinceName(selectedProvince ? selectedProvince.province_name : "");
+
+  //   fetch(`http://localhost:3000/${provinceId}/provinces`)
+  //     .then((res) => res.json())
+  //     .then((data) => setSelectedDoctors(data.doctors));
+  // };
+
+  // const handleFormSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   let specialtyId = e.target.value;
+  //   console.log(specialtyId);
+
+  //   if (specialtyId) {
+  //     navigate(`/search?specialtyId=${specialtyId}`);
+  //   }
+  // };
 
   return (
     <div className="wrapper">
@@ -87,17 +109,13 @@ export default function HomePage() {
           <div className="row">
             {/* select specialties */}
             <div className="col-lg-4 col-sm-12">
-              <form onSubmit={handleFormSubmit}>
+              <form>
                 <select
                   className="form-select"
                   name="specialty"
                   aria-label="specialties select"
-                  onChange={(e) => {
-                    const provinceId = e.target.value;
-                    setSelectedProvince(provinceId);
-                    setIsProvinceSelected(true);
-                    selectDoctors(provinceId);
-                  }}
+                  value={selectedSpecialtyId}
+                  onChange={handleSpecialtyChange}
                 >
                   <option defaultValue={""}>
                     Seleziona una specializzazione
@@ -108,7 +126,9 @@ export default function HomePage() {
                     </option>
                   ))}
                 </select>
-                <button className="btn btn-custom mt-2">Cerca</button>
+                <Link to={`/search?specialtyId=${selectedSpecialtyId}`}>
+                  <button className="btn btn-custom mt-2">Cerca</button>
+                </Link>
               </form>
             </div>
           </div>

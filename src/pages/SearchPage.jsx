@@ -1,88 +1,65 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 
 export default function SearchPage() {
-  const [specialties, setSpecialties] = useState([]);
   const [provinces, setProvinces] = useState([]);
+  const [specialties, setSpecialties] = useState([]);
+  const [selectedProvince, setSelectedProvince] = useState("");
+  const [selectedSpecialty, setSelectedSpecialty] = useState("");
   const [doctors, setDoctors] = useState([]);
 
-  // Variabili di stato per i filtri che finiscono nell'url per il backend. sono i valori delle select
-  const [selectedSpecialty, setSelectedSpecialty] = useState(null);
-  const [selectedProvince, setSelectedProvince] = useState(null);
+  // # fetch provinces and specialties
 
-  const { id } = useParams();
-
-  const [formSubmitted, setFormSubmitted] = useState(false);
-
-  // Carica le specializzazioni
   useEffect(() => {
+    fetch("http://localhost:3000/provinces")
+      .then((res) => res.json())
+      .then((data) => setProvinces(data.results));
+
     fetch("http://localhost:3000/specialties")
       .then((res) => res.json())
       .then((data) => setSpecialties(data.results));
   }, []);
 
-  // Carica le province
-  useEffect(() => {
-    fetch("http://localhost:3000/provinces")
-      .then((res) => res.json())
-      .then((data) => setProvinces(data.results));
-  }, []);
+  // # search doctors
 
-  // Effettua la fetch se arriva un `id` dalla home
-  useEffect(() => {
-    if (id) {
-      fetch(`http://localhost:3000/${id}/specialties`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.status === "ok" && data.specialty) {
-            setDoctors(data.specialty);
-          } else {
-            setDoctors([]);
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching specialty:", error);
-          setDoctors([]);
-        });
-
-      setFormSubmitted(true); // Indica che la ricerca è stata effettuata
-    }
-  }, [id]);
-
-  // Gestisce il submit del form
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    if ((selectedSpecialty || id) && selectedProvince) {
-      fetch(
-        `http://localhost:3000/specialties/${
-          selectedSpecialty ? selectedSpecialty : id
-        }/provinces/${selectedProvince}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.status === "ok" && data.doctors && data.doctors.length > 0) {
-            setDoctors(data.doctors);
-          } else {
-            setDoctors([]);
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching doctors:", error);
-          setDoctors([]);
-        });
-
-      setFormSubmitted(true);
-    }
+  const handleProvinceChange = (e) => {
+    setSelectedProvince(e.target.value);
   };
 
-  // Gestisce il cambio di specializzazione
   const handleSpecialtyChange = (e) => {
     setSelectedSpecialty(e.target.value);
   };
 
-  // Gestisce il cambio di provincia
-  const handleProvinceChange = (e) => {
-    setSelectedProvince(e.target.value);
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    let url = `http://localhost:3000/search`;
+
+    let queryParams = [];
+
+    if (selectedProvince) {
+      queryParams.push(`provinceId=${selectedProvince}`);
+      // console.log("selectedProvince:" + selectedProvince);
+    }
+    if (selectedSpecialty) {
+      queryParams.push(`specialtyId=${selectedSpecialty}`);
+      // console.log("selectedSpecialty:" + selectedSpecialty);
+    }
+    if (queryParams.length > 0) {
+      url += "?" + queryParams.join("&");
+      // console.log("queryParamas:" + queryParams);
+    }
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setDoctors(data.resultsDoctor);
+        // console.log(data);
+      });
+
+    // console.log(queryParams);
+    // console.log(url);
+    // console.log(doctors);
   };
 
   return (
@@ -96,7 +73,7 @@ export default function SearchPage() {
                 {/* Select per la specializzazione */}
                 <select
                   className="form-select mb-3"
-                  value={selectedSpecialty || ""}
+                  value={selectedSpecialty}
                   onChange={handleSpecialtyChange}
                 >
                   <option value="">Seleziona una specializzazione</option>
@@ -111,7 +88,7 @@ export default function SearchPage() {
                 {/* Select per la provincia */}
                 <select
                   className="form-select mb-3"
-                  value={selectedProvince || ""}
+                  value={selectedProvince}
                   onChange={handleProvinceChange}
                 >
                   <option value="">Seleziona una provincia</option>
@@ -123,21 +100,21 @@ export default function SearchPage() {
                 </select>
               </div>
               <div className="col-2">
-                <button className="btn btn-custom ">Cerca</button>
+                <button className="btn btn-custom">Cerca</button>
               </div>
             </form>
           </div>
         </div>
       </section>
 
-      <section id="specialties-doctor mt-5">
+      <section id="specialties-doctor">
         <div className="container">
           <h4 className="text-center my-5 fw-semibold text-custom-dark">
             Scopri di più sui nostri dottori
           </h4>
 
           {/* Gestione caso in cui non ci sono medici */}
-          {formSubmitted && doctors.length === 0 ? (
+          {doctors.length === 0 ? (
             <p className="text-center">
               Nessun medico trovato per questa combinazione di specializzazione
               e provincia.
