@@ -78,52 +78,60 @@ export default function AboutPage() {
             <div className="col-md-6 col-lg-3">
               <div className="card h-100 p-2 border-0 shadow text-center">
                 <img
-                  src="https://placehold.co/100x100"
+                  src="http://localhost:3000/img/marco.jpeg"
                   className="card-img-top round-image-hp-about mx-auto mt-3 pedro"
                   alt="Dottore 1"
                 />
                 <div className="card-body my-2">
                   <h5 className="card-title">Dott. Marco Donati</h5>
-                  <p className="card-text text-muted">M - L'uomo del secolo</p>
+                  <p className="card-text text-muted">
+                    Salute e fiducia al primo posto.
+                  </p>
                 </div>
               </div>
             </div>
             <div className="col-md-6 col-lg-3">
               <div className="card h-100 p-2 border-0 shadow text-center">
                 <img
-                  src="https://placehold.co/100x100"
+                  src="http://localhost:3000/img/daniela.jpg"
                   className="card-img-top img-fluid round-image-hp-about mx-auto mt-3"
                   alt="Dottoressa 2"
                 />
                 <div className="card-body my-2">
                   <h5 className="card-title">Dott.ssa Daniela Esposito</h5>
-                  <p className="card-text text-muted">Scegli la tua tagline</p>
+                  <p className="card-text text-muted">
+                    Benessere e professionalità garantiti.
+                  </p>
                 </div>
               </div>
             </div>
             <div className="col-md-6 col-lg-3">
               <div className="card h-100 p-2 border-0 shadow text-center">
                 <img
-                  src="https://placehold.co/100x100"
+                  src="http://localhost:3000/img/me.jpg"
                   className="card-img-top img-fluid round-image-hp-about mx-auto mt-3"
                   alt="Dottore 3"
                 />
                 <div className="card-body my-2">
                   <h5 className="card-title">Dott. Antonio Ferrigno</h5>
-                  <p className="card-text text-muted">Scegli la tua tagline</p>
+                  <p className="card-text text-muted">
+                    Eccellenza medica, attenzione costante.
+                  </p>
                 </div>
               </div>
             </div>
             <div className="col-md-6 col-lg-3">
               <div className="card h-100 border-0 p-2 shadow text-center">
                 <img
-                  src="https://placehold.co/100x100"
+                  src="http://localhost:3000/img/pedro.jpg"
                   className="card-img-top img-fluid round-image-hp-about mx-auto mt-3"
                   alt="Dottore 4"
                 />
                 <div className="card-body my-2">
                   <h5 className="card-title">Dott.ssa Francesca Romagnoli</h5>
-                  <p className="card-text text-muted">Scegli la tua tagline</p>
+                  <p className="card-text text-muted">
+                    Cura personalizzata per ogni paziente.
+                  </p>
                 </div>
               </div>
             </div>
