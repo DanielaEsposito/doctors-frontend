@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const RegistrationForm = () => {
   const [provinces, setProvinces] = useState([]);
   const [errors, setErrors] = useState({});
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -218,6 +225,7 @@ const RegistrationForm = () => {
                   value={formData.description}
                   onChange={handleChange}
                   rows="3"
+                  required
                 ></textarea>
                 {errors.description && (
                   <div className="text-danger">{errors.description}</div>
