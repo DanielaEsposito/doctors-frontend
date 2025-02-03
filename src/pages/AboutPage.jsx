@@ -84,7 +84,9 @@ export default function AboutPage() {
                 />
                 <div className="card-body my-2">
                   <h5 className="card-title">Dott. Marco Donati</h5>
-                  <p className="card-text text-muted">M - L'uomo del secolo</p>
+                  <p className="card-text text-muted">
+                    M - Il figlio del secolo
+                  </p>
                 </div>
               </div>
             </div>
