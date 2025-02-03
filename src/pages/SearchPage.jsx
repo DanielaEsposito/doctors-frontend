@@ -110,13 +110,13 @@ export default function SearchPage() {
           </h4>
 
           {formSubmitted && doctors.length === 0 ? (
-            <p className="text-center">Nessun medico trovato.</p>
+            <p className="text-center doctors-row">Nessun medico trovato.</p>
           ) : (
-            <div className="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3 justify-content-center">
+            <div className="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3 justify-content-center ">
               {doctors.map((doctor) => (
                 <div
                   key={doctor.id}
-                  className="col d-flex justify-content-center"
+                  className="col d-flex justify-content-center doctors-row"
                 >
                   <div className="card card-sd">
                     <img
@@ -138,7 +138,7 @@ export default function SearchPage() {
                       </p>
                       <Link
                         to={`/${doctor.id}`}
-                        className="btn btn-sm btn-outline-primary"
+                        className="btn btn-sm btn-custom text-light "
                       >
                         Dettagli
                       </Link>
