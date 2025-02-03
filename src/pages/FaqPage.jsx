@@ -10,7 +10,7 @@ export default function FaqPage() {
             </div>
           </div>
           <div className="col-12 col-md-8">
-            <div className="accordion my-3" id="faqAccordion">
+            <div className="accordion accordion-flush my-3" id="faqAccordion">
               <div className="card">
                 <div className="card-header" id="headingOne">
                   <h2 className="mb-0">
