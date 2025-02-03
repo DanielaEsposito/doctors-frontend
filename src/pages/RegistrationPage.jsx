@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const RegistrationForm = () => {
   const [provinces, setProvinces] = useState([]);
+  const [errors, setErrors] = useState({});
 
   const [formData, setFormData] = useState({
     name: "",
@@ -13,7 +14,6 @@ const RegistrationForm = () => {
     description: "",
     city: "",
     province_id: "",
-    image: "doctor-placeholder.jpg",
   });
   const specialties = [
     { id: 1, name: "Anestesiologia" },
@@ -44,11 +44,60 @@ const RegistrationForm = () => {
     });
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\+?[0-9]*$/;
+
+    if (!formData.name || formData.name.length < 3) {
+      newErrors.name = "Il nome deve essere di almeno 3 lettere.";
+    }
+    if (!formData.surname || formData.surname.length < 3) {
+      newErrors.surname = "Il cognome deve essere di almeno 3 lettere.";
+    }
+    if (!formData.email || !emailRegex.test(formData.email)) {
+      newErrors.email = "Email non valida.";
+    }
+    if (!formData.phone_number || !phoneRegex.test(formData.phone_number)) {
+      newErrors.phone_number = "Numero di telefono non valido.";
+    }
+    if (
+      formData.phone_number &&
+      formData.phone_number.includes("+") &&
+      formData.phone_number.indexOf("+") !== 0
+    ) {
+      newErrors.phone_number = "Il simbolo '+' deve essere all'inizio.";
+    }
+    if (!formData.address || formData.address.length < 5) {
+      newErrors.address = "L'indirizzo deve essere di almeno 5 lettere.";
+    }
+    if (!formData.description) {
+      newErrors.description = "La descrizione è obbligatoria.";
+    }
+    if (!formData.city) {
+      newErrors.city = "La città è obbligatoria.";
+    }
+    if (!formData.province_id) {
+      newErrors.province_id = "La provincia è obbligatoria.";
+    }
+    if (!formData.specialty_id) {
+      newErrors.specialty_id = "La specializzazione è obbligatoria.";
+    }
+    //check if email already exists
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log("Dati inviati al backend:", formData);
+    // Validazione del form
+    if (!validateForm()) {
+      return;
+    }
 
+    // Invia i dati al backend
     fetch("http://localhost:3000/", {
       method: "POST",
       headers: {
@@ -57,9 +106,10 @@ const RegistrationForm = () => {
       body: JSON.stringify(formData),
     })
       .then((response) => {
-        console.log("HTTP Status Code:", response.status);
         if (!response.ok) {
-          throw new Error(`Errore HTTP: ${response.status}`);
+          return response.json().then((data) => {
+            throw new Error(data.message || "Errore durante la registrazione");
+          });
         }
         return response.json();
       })
@@ -67,6 +117,7 @@ const RegistrationForm = () => {
         console.log("Risposta del backend:", data);
         alert("Registrazione completata con successo!");
 
+        // Resetta il form
         setFormData({
           name: "",
           surname: "",
@@ -81,9 +132,18 @@ const RegistrationForm = () => {
       })
       .catch((error) => {
         console.error("Errore durante la registrazione:", error);
-        alert(
-          "Si è verificato un errore durante la registrazione. Riprova più tardi."
-        );
+
+        // Mostra l'errore all'utente
+        if (error.message === "L'email è già presente nel sistema") {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            email: error.message,
+          }));
+        } else {
+          alert(
+            "Si è verificato un errore durante la registrazione. Riprova più tardi."
+          );
+        }
       });
   };
 
@@ -97,11 +157,13 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="container mt-5 text-custom-dark">
-      <h1 className="text-center fw-bold mb-5">Unisciti al team</h1>
-      <div className="row">
+    <div className="container mt-5 text-custom-dark ">
+      <h1 className="text-center fw-bold mb-5 tags-container">
+        Unisciti al team
+      </h1>
+      <div className="row doctors-row-HOME ">
         {/* Colonna di sinistra */}
-        <div className="col-12 col-lg-6">
+        <div className="col-12 col-lg-6 ">
           <form
             onSubmit={handleSubmit}
             className="bg-light p-4 rounded shadow-lg mb-3"
@@ -119,8 +181,10 @@ const RegistrationForm = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  required
                 />
+                {errors.name && (
+                  <div className="text-danger">{errors.name}</div>
+                )}
               </div>
 
               {/* Cognome */}
@@ -135,8 +199,10 @@ const RegistrationForm = () => {
                   name="surname"
                   value={formData.surname}
                   onChange={handleChange}
-                  required
                 />
+                {errors.surname && (
+                  <div className="text-danger">{errors.surname}</div>
+                )}
               </div>
 
               {/* Descrizione */}
@@ -144,19 +210,22 @@ const RegistrationForm = () => {
                 <label htmlFor="description" className="form-label fw-bold">
                   Descrizione
                 </label>
+
                 <textarea
-                  className="form-control rounded-3"
+                  className="form-control h-100 rounded-4"
                   id="description"
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
                   rows="3"
-                  required
                 ></textarea>
+                {errors.description && (
+                  <div className="text-danger">{errors.description}</div>
+                )}
               </div>
 
               {/* Specializzazione */}
-              <div className="col-12 col-md-6 mb-3">
+              <div className="col-12 col-md-6 mb-3 mt-4">
                 <label htmlFor="specialty_id" className="form-label fw-bold">
                   Specializzazione
                 </label>
@@ -166,7 +235,6 @@ const RegistrationForm = () => {
                   name="specialty_id"
                   value={formData.specialty_id}
                   onChange={handleChange}
-                  required
                 >
                   <option value="">Seleziona una specializzazione</option>
                   {specialties.map((specialty) => (
@@ -175,10 +243,13 @@ const RegistrationForm = () => {
                     </option>
                   ))}
                 </select>
+                {errors.specialty_id && (
+                  <div className="text-danger">{errors.specialty_id}</div>
+                )}
               </div>
 
               {/* Indirizzo */}
-              <div className="col-12 col-md-6 mb-3">
+              <div className="col-12 col-md-6 mb-3 mt-4">
                 <label htmlFor="address" className="form-label fw-bold">
                   Indirizzo
                 </label>
@@ -189,12 +260,14 @@ const RegistrationForm = () => {
                   name="address"
                   value={formData.address}
                   onChange={handleChange}
-                  required
                 />
+                {errors.address && (
+                  <div className="text-danger">{errors.address}</div>
+                )}
               </div>
 
               {/* Città */}
-              <div className="col-12 col-md-6 mb-3">
+              <div className="col-12 col-md-6 mb-2">
                 <label htmlFor="city" className="form-label fw-bold">
                   Città
                 </label>
@@ -205,12 +278,14 @@ const RegistrationForm = () => {
                   name="city"
                   value={formData.city}
                   onChange={handleChange}
-                  required
                 />
+                {errors.city && (
+                  <div className="text-danger">{errors.city}</div>
+                )}
               </div>
 
               {/* Provincia */}
-              <div className="col-12 col-md-6 mb-3">
+              <div className="col-12 col-md-6 mb-2">
                 <label htmlFor="province_id" className="form-label fw-bold">
                   Provincia
                 </label>
@@ -219,7 +294,6 @@ const RegistrationForm = () => {
                   name="province_id"
                   value={formData.province_id}
                   onChange={handleProvinceChange}
-                  required
                 >
                   <option value="">Seleziona una provincia</option>
                   {provinces.map((province) => (
@@ -228,6 +302,9 @@ const RegistrationForm = () => {
                     </option>
                   ))}
                 </select>
+                {errors.province_id && (
+                  <div className="text-danger">{errors.province_id}</div>
+                )}
               </div>
 
               {/* Email */}
@@ -236,18 +313,20 @@ const RegistrationForm = () => {
                   Email
                 </label>
                 <input
-                  type="email"
+                  type="text"
                   className="form-control rounded-pill"
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
                 />
+                {errors.email && (
+                  <div className="text-danger">{errors.email}</div>
+                )}
               </div>
 
               {/* Numero di telefono */}
-              <div className="col-12 col-md-6 mb-4">
+              <div className="col-12 col-md-6 mb-3">
                 <label htmlFor="phone_number" className="form-label fw-bold">
                   Numero Di Telefono
                 </label>
@@ -258,8 +337,10 @@ const RegistrationForm = () => {
                   name="phone_number"
                   value={formData.phone_number}
                   onChange={handleChange}
-                  required
                 />
+                {errors.phone_number && (
+                  <div className="text-danger">{errors.phone_number}</div>
+                )}
               </div>
             </div>
 
