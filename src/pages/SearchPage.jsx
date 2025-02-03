@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import {
+  Link,
+  useParams,
+  useLocation,
+  useSearchParams,
+} from "react-router-dom";
 
 export default function SearchPage() {
   const [provinces, setProvinces] = useState([]);
@@ -7,6 +12,49 @@ export default function SearchPage() {
   const [selectedProvince, setSelectedProvince] = useState("");
   const [selectedSpecialty, setSelectedSpecialty] = useState("");
   const [doctors, setDoctors] = useState([]);
+
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const id = searchParams.get("specialtyId");
+
+    if (id) {
+      console.log("id from url: " + id);
+      setSelectedSpecialty(id);
+      fetchDoctors(id, "");
+    }
+  }, [searchParams]);
+
+  // # fetch doctors
+
+  const fetchDoctors = (selectedSpecialty, selectedProvince) => {
+    let url = `http://localhost:3000/search`;
+
+    let queryParams = [];
+
+    if (selectedProvince) {
+      queryParams.push(`provinceId=${selectedProvince}`);
+      // console.log("selectedProvince:" + selectedProvince);
+    }
+    if (selectedSpecialty) {
+      queryParams.push(`specialtyId=${selectedSpecialty}`);
+      // console.log("selectedSpecialty:" + selectedSpecialty);
+    }
+    if (queryParams.length > 0) {
+      url += "?" + queryParams.join("&");
+      // console.log("queryParamas:" + queryParams);
+    }
+
+    console.log("fetch url: " + url);
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("fetched doctors: " + data.resultsDoctor);
+        setDoctors(data.resultsDoctor);
+        // console.log(data);
+      });
+  };
 
   // # fetch provinces and specialties
 
@@ -33,33 +81,7 @@ export default function SearchPage() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    let url = `http://localhost:3000/search`;
-
-    let queryParams = [];
-
-    if (selectedProvince) {
-      queryParams.push(`provinceId=${selectedProvince}`);
-      // console.log("selectedProvince:" + selectedProvince);
-    }
-    if (selectedSpecialty) {
-      queryParams.push(`specialtyId=${selectedSpecialty}`);
-      // console.log("selectedSpecialty:" + selectedSpecialty);
-    }
-    if (queryParams.length > 0) {
-      url += "?" + queryParams.join("&");
-      // console.log("queryParamas:" + queryParams);
-    }
-
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setDoctors(data.resultsDoctor);
-        // console.log(data);
-      });
-
-    // console.log(queryParams);
-    // console.log(url);
-    // console.log(doctors);
+    fetchDoctors(selectedSpecialty, selectedProvince);
   };
 
   return (
