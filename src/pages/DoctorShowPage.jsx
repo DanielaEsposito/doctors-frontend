@@ -71,7 +71,6 @@ export default function DoctorShowPage() {
           <div className="card w-100 shadow-lg border-0">
             <div className="card-body pb-0">
               {" "}
-              {/* Rimosso il padding-bottom */}
               <h3 className="text-custom-dark fw-semibold pb-3 text-center">
                 Aggiungi una recensione
               </h3>

@@ -212,12 +212,12 @@ const RegistrationForm = () => {
                   Descrizione
                 </label>
                 <textarea
-                  className="form-control rounded-4"
+                  className="form-control h-100 rounded-4"
                   id="description"
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
-                  rows="5"
+                  rows="3"
                 ></textarea>
                 {errors.description && (
                   <div className="text-danger">{errors.description}</div>
@@ -225,7 +225,7 @@ const RegistrationForm = () => {
               </div>
 
               {/* Specializzazione */}
-              <div className="col-12 col-md-6 mb-3">
+              <div className="col-12 col-md-6 mb-3 mt-4">
                 <label htmlFor="specialty_id" className="form-label fw-bold">
                   Specializzazione
                 </label>
@@ -249,7 +249,7 @@ const RegistrationForm = () => {
               </div>
 
               {/* Indirizzo */}
-              <div className="col-12 col-md-6 mb-3">
+              <div className="col-12 col-md-6 mb-3 mt-4">
                 <label htmlFor="address" className="form-label fw-bold">
                   Indirizzo
                 </label>
@@ -267,7 +267,7 @@ const RegistrationForm = () => {
               </div>
 
               {/* Città */}
-              <div className="col-12 col-md-6 mb-3">
+              <div className="col-12 col-md-6 mb-2">
                 <label htmlFor="city" className="form-label fw-bold">
                   Città
                 </label>
@@ -285,7 +285,7 @@ const RegistrationForm = () => {
               </div>
 
               {/* Provincia */}
-              <div className="col-12 col-md-6 mb-3">
+              <div className="col-12 col-md-6 mb-2">
                 <label htmlFor="province_id" className="form-label fw-bold">
                   Provincia
                 </label>
@@ -326,7 +326,7 @@ const RegistrationForm = () => {
               </div>
 
               {/* Numero di telefono */}
-              <div className="col-12 col-md-6 mb-4">
+              <div className="col-12 col-md-6 mb-3">
                 <label htmlFor="phone_number" className="form-label fw-bold">
                   Numero Di Telefono
                 </label>
