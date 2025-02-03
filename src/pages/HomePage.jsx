@@ -64,7 +64,7 @@ export default function HomePage() {
     <div className="wrapper">
       <div className="background-hero"></div>
       <section id="hero-section">
-        <div className="container pb-5 pt-5 text-custom-light">
+        <div className="container pb-5 pt-5 text-custom-light tags-container ">
           <div className="text-light">
             <h1 className="fw-bold">BDoctors</h1>
             <h2 className="fs-4 fw-semibold">
@@ -101,7 +101,7 @@ export default function HomePage() {
       </section>
 
       <section id="featured-section">
-        <div className="container pt-5 text-custom-dark">
+        <div className="container pt-5 text-custom-dark doctors-row-HOME ">
           <h3 className="text-center fw-semibold">
             I nostri migliori specialisti
           </h3>
@@ -132,7 +132,7 @@ export default function HomePage() {
       </section>
 
       <section id="reviews-section">
-        <div className="container mt-5 pb-5 pt-5">
+        <div className="container mt-5 pb-5 pt-5 tags-container ">
           <h3 className="text-center fw-semibold text-custom-light">
             Le esperienze di chi si è affidato a noi
           </h3>
@@ -155,7 +155,7 @@ export default function HomePage() {
       </section>
 
       <section id="cta-section">
-        <div className="container mt-5 mb-4">
+        <div className="container mt-5 mb-4 doctors-row-HOME">
           <div className="row justify-content-center">
             <div className="col-lg-4">
               <h3 className="text-center fw-semibold mt-3 text-custom-dark">

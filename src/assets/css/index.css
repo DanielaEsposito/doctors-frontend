@@ -154,6 +154,24 @@ textarea.form-control {
     opacity: 1;
   }
 }
+#featured-section {
+  height: 400px;
+}
+.doctors-row-HOME {
+  position: relative;
+  animation: slide-in-right 1.5s ease-out forwards;
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
 .tags {
   display: inline-block;

@@ -2,12 +2,12 @@ export default function AboutPage() {
   return (
     <div className="wrapper bg-light py-5">
       <div className="container">
-        <h1 className="text-center text-custom-dark fw-bold mb-4">
+        <h1 className="text-center text-custom-dark fw-bold mb-4 tags-container ">
           Il progetto BDoctors
         </h1>
 
         <div>
-          <p className="text-custom-dark text-center pb-3">
+          <p className="text-custom-dark text-center pb-3 tags-container ">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus
             dolorum voluptate eius distinctio quia. Enim, quod delectus quis
             optio ex facere quasi, odio placeat quo libero dignissimos provident
@@ -22,7 +22,7 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="row g-4">
+        <div className="row g-4 tags-container ">
           <div className="col-md-4">
             <div className="card shadow border-0 h-100">
               <div className="card-body text-center">
@@ -70,7 +70,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="container mt-5">
+        <div className="container mt-5 doctors-row-HOME">
           <h2 className="text-center text-custom-dark fw-semibold mb-4">
             Il nostro team
           </h2>

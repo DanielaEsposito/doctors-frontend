@@ -24,7 +24,7 @@ export default function DoctorShowPage() {
   return (
     <>
       <div className="container py-5">
-        <div className="card mb-3 shadow-lg border-0">
+        <div className="card mb-3 shadow-lg border-0 tags-container">
           <div className="row g-0 align-items-center">
             <div className="col-md-4">
               <img
@@ -68,7 +68,7 @@ export default function DoctorShowPage() {
         </div>
 
         <div className="container py-5">
-          <div className="card w-100 shadow-lg border-0">
+          <div className="card w-100 shadow-lg border-0 doctors-row-HOME">
             <div className="card-body pb-0">
               {" "}
               <h3 className="text-custom-dark fw-semibold pb-3 text-center">

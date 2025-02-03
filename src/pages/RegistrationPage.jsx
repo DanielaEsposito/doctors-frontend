@@ -160,11 +160,13 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="container mt-5 text-custom-dark">
-      <h1 className="text-center fw-bold mb-5">Unisciti al team</h1>
-      <div className="row">
+    <div className="container mt-5 text-custom-dark ">
+      <h1 className="text-center fw-bold mb-5 tags-container">
+        Unisciti al team
+      </h1>
+      <div className="row doctors-row-HOME ">
         {/* Colonna di sinistra */}
-        <div className="col-12 col-lg-6">
+        <div className="col-12 col-lg-6 ">
           <form
             onSubmit={handleSubmit}
             className="bg-light p-4 rounded shadow-lg mb-3"
