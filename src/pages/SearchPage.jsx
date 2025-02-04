@@ -95,7 +95,7 @@ export default function SearchPage() {
             <form className="row mt-4 g-3" onSubmit={handleFormSubmit}>
               <div className="col-md-6 col-12">
                 <label
-                  for="exampleFormControlInput1"
+                  htmlFor="exampleFormControlInput1"
                   className="form-label fw-semibold text-custom-dark ms-1"
                 >
                   Specializzazione
@@ -115,7 +115,7 @@ export default function SearchPage() {
               </div>
               <div className="col-md-6 col-12">
                 <label
-                  for="exampleFormControlInput1"
+                  htmlFor="exampleFormControlInput1"
                   className="form-label fw-semibold text-custom-dark ms-1"
                 >
                   Provincia
