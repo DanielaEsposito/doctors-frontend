@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 const RegistrationForm = () => {
   const [provinces, setProvinces] = useState([]);
   const [errors, setErrors] = useState({});
+  const [confirmMessage, setConfirmMessage] = useState(false);
 
   const { pathname } = useLocation();
 
@@ -105,6 +106,8 @@ const RegistrationForm = () => {
       return;
     }
 
+    setConfirmMessage(true);
+
     // Invia i dati al backend
     fetch("http://localhost:3000/", {
       method: "POST",
@@ -123,7 +126,6 @@ const RegistrationForm = () => {
       })
       .then((data) => {
         console.log("Risposta del backend:", data);
-        alert("Registrazione completata con successo!");
 
         // Resetta il form
         setFormData({
@@ -143,6 +145,8 @@ const RegistrationForm = () => {
 
         // Mostra l'errore all'utente
         if (error.message === "L'email è già presente nel sistema") {
+          setConfirmMessage(false);
+
           setErrors((prevErrors) => ({
             ...prevErrors,
             email: error.message,
@@ -165,276 +169,242 @@ const RegistrationForm = () => {
   };
 
   return (
-    <>
-      <div className="container mt-5 text-custom-dark ">
-        <h1 className="text-center fw-bold mb-5 tags-container">
-          Unisciti al team
-        </h1>
-        <div className="row doctors-row-HOME ">
-          {/* Colonna di sinistra */}
-          <div className="col-12 col-lg-6 ">
-            <form
-              onSubmit={handleSubmit}
-              className="bg-light p-4 rounded shadow-lg mb-3"
-            >
-              <div className="row mb-3">
-                {/* Nome */}
-                <div className="col-12 col-md-6 mb-3">
-                  <label htmlFor="name" className="form-label fw-bold">
-                    Nome
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control rounded-pill"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                  />
-                  {errors.name && (
-                    <div className="text-danger">{errors.name}</div>
-                  )}
-                </div>
+    <div className="container mt-5 text-custom-dark ">
+      <h1 className="text-center fw-bold mb-5 tags-container">
+        Unisciti al team
+      </h1>
 
-                {/* Cognome */}
-                <div className="col-12 col-md-6 mb-3">
-                  <label htmlFor="surname" className="form-label fw-bold">
-                    Cognome
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control rounded-pill"
-                    id="surname"
-                    name="surname"
-                    value={formData.surname}
-                    onChange={handleChange}
-                  />
-                  {errors.surname && (
-                    <div className="text-danger">{errors.surname}</div>
-                  )}
-                </div>
-
-                {/* Descrizione */}
-                <div className="col-12 mb-3">
-                  <label htmlFor="description" className="form-label fw-bold">
-                    Descrizione
-                  </label>
-
-                  <textarea
-                    className="form-control h-100 rounded-4"
-                    id="description"
-                    name="description"
-                    value={formData.description}
-                    onChange={handleChange}
-                    rows="3"
-                    required
-                  ></textarea>
-                  {errors.description && (
-                    <div className="text-danger">{errors.description}</div>
-                  )}
-                </div>
-
-                {/* Specializzazione */}
-                <div className="col-12 col-md-6 mb-3 mt-4">
-                  <label htmlFor="specialty_id" className="form-label fw-bold">
-                    Specializzazione
-                  </label>
-                  <select
-                    className="form-select rounded-pill"
-                    id="specialty"
-                    name="specialty_id"
-                    value={formData.specialty_id}
-                    onChange={handleChange}
-                  >
-                    <option value="">Seleziona una specializzazione</option>
-                    {specialties.map((specialty) => (
-                      <option key={specialty.id} value={specialty.id}>
-                        {specialty.name}
-                      </option>
-                    ))}
-                  </select>
-                  {errors.specialty_id && (
-                    <div className="text-danger">{errors.specialty_id}</div>
-                  )}
-                </div>
-
-                {/* Indirizzo */}
-                <div className="col-12 col-md-6 mb-3 mt-4">
-                  <label htmlFor="address" className="form-label fw-bold">
-                    Indirizzo
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control rounded-pill"
-                    id="address"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleChange}
-                  />
-                  {errors.address && (
-                    <div className="text-danger">{errors.address}</div>
-                  )}
-                </div>
-
-                {/* Città */}
-                <div className="col-12 col-md-6 mb-2">
-                  <label htmlFor="city" className="form-label fw-bold">
-                    Città
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control rounded-pill"
-                    id="city"
-                    name="city"
-                    value={formData.city}
-                    onChange={handleChange}
-                  />
-                  {errors.city && (
-                    <div className="text-danger">{errors.city}</div>
-                  )}
-                </div>
-
-                {/* Provincia */}
-                <div className="col-12 col-md-6 mb-2">
-                  <label htmlFor="province_id" className="form-label fw-bold">
-                    Provincia
-                  </label>
-                  <select
-                    className="form-select rounded-pill mb-3"
-                    name="province_id"
-                    value={formData.province_id}
-                    onChange={handleProvinceChange}
-                  >
-                    <option value="">Seleziona una provincia</option>
-                    {provinces.map((province) => (
-                      <option key={province.id} value={province.id}>
-                        {province.province_name}
-                      </option>
-                    ))}
-                  </select>
-                  {errors.province_id && (
-                    <div className="text-danger">{errors.province_id}</div>
-                  )}
-                </div>
-
-                {/* Email */}
-                <div className="col-12 col-md-6 mb-3">
-                  <label htmlFor="email" className="form-label fw-bold">
-                    Email
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control rounded-pill"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                  {errors.email && (
-                    <div className="text-danger">{errors.email}</div>
-                  )}
-                </div>
-
-                {/* Numero di telefono */}
-                <div className="col-12 col-md-6 mb-3">
-                  <label htmlFor="phone_number" className="form-label fw-bold">
-                    Numero Di Telefono
-                  </label>
-                  <input
-                    type="tel"
-                    className="form-control rounded-pill"
-                    id="phone_number"
-                    name="phone_number"
-                    value={formData.phone_number}
-                    onChange={handleChange}
-                  />
-                  {errors.phone_number && (
-                    <div className="text-danger">{errors.phone_number}</div>
-                  )}
-                </div>
+      <div className="row doctors-row-HOME ">
+        {/* Colonna di sinistra */}
+        <div className="col-12 col-lg-6 ">
+          <form
+            onSubmit={handleSubmit}
+            className="bg-light p-4 rounded shadow-lg mb-3"
+          >
+            <div className="row mb-3">
+              {/* Nome */}
+              <div className="col-12 col-md-6 mb-3">
+                <label htmlFor="name" className="form-label fw-bold">
+                  Nome
+                </label>
+                <input
+                  type="text"
+                  className="form-control rounded-pill"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+                {errors.name && (
+                  <div className="text-danger">{errors.name}</div>
+                )}
               </div>
 
-              {/* Bottone */}
-              <div className="text-center">
-                <button
-                  type="submit"
-                  className="btn btn-custom fw-semibold d-inline-block mb-2 px-4 py-2 transition-all hover-shadow"
-                  data-bs-toggle="modal"
-                  data-bs-target="#staticBackdrop"
+              {/* Cognome */}
+              <div className="col-12 col-md-6 mb-3">
+                <label htmlFor="surname" className="form-label fw-bold">
+                  Cognome
+                </label>
+                <input
+                  type="text"
+                  className="form-control rounded-pill"
+                  id="surname"
+                  name="surname"
+                  value={formData.surname}
+                  onChange={handleChange}
+                />
+                {errors.surname && (
+                  <div className="text-danger">{errors.surname}</div>
+                )}
+              </div>
+
+              {/* Descrizione */}
+              <div className="col-12 mb-3">
+                <label htmlFor="description" className="form-label fw-bold">
+                  Descrizione
+                </label>
+
+                <textarea
+                  className="form-control h-100 rounded-4"
+                  id="description"
+                  name="description"
+                  value={formData.description}
+                  onChange={handleChange}
+                  rows="3"
+                  required
+                ></textarea>
+                {errors.description && (
+                  <div className="text-danger">{errors.description}</div>
+                )}
+              </div>
+
+              {/* Specializzazione */}
+              <div className="col-12 col-md-6 mb-3 mt-4">
+                <label htmlFor="specialty_id" className="form-label fw-bold">
+                  Specializzazione
+                </label>
+                <select
+                  className="form-select rounded-pill"
+                  id="specialty"
+                  name="specialty_id"
+                  value={formData.specialty_id}
+                  onChange={handleChange}
                 >
-                  REGISTRATI
-                </button>
+                  <option value="">Seleziona una specializzazione</option>
+                  {specialties.map((specialty) => (
+                    <option key={specialty.id} value={specialty.id}>
+                      {specialty.name}
+                    </option>
+                  ))}
+                </select>
+                {errors.specialty_id && (
+                  <div className="text-danger">{errors.specialty_id}</div>
+                )}
               </div>
-            </form>
-          </div>
 
-          {/* Colonna di destra */}
-          <div className="col-12 col-lg-6 d-flex align-items-center justify-content-center">
-            <div className="container">
-              <ul className="list-unstyled">
-                <li className="d-flex fs-5 align-items-center mb-3">
-                  <i className="fa-solid fa-star text-warning me-2"></i>
-                  Entra a far parte di una vasta comunità di professionisti
-                  della salute.
-                </li>
-                <li className="d-flex fs-5 align-items-center mb-3">
-                  <i className="fa-solid fa-star text-warning me-2"></i>
-                  Registra gratuitamente il tuo profilo e scopri soluzioni
-                  innovative per gestire il tuo studio in modo più efficiente.
-                </li>
-                <li className="d-flex fs-5 align-items-center mb-3">
-                  <i className="fa-solid fa-star text-warning me-2"></i>
-                  Connettiti con un numero sempre maggiore di pazienti.
-                </li>
-                <li className="d-flex fs-5 align-items-center mb-3">
-                  <i className="fa-solid fa-star text-warning me-2"></i>
-                  Crea un profilo distintivo e fai emergere le tue competenze
-                  tra i medici della tua zona.
-                </li>
-              </ul>
+              {/* Indirizzo */}
+              <div className="col-12 col-md-6 mb-3 mt-4">
+                <label htmlFor="address" className="form-label fw-bold">
+                  Indirizzo
+                </label>
+                <input
+                  type="text"
+                  className="form-control rounded-pill"
+                  id="address"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                />
+                {errors.address && (
+                  <div className="text-danger">{errors.address}</div>
+                )}
+              </div>
+
+              {/* Città */}
+              <div className="col-12 col-md-6 mb-2">
+                <label htmlFor="city" className="form-label fw-bold">
+                  Città
+                </label>
+                <input
+                  type="text"
+                  className="form-control rounded-pill"
+                  id="city"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleChange}
+                />
+                {errors.city && (
+                  <div className="text-danger">{errors.city}</div>
+                )}
+              </div>
+
+              {/* Provincia */}
+              <div className="col-12 col-md-6 mb-2">
+                <label htmlFor="province_id" className="form-label fw-bold">
+                  Provincia
+                </label>
+                <select
+                  className="form-select rounded-pill mb-3"
+                  name="province_id"
+                  value={formData.province_id}
+                  onChange={handleProvinceChange}
+                >
+                  <option value="">Seleziona una provincia</option>
+                  {provinces.map((province) => (
+                    <option key={province.id} value={province.id}>
+                      {province.province_name}
+                    </option>
+                  ))}
+                </select>
+                {errors.province_id && (
+                  <div className="text-danger">{errors.province_id}</div>
+                )}
+              </div>
+
+              {/* Email */}
+              <div className="col-12 col-md-6 mb-3">
+                <label htmlFor="email" className="form-label fw-bold">
+                  Email
+                </label>
+                <input
+                  type="text"
+                  className="form-control rounded-pill"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+                {errors.email && (
+                  <div className="text-danger">{errors.email}</div>
+                )}
+              </div>
+
+              {/* Numero di telefono */}
+              <div className="col-12 col-md-6 mb-3">
+                <label htmlFor="phone_number" className="form-label fw-bold">
+                  Numero Di Telefono
+                </label>
+                <input
+                  type="tel"
+                  className="form-control rounded-pill"
+                  id="phone_number"
+                  name="phone_number"
+                  value={formData.phone_number}
+                  onChange={handleChange}
+                />
+                {errors.phone_number && (
+                  <div className="text-danger">{errors.phone_number}</div>
+                )}
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="modal fade"
-        id="staticBackdrop"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="staticBackdropLabel">
-                Modal title
-              </h1>
+
+            {/* Bottone */}
+            <div className="text-center">
               <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">...</div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
+                type="submit"
+                className="btn btn-custom fw-semibold d-inline-block mb-2 px-4 py-2 transition-all hover-shadow"
               >
-                Close
-              </button>
-              <button type="button" className="btn btn-primary">
-                Understood
+                REGISTRATI
               </button>
             </div>
+            <h2
+              className={` fw-semibold text-success text-center ${
+                confirmMessage ? "show d-block" : "d-none"
+              }`}
+            >
+              Registrazione completata con successo!
+            </h2>
+          </form>
+        </div>
+
+        {/* Colonna di destra */}
+        <div className="col-12 col-lg-6 d-flex align-items-center justify-content-center">
+          <div className="container">
+            <ul className="list-unstyled">
+              <li className="d-flex fs-5 align-items-center mb-3">
+                <i className="fa-solid fa-star text-warning me-2"></i>
+                Entra a far parte di una vasta comunità di professionisti della
+                salute.
+              </li>
+              <li className="d-flex fs-5 align-items-center mb-3">
+                <i className="fa-solid fa-star text-warning me-2"></i>
+                Registra gratuitamente il tuo profilo e scopri soluzioni
+                innovative per gestire il tuo studio in modo più efficiente.
+              </li>
+              <li className="d-flex fs-5 align-items-center mb-3">
+                <i className="fa-solid fa-star text-warning me-2"></i>
+                Connettiti con un numero sempre maggiore di pazienti.
+              </li>
+              <li className="d-flex fs-5 align-items-center mb-3">
+                <i className="fa-solid fa-star text-warning me-2"></i>
+                Crea un profilo distintivo e fai emergere le tue competenze tra
+                i medici della tua zona.
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
