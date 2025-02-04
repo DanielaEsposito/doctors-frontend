@@ -56,50 +56,53 @@ const RegistrationForm = () => {
   const validateForm = () => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^\+?[0-9]*$/;
+    const phoneRegex = /^\+?\d+$/; // Modificata per permettere '+' solo all'inizio e poi solo numeri
 
-    if (!formData.name || formData.name.length < 3) {
+    if (!formData.name) {
+      newErrors.name = "Il nome è obbligatorio.";
+    } else if (formData.name.length < 3) {
       newErrors.name = "Il nome deve essere di almeno 3 lettere.";
     }
-    if (!formData.surname || formData.surname.length < 3) {
+
+    if (!formData.surname) {
+      newErrors.surname = "Il cognome è obbligatorio.";
+    } else if (formData.surname.length < 3) {
       newErrors.surname = "Il cognome deve essere di almeno 3 lettere.";
     }
-    if (!formData.email || !emailRegex.test(formData.email)) {
+
+    if (!formData.email) {
+      newErrors.email = "L'email è obbligatoria.";
+    } else if (!emailRegex.test(formData.email)) {
       newErrors.email = "Email non valida.";
     }
+
     if (!formData.phone_number) {
       newErrors.phone_number = "Numero di telefono obbligatorio.";
+    } else if (!phoneRegex.test(formData.phone_number)) {
+      newErrors.phone_number =
+        "Il numero di telefono deve contenere solo numeri e, se presente,  il '+' solo all'inizio.";
     }
 
-    if (!phoneRegex.test(formData.phone_number)) {
-      newErrors.phone_number =
-        "Il numero di telefono deve contenere solo numeri.";
-    }
-    if (
-      formData.phone_number &&
-      formData.phone_number.includes("+") &&
-      formData.phone_number.indexOf("+") !== 0
-    ) {
-      newErrors.phone_number = "Il simbolo '+' deve essere all'inizio.";
-    }
-    if (!formData.address || formData.address.length < 5) {
+    if (!formData.address) {
+      newErrors.address = "L'indirizzo è obbligatorio.";
+    } else if (formData.address.length < 5) {
       newErrors.address = "L'indirizzo deve essere di almeno 5 lettere.";
     }
+
     if (!formData.description) {
       newErrors.description = "La descrizione è obbligatoria.";
     }
+
     if (!formData.city) {
       newErrors.city = "La città è obbligatoria.";
     }
+
     if (!formData.province_id) {
       newErrors.province_id = "La provincia è obbligatoria.";
     }
+
     if (!formData.specialty_id) {
       newErrors.specialty_id = "La specializzazione è obbligatoria.";
-    }
-    //check if description is empty
-    if (!formData.description) {
-      newErrors.description = "La descrizione è obbligatoria.";
     }
 
     setErrors(newErrors);
@@ -146,6 +149,7 @@ const RegistrationForm = () => {
           description: "",
           city: "",
           province_id: "",
+          image: "doctor-placeholder.jpg",
         });
       })
       .catch((error) => {
