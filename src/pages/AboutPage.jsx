@@ -8,17 +8,20 @@ export default function AboutPage() {
 
         <div>
           <p className="text-custom-dark text-center pb-3 tags-container ">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-            dolorum voluptate eius distinctio quia. Enim, quod delectus quis
-            optio ex facere quasi, odio placeat quo libero dignissimos provident
-            aperiam rerum! Lorem ipsum dolor sit, amet consectetur adipisicing
-            elit. Qui illum labore rerum, nesciunt repellendus accusamus vero
-            eligendi, architecto ab et aperiam tempora! Harum voluptatibus eum
-            illo laboriosam obcaecati. Explicabo, quas! Lorem ipsum dolor sit
-            amet consectetur adipisicing elit. Architecto, nam eum. Nemo,
-            reiciendis debitis molestiae necessitatibus ipsam similique
-            praesentium aliquid ea. Est iure praesentium earum saepe voluptates
-            rerum, quaerat asperiores.
+            BDoctors è una piattaforma innovativa che connette medici e pazienti
+            in modo semplice e sicuro. Il nostro obiettivo è facilitare
+            l'accesso ai servizi sanitari, permettendo ai professionisti della
+            salute di registrarsi e offrire le proprie competenze a chi ne ha
+            bisogno. Gli utenti possono cercare medici specializzati, prenotare
+            consulenze e ricevere assistenza personalizzata direttamente online,
+            garantendo efficienza, rapidità e un supporto sanitario di alta
+            qualità. La piattaforma offre un'interfaccia intuitiva sia per i
+            medici che per i pazienti, con strumenti avanzati per la gestione
+            delle prenotazioni, delle cartelle cliniche e delle comunicazioni.
+            BDoctors promuove un ambiente sicuro e protetto, in cui la privacy
+            dei dati sensibili è una priorità assoluta. Inoltre, supportiamo la
+            telemedicina, consentendo consulti a distanza per ridurre le
+            barriere geografiche e ottimizzare i tempi di attesa.
           </p>
         </div>
 
