@@ -67,8 +67,13 @@ const RegistrationForm = () => {
     if (!formData.email || !emailRegex.test(formData.email)) {
       newErrors.email = "Email non valida.";
     }
-    if (!formData.phone_number || !phoneRegex.test(formData.phone_number)) {
-      newErrors.phone_number = "Numero di telefono non valido.";
+    if (!formData.phone_number) {
+      newErrors.phone_number = "Numero di telefono obbligatorio.";
+    }
+
+    if (!phoneRegex.test(formData.phone_number)) {
+      newErrors.phone_number =
+        "Il numero di telefono deve contenere solo numeri.";
     }
     if (
       formData.phone_number &&
@@ -92,7 +97,10 @@ const RegistrationForm = () => {
     if (!formData.specialty_id) {
       newErrors.specialty_id = "La specializzazione è obbligatoria.";
     }
-    //check if email already exists
+    //check if description is empty
+    if (!formData.description) {
+      newErrors.description = "La descrizione è obbligatoria.";
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -231,7 +239,6 @@ const RegistrationForm = () => {
                   value={formData.description}
                   onChange={handleChange}
                   rows="3"
-                  required
                 ></textarea>
                 {errors.description && (
                   <div className="text-danger">{errors.description}</div>
@@ -239,7 +246,7 @@ const RegistrationForm = () => {
               </div>
 
               {/* Specializzazione */}
-              <div className="col-12 col-md-6 mb-3 mt-4">
+              <div className="col-12 col-md-6 mb-3 mt-5">
                 <label htmlFor="specialty_id" className="form-label fw-bold">
                   Specializzazione
                 </label>
@@ -263,7 +270,7 @@ const RegistrationForm = () => {
               </div>
 
               {/* Indirizzo */}
-              <div className="col-12 col-md-6 mb-3 mt-4">
+              <div className="col-12 col-md-6 mb-3 mt-5">
                 <label htmlFor="address" className="form-label fw-bold">
                   Indirizzo
                 </label>
@@ -304,7 +311,7 @@ const RegistrationForm = () => {
                   Provincia
                 </label>
                 <select
-                  className="form-select rounded-pill mb-3"
+                  className="form-select rounded-pill "
                   name="province_id"
                   value={formData.province_id}
                   onChange={handleProvinceChange}

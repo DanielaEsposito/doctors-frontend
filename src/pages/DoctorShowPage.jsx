@@ -75,7 +75,7 @@ export default function DoctorShowPage() {
                 Aggiungi una recensione
               </h3>
               <div className="row">
-                <div className="col-12 col-md-8">
+                <div className="col-12 col-md-12 col-lg-8">
                   <div className="d-flex justify-content-center"></div>
 
                   <div className="mb-3">
@@ -86,11 +86,11 @@ export default function DoctorShowPage() {
                   </div>
                 </div>
 
-                <div className="col-12 col-md-4 d-flex align-items-end">
+                <div className="col-12 col-md-4 d-flex align-items-end d-none d-sm-none d-md-none d-lg-block">
                   <img
                     src="/dottore.png"
                     alt="Dottore"
-                    className="img-fluid review-img d-none d-md-block"
+                    className="img-fluid review-img"
                   />
                 </div>
               </div>
