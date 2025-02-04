@@ -21,6 +21,7 @@ const RegistrationForm = () => {
     description: "",
     city: "",
     province_id: "",
+    image: "doctor-placeholder.jpg",
   });
   const specialties = [
     { id: 1, name: "Anestesiologia" },
