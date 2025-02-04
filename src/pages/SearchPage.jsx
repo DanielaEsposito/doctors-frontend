@@ -94,6 +94,12 @@ export default function SearchPage() {
           <div className="container-filters">
             <form className="row mt-4 g-3" onSubmit={handleFormSubmit}>
               <div className="col-md-6 col-12">
+                <label
+                  for="exampleFormControlInput1"
+                  className="form-label fw-semibold text-custom-dark ms-1"
+                >
+                  Specializzazione
+                </label>
                 <select
                   className="form-select mb-3"
                   value={selectedSpecialty}
@@ -108,6 +114,12 @@ export default function SearchPage() {
                 </select>
               </div>
               <div className="col-md-6 col-12">
+                <label
+                  for="exampleFormControlInput1"
+                  className="form-label fw-semibold text-custom-dark ms-1"
+                >
+                  Provincia
+                </label>
                 <select
                   className="form-select mb-3"
                   value={selectedProvince}
