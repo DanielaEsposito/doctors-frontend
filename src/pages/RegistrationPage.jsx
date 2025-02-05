@@ -35,7 +35,7 @@ const RegistrationForm = () => {
     { id: 8, name: "Geriatria" },
     { id: 9, name: "Ematologia" },
     { id: 10, name: "Malattie Infettive" },
-    { id: 11, name: "Polmonologia" },
+    { id: 11, name: "Pneumologia" },
   ];
 
   useEffect(() => {
